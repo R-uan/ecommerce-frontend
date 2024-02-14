@@ -5,18 +5,3 @@
 * {
 	color: white;
 }
-
-body {
-	background-color: #151515;
-}
-
-.products {
-	display: grid;
-	column-gap: 10px;
-	row-gap: 10px;
-	grid-template-columns: repeat(4, fit-content(20%));
-}
-
-.single-product * {
-	color: black;
-}
