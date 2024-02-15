@@ -5,8 +5,11 @@ import { CiLogin } from "react-icons/ci";
 export default function Header() {
 	return (
 		<header className={styles.header}>
+			<Link href={"/"}>
+				<div>LOGO</div>
+			</Link>
 			<div className={styles.menu_options}>
-				<ul className="flex flex-row gap-5 mr-[5vw]">
+				<ul>
 					<li>
 						<CiLogin />
 						<Link href={"/"}>Sign in</Link>
