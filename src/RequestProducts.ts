@@ -5,11 +5,11 @@ export async function RequestProducts(url: string = "http://127.0.0.1:8000/api/p
 	try {
 		const response = (await axios.get(url)).data;
 		return {
-			data: response.data.data,
-			total: response.data.total,
-			current_page_url: `http://127.0.0.1:8000/api/products?page=${response.data.current_page}`,
-			next_page_url: response.data.next_page_url,
-			last_page_url: response.data.last_page_url,
+			data: response.data,
+			total: response.total,
+			current_page: response.current_page,
+			last_page: response.last_page,
+			next_page_url: response.next_page_url,
 		};
 	} catch (error) {
 		if (isAxiosError(error)) throw new Error(error.message);
@@ -26,10 +26,11 @@ export async function RequestProductsQuery(params: string, url?: string) {
 			.data;
 	}
 	return {
-		data: response.data.data,
-		total: response.data.total,
-		current_page_url: `http://127.0.0.1:8000/api/products/search?page${response.data.current_page}`,
-		next_page_url: response.data.next_page_url,
-		last_page_url: response.data.last_page_url,
+		data: response.data,
+		total: response.total,
+		current_page: response.current_page,
+		last_page: response.last_page,
+		next_page_url: response.next_page_url,
+		last_page_url: response.last_page_url,
 	};
 }
