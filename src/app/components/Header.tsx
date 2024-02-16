@@ -12,7 +12,7 @@ export default function Header() {
 				<ul>
 					<li>
 						<CiLogin />
-						<Link href={"/"}>Sign in</Link>
+						<Link href={"/signin"}>Sign in</Link>
 					</li>
 					<li>
 						<Link href={"/"}>Sign up</Link>

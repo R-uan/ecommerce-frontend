@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import ErrorProviderSlice from "./slices/ErrorProviderSlice";
+import ProductListSlice from "./slices/ProductListSlice";
 export const store = configureStore({
 	reducer: {
+		productList: ProductListSlice,
 		errorProvider: ErrorProviderSlice,
 	},
 });

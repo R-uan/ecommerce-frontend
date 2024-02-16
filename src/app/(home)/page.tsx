@@ -1,5 +1,5 @@
 "use client";
-import mainbg from "../../../public/images/home/main-bg.jpg";
+import mainbg from "@/public/images/home/main-bg.jpg";
 import Link from "next/link";
 import styles from "@/styles/home.module.scss";
 import Header from "../components/Header";
