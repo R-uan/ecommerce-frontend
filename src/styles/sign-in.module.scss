@@ -2,61 +2,26 @@
 
 $secondary_color: #f1f6f9;
 $hover: #c8c8c8;
+$debug: 2px;
 
-.body {
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-color: #0f0f0f;
-}
-
-.main {
-	gap: 10px;
+.form {
+	margin-top: 20px;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
-	width: 100vw;
-	height: 100vh;
-
-	.logo {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 500px;
-		height: 100px;
-		margin-top: 50px;
-		outline: 2px solid red;
-	}
-}
-
-.main_content {
-	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.75);
-	border-top: 7px solid $secondary_color;
-	border-radius: 5px;
-	background-color: #151515;
-
 	flex-direction: column;
-	align-items: center;
-	height: 450px;
-	width: 500px;
-	display: flex;
 
-	span {
+	& > span {
 		font-family: "Teko", sans-serif;
 		margin-top: 20px;
 		font-size: 1.5rem;
 		line-height: 2rem;
+		margin-bottom: 20px;
 	}
-}
-
-.form {
-	margin-top: 30px;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
 
 	.form_field {
 		display: flex;
 		flex-direction: column;
+		margin-bottom: 15px;
 		input {
 			background-color: #222831;
 			padding-left: 5px;
@@ -71,8 +36,23 @@ $hover: #c8c8c8;
 		}
 	}
 
-	.form_options {
+	.auth_message {
+		width: 325px;
 		display: flex;
+		align-items: center;
+		height: 20px;
+		span {
+			color: #d21312;
+			font-size: 0.85rem;
+			line-height: 0.85rem;
+		}
+	}
+
+	.form_options {
+		margin-top: -10px;
+		margin-bottom: 20px;
+		display: flex;
+		width: 100%;
 		justify-content: space-between;
 		label {
 			font-size: 1rem;
@@ -85,6 +65,7 @@ $hover: #c8c8c8;
 	}
 
 	.submit_form {
+		margin-bottom: 80px;
 		input {
 			width: 330px;
 			height: 35px;
@@ -101,15 +82,27 @@ $hover: #c8c8c8;
 }
 
 .sign_up {
-	margin-top: 20px;
-	button {
-		width: 330px;
-		height: 35px;
+	border-radius: 0px 0px 5px 5px;
+	gap: 5px;
+	display: flex;
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+	height: 30px;
+	bottom: 0;
+	background-color: $secondary_color;
+	width: 100%;
+
+	* {
+		font-family: "Teko", sans-serif;
+		font-size: 1.35rem;
+		line-height: 1.35rem;
 		color: black;
-		border-radius: 3px;
-		background-color: $secondary_color;
+	}
+
+	.signup_link {
 		&:hover {
-			background-color: $hover;
+			color: #7743db;
 		}
 	}
 }
