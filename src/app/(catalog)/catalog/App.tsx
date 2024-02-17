@@ -23,7 +23,9 @@ export default function App() {
 					<div className={styles.catalog_itens}>
 						<div className={styles.upper_bar}>
 							<h3>Results</h3>
-							<p>Showing {q}</p>
+							<p>
+								Showing {productList.data?.length} of {productList.total}
+							</p>
 						</div>
 						<section className={styles.catalog_map}>
 							<ProductMap />
