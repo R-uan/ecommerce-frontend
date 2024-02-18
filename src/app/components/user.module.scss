@@ -1,0 +1,38 @@
+.user_menu {
+	margin-right: 50px;
+	.options_menu_outer {
+		z-index: 20;
+		top: 0;
+		right: 0;
+		position: fixed;
+		width: 100vw;
+		overflow: auto;
+		background-color: rgba(0, 0, 0, 0.4);
+		height: 100%;
+	}
+
+	.options_menu {
+		gap: 15px;
+		top: 45px;
+		right: 45px;
+		z-index: 21;
+		width: 20vw;
+		height: 120px;
+		display: flex;
+		margin-top: 10px;
+		border-radius: 5px;
+		position: absolute;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		background-color: #0c131b;
+
+		button {
+			* {
+				color: black;
+			}
+			width: 15vw;
+			background-color: white;
+		}
+	}
+}

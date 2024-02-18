@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "@/styles/header.module.scss";
 import { CiLogin } from "react-icons/ci";
+import User from "./User";
 
 export default function Header() {
 	return (
@@ -9,15 +10,7 @@ export default function Header() {
 				<div>LOGO</div>
 			</Link>
 			<div className={styles.menu_options}>
-				<ul>
-					<li>
-						<CiLogin />
-						<Link href={"/signin"}>Sign in</Link>
-					</li>
-					<li>
-						<Link href={"/"}>Sign up</Link>
-					</li>
-				</ul>
+				<User />
 			</div>
 		</header>
 	);
