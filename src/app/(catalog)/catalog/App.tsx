@@ -17,20 +17,19 @@ export default function App() {
 	return (
 		<>
 			<Header />
-			<div className={styles.main_container}>
-				<div className={styles.cb1}>
-					<SideMenu />
-					<div className={styles.catalog_itens}>
-						<div className={styles.upper_bar}>
-							<h3>Results</h3>
-							<p>
-								Showing {productList.data?.length} of {productList.total}
-							</p>
-						</div>
-						<section className={styles.catalog_map}>
-							<ProductMap />
-						</section>
+			<SideMenu />
+			<div className={styles.divider} />
+			<div className={styles.cb1}>
+				<div className={styles.catalog_itens}>
+					<div className={styles.upper_bar}>
+						<h3>Results</h3>
+						<p>
+							Showing {productList.data?.length} of {productList.total}
+						</p>
 					</div>
+					<section className={styles.catalog_map}>
+						<ProductMap />
+					</section>
 				</div>
 			</div>
 		</>

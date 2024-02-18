@@ -9,13 +9,16 @@ export default function ProductMiniature({ data }: { data: IProducts }) {
 				<Image src={testimage} alt=""></Image>
 			</div>
 			<div className={styles.product_information}>
-				<div className={styles.main_information}>
+				<div className={styles.info1}>
 					<h3>{data.name}</h3>
-					<h4>${data.unit_price}</h4>
-					<h5>{data.category}</h5>
-				</div>
-				<div className={styles.additional_information}>
 					<span>Rating</span>
+				</div>
+				<div className={styles.info2}>
+					<h3>{data.manufacturer_name}</h3>
+				</div>
+				<div className={styles.info3}>
+					<h3>{data.category}</h3>
+					<span>${data.unit_price}</span>
 				</div>
 			</div>
 		</div>

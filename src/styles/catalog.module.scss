@@ -3,72 +3,59 @@
 
 $debug: 0px;
 
-.layout {
-	/* 	background-color: #0c0f15;*/
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-color: #0b0b0b;
+.body {
+	display: flex;
+	overflow-x: hidden;
+	align-items: center;
+	flex-direction: column;
+	background-color: #0f0f0f;
 }
 
-.main_container {
-	margin-top: 10px;
-	outline: $debug solid red;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
+.divider {
+	margin-bottom: 10px;
 	width: 100%;
-	overflow: hidden;
-	height: 88vh;
+	height: 2px;
+	background-color: pink;
+}
 
-	.cb1 {
-		gap: 20px;
-		padding: 2px;
-		display: flex;
-		justify-content: space-between;
-		position: relative;
+.cb1 {
+	height: 100%;
+	padding: 5px;
+	display: flex;
+	width: fit-content;
+	position: relative;
+	align-items: center;
+	flex-direction: column;
+	outline: $debug solid rgb(255, 0, 251);
+
+	.upper_bar {
 		width: 100%;
-		height: 100%;
+		padding: 5px;
+		display: flex;
 		flex-direction: row;
-		outline: $debug solid red;
+		justify-content: space-between;
 
-		.upper_bar {
-			padding: 10px 10px 10px 0px;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-end;
-			height: 90px;
-			width: 100%;
-
-			h3 {
-				font-family: "Smooch Sans", sans-serif;
-				font-size: 1.75rem;
-				line-height: 1.75rem;
-			}
-
-			p {
-				font-size: 1.25rem;
-				font-family: "Smooch Sans", sans-serif;
-				line-height: 1.25rem;
-			}
+		h3,
+		p {
+			font-family: "Smooch Sans", sans-serif;
+			font-size: 1.75rem;
+			line-height: 1.75rem;
 		}
+	}
 
-		.catalog_itens {
-			display: flex;
-			flex-direction: column;
-			width: 76vw;
-			height: 100%;
-			overflow: scroll;
-			outline: $debug solid green;
+	.catalog_itens {
+		height: 100%;
+		display: flex;
+		min-width: 1390px;
+		align-items: center;
+		flex-direction: column;
+		outline: $debug solid green;
 
-			.catalog_map {
-				display: grid;
-				grid-template-columns: repeat(3, auto);
-			}
-			&::-webkit-scrollbar {
-				display: none;
-			}
+		.catalog_map {
+			display: grid;
+			row-gap: 10px;
+			column-gap: 10px;
+			grid-template-columns: repeat(4, auto);
 		}
 	}
 }

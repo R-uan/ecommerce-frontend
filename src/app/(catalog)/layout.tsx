@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function CatalogLayout({ children }: { children: React.ReactNode }) {
-	return <body className={styles.layout}>{children}</body>;
+	return <body className={styles.body}>{children}</body>;
 }

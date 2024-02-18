@@ -13,18 +13,12 @@ export default function SideMenu() {
 
 	return (
 		<div className={styles.side_bar}>
-			<div className="filter-options">
-				<form className={styles.filter_options} action="">
-					<label htmlFor="name">
-						Search
-						<input name="name" type="text" />
-					</label>
+			<form className={styles.filter_options} action="">
+				<div className={styles.query_field}>
+					<input name="name" type="text" placeholder="Search" />
+				</div>
+				<div className={styles.category_list}>
 					<ul onClick={handleClick} id="warships">
-						<li>
-							<span>
-								<input type="button" value="Warships" />
-							</span>
-						</li>
 						<li>
 							<input type="button" value="Bombers" />
 						</li>
@@ -43,27 +37,18 @@ export default function SideMenu() {
 						<li>
 							<input type="button" value="Interceptors" />
 						</li>
-						<br />
-						<li>
-							<span>
-								<input type="button" value="Exploration Ships" />
-							</span>
-						</li>
 						<li>
 							<input type="button" value="Explorer Vessels" />
 						</li>
 						<li>
 							<input type="button" value="Generational Vessels" />
 						</li>
-						<br />
 						<li>
-							<span>
-								<input type="button" value="Cargo Ships" />
-							</span>
+							<input type="button" value="Cargo Ships" />
 						</li>
 					</ul>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	);
 }
