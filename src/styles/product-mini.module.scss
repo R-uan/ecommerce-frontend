@@ -1,78 +1,96 @@
-$debug: 2px;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kode+Mono:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+$debug: 0px;
+
+.unavailable_item {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	h3 {
+		font-weight: bold;
+		font-family: "Bebas Neue", sans-serif;
+		font-size: clamp(1rem, 2vw, 2vw);
+		line-height: clamp(1rem, 2vw, 2vw);
+	}
+}
 
 .main_container {
-	display: flex;
-	flex-direction: column;
-	border-radius: 5px;
-	gap: 5px;
+	width: 20vw;
 	margin: 5px;
+	display: flex;
+	border-radius: 5px;
+	flex-direction: column;
+	background-color: #ededed;
 	outline: $debug solid red;
-	background-color: #f2efeb;
-	width: 22vw;
-	height: fit-content;
-	padding: 2px;
+	height: clamp(32.5vw, fit-content, fit-content);
 }
 
 .product_image {
-	overflow: hidden;
-	border-radius: 5px 5px 0px 0px;
-	outline: $debug solid green;
+	position: relative;
 	width: 100%;
-	height: fit-content;
+	height: 26vw;
+	overflow: hidden;
+	justify-content: center;
+	outline: $debug solid green;
+	border-radius: 5px 5px 0px 0px;
 }
 
 .product_information {
 	display: flex;
 	flex-direction: column;
-	padding: 2px 5px 2px 5px;
-	height: clamp(90px, 6vw, 6vw);
+	padding: 5px;
+	height: clamp(70px, 5.5vw, 5.5vw);
 	border-radius: 0px 0px 5px 5px;
-	outline: $debug solid yellow;
-	margin-bottom: 2px;
+	justify-content: space-between;
+	outline: $debug solid rgb(0, 34, 255);
+	margin: 2px;
 
 	* {
 		color: black;
-		font-family: "Smooch Sans", sans-serif;
+		font-family: "Kode Mono", monospace;
 	}
 
 	.info1 {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		outline: $debug solid purple;
-		justify-content: space-between;
 		width: 100%;
 
 		h3 {
 			font-weight: bold;
-			font-size: clamp(1rem, 1.75vw, 1.75vw);
-			line-height: clamp(1rem, 1.75vw, 1.75vw);
+			font-size: clamp(1rem, 1.25vw, 1.25vw);
+			line-height: clamp(1rem, 1.25vw, 1.25vw);
 		}
-
-		span {
-			min-width: fit-content;
-			font-size: clamp(0.75rem, 1.5vw, 1.5vw);
-			line-height: clamp(0.75rem, 1.5vw, 1.5vw);
+		h6 {
+			font-weight: bold;
+			font-size: clamp(0.65rem, 1.2vw, 1.2vw);
+			line-height: clamp(0.65rem, 1.2vw, 1.2vw);
 		}
 	}
+
 	.info2 {
 		width: 100%;
-	}
-
-	.info3 {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		outline: $debug solid green;
-		width: 100%;
 
 		h3 {
-			font-size: clamp(0.75rem, 1.5vw, 1.5vw);
-			line-height: clamp(0.75rem, 1.5vw, 1.5vw);
+			font-size: clamp(0.6rem, 0.9vw, 0.9vw);
+			line-height: clamp(0.6rem, 0.9vw, 0.9vw);
 		}
 
 		span {
-			font-size: clamp(1rem, 1.75vw, 1.75vw);
-			line-height: clamp(1rem, 1.75vw, 1.75vw);
+			font-size: clamp(1rem, 1.3vw, 1.3vw);
+			line-height: clamp(1rem, 1.3vw, 1.3vw);
 		}
 	}
 }
