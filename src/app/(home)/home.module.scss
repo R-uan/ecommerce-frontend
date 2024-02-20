@@ -1,11 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
-
-$debug: 0;
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+$debug: 1px;
 
 .body {
 	height: 100%;
 	width: 100%;
-	background-color: #0f0f0f;
+	background-color: #050a0e;
+	.header {
+		color: white;
+	}
 }
 
 .main {
@@ -17,6 +20,7 @@ $debug: 0;
 	}
 
 	.primary_content {
+		position: relative;
 		height: 100vh;
 		display: flex;
 		justify-content: center;
@@ -116,81 +120,33 @@ $debug: 0;
 
 	.secondary_content {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
+		padding: 5px;
 		align-items: center;
+		gap: 5px;
 		height: 100vh;
 
 		.secondary_cb1 {
-			background-color: #050a0e;
 			outline: $debug solid green;
-			width: 40%;
-			height: 100%;
+			width: 100%;
+			height: 40%;
 		}
-	}
 
-	.secondary_cb2 {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		outline: $debug solid red;
-		width: 60%;
-		height: 100%;
-
-		.review_1 {
-			position: relative;
-			width: 800px;
-			height: 430px;
+		.secondary_cb2 {
 			display: flex;
 			flex-direction: column;
-			outline: $debug solid white;
 			padding: 5px;
-			justify-content: end;
+			justify-content: flex-end;
+			align-items: center;
+			outline: $debug solid red;
+			width: 100%;
+			height: 60%;
 
-			.review_image {
-				z-index: 2;
-				position: absolute;
-				outline: $debug solid yellow;
-				background-color: rgb(85, 85, 85);
-				border: 1px solid white;
-				bottom: 0;
-				right: 25px;
-				width: 300px;
-				height: 350px;
-				margin-bottom: 60px;
-			}
-
-			.review_text {
-				background-color: #050a0e;
-				position: relative;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				padding: 10px;
-				height: fit-content;
-				border: 1px solid white;
-
-				.review_client {
-					& > span:nth-child(1) {
-						margin: 5px 30px 5px 5px;
-						font-size: clamp(2rem, 2.25vw, 2.25vw);
-						color: #ff003c;
-					}
-
-					& > span:nth-child(2) {
-						font-style: italic;
-						font-size: clamp(1.5rem, 1.7vw, 1.7vw);
-						color: #00f0ff;
-					}
-				}
-
-				p {
-					font-style: italic;
-					max-height: 500px;
-					width: 420px;
-					font-size: clamp(1rem, 1.2vw, 1.2vw);
-					font-weight: 300;
-					margin: 5px;
-				}
+			& > h3 {
+				font-size: clamp(1.75rem, 2.5vw, 2.5vw);
+				line-height: clamp(1.75rem, 2.5vw, 2.5vw);
+				font-family: "Bebas Neue", sans-serif;
 			}
 		}
 	}

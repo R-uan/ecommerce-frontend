@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import styles from "@/styles/home.module.scss";
-import Header from "../components/Header";
+import styles from "./home.module.scss";
+import Header from "../components/Header/Header";
 import Image from "next/image";
+import BestSellers from "./BestSellers";
 
 export default function Home() {
 	return (
@@ -30,29 +31,18 @@ export default function Home() {
 					<div className={styles.primary_bg_image} />
 				</div>
 				<div className={styles.secondary_content}>
-					<div className={styles.secondary_cb1}></div>
+					<div className={styles.secondary_cb1}>
+						<p>
+							Satisfying client all over the galaxy, Gemini is reference for the
+							spaceship dealership field.
+						</p>
+					</div>
 					<div className={styles.secondary_cb2}>
-						<div className={styles.review_1}>
-							<div className={styles.review_image}></div>
-							<div className={styles.review_text}>
-								<div className={styles.review_client}>
-									<span>Han Sozinho</span>
-									<span>Milenio Falcão</span>
-								</div>
-								<p>
-									Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae
-									vel ab dolores in repellat veniam dolorem magni nisi, tempore
-									similique ex quis at deserunt soluta ipsum ducimus id sit
-									labore. <br /> Lorem ipsum dolor, sit amet consectetur
-									adipisicing elit. Distinctio, dolorem accusantium omnis neque
-									voluptatibus.
-								</p>
-							</div>
-						</div>
+						<h3>Best Sellers</h3>
+						<BestSellers />
 					</div>
 				</div>
 			</main>
-			<footer className="h-[10vh] m-[5px]"></footer>
 		</>
 	);
 }
