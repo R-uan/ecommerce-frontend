@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap");
+
+$color: #eeeeee;
+$debug: 0;
+
+.menu_options {
+	padding: 5px;
+	outline: $debug solid purple;
+	width: fit-content;
+	height: fit-content;
+
+	& > ul {
+		gap: 20px;
+		display: flex;
+
+		& > li {
+			position: relative;
+			padding: 2px 40px 2px 40px;
+			outline: $debug solid yellow;
+			font-size: clamp(1.5rem, 1.5vw, 1.5vw);
+			line-height: clamp(1.5rem, 1.5vw, 1.5vw);
+			transition: opacity 0.5s;
+
+			& > ul {
+				gap: 4px;
+				left: 50%;
+				top: 100%;
+				width: 100%;
+				display: flex;
+				overflow: hidden;
+				visibility: hidden;
+				position: absolute;
+				height: fit-content;
+				align-items: center;
+				padding: 10px 0 10px 0;
+				flex-direction: column;
+				justify-content: center;
+				opacity: 0;
+				transition: opacity 0.5s;
+				transform: translate(-50%, 0%);
+				background-color: $color;
+
+				& > li {
+					input:hover {
+						cursor: pointer;
+					}
+					width: fit-content;
+					font-size: clamp(1rem, 1.4vw, 1.4vw);
+					line-height: clamp(1rem, 1.4vw, 1.4vw);
+				}
+			}
+
+			&:hover {
+				& > ul {
+					visibility: visible;
+					opacity: 1;
+					transition: opacity 0.5s;
+				}
+			}
+		}
+	}
+}
