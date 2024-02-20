@@ -27,7 +27,7 @@ $debug: 0px;
 	display: flex;
 	border-radius: 5px;
 	flex-direction: column;
-	background-color: #ededed;
+	/* background-color: #ededed; */
 	outline: $debug solid red;
 	height: clamp(32.5vw, fit-content, fit-content);
 }
@@ -39,7 +39,19 @@ $debug: 0px;
 	overflow: hidden;
 	justify-content: center;
 	outline: $debug solid green;
-	border-radius: 5px 5px 0px 0px;
+	border-radius: 5px;
+
+	span {
+		border-radius: 2px;
+		font-size: 90%;
+		line-height: 90%;
+		padding: 3px 7px 3px 7px;
+		top: 2px;
+		left: 2px;
+		position: absolute;
+		background-color: black;
+		color: white;
+	}
 }
 
 .product_information {
@@ -53,7 +65,7 @@ $debug: 0px;
 	margin: 2px;
 
 	* {
-		color: black;
+		color: #0f0f0f;
 		font-family: "Kode Mono", monospace;
 	}
 
@@ -63,6 +75,7 @@ $debug: 0px;
 		align-items: center;
 		outline: $debug solid purple;
 		width: 100%;
+		gap: 5px;
 
 		h3 {
 			font-weight: bold;
@@ -73,19 +86,6 @@ $debug: 0px;
 			font-weight: bold;
 			font-size: clamp(0.65rem, 1.2vw, 1.2vw);
 			line-height: clamp(0.65rem, 1.2vw, 1.2vw);
-		}
-	}
-
-	.info2 {
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		outline: $debug solid green;
-
-		h3 {
-			font-size: clamp(0.6rem, 0.9vw, 0.9vw);
-			line-height: clamp(0.6rem, 0.9vw, 0.9vw);
 		}
 
 		span {

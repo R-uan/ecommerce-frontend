@@ -4,7 +4,7 @@ config();
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
-export async function RequestProducts(url: string = `${BACKEND_URL}/api/products`) {
+export async function RequestProducts(url: string = `${BACKEND_URL}/api/products/miniatures`) {
 	try {
 		const response = (await axios.get(url)).data;
 		return {
