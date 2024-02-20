@@ -7,20 +7,18 @@ export default function ProductMiniature({ data }: { data: IProducts }) {
 	return (
 		<div className={styles.main_container}>
 			<div className={styles.product_image}>
-				{!availability ? null : (
+				{availability ? null : (
 					<div className={styles.unavailable_item}>
 						<h3>NOT AVAILABLE</h3>
 					</div>
 				)}
+				<span>{data.category}</span>
 				<Image className={styles.image} src={testimage} alt=""></Image>
 			</div>
 			<div className={styles.product_information}>
 				<div className={styles.info1}>
 					<h3>{data.name}</h3>
 					<h6>{data.manufacturer_name}</h6>
-				</div>
-				<div className={styles.info2}>
-					<h3>{data.category}</h3>
 					<span>${data.unit_price}</span>
 				</div>
 			</div>

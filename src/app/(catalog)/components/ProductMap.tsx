@@ -1,26 +1,33 @@
 import { IProductList, setAll, setListData, setPaginate } from "@/redux/slices/ProductListSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RequestProducts, RequestProductsQuery } from "@/scripts/requests/RequestProducts";
-import { useSearchParams } from "next/navigation";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
 import { RootState } from "@/redux/store";
 import ProductMiniature from "./ProductMiniature";
 import { useEffect, useState } from "react";
 
 export default function ProductMap() {
+	const router = useRouter();
 	const dispatch = useDispatch();
 	const urlQuery = useSearchParams();
 	const productList = useSelector((s: RootState) => s.productList);
 	const [fetchingStatus, setFetchingStatus] = useState(false);
 	const nameQuery = urlQuery.get("name");
 
-	async function Default() {
+	async function Default(refetch?: boolean) {
 		try {
-			if (productList.current_page && productList.current_page === productList.last_page) {
+			if (
+				productList.current_page &&
+				productList.current_page === productList.last_page &&
+				!refetch
+			) {
+				console.log("0");
 				return;
 			}
 			setFetchingStatus(true);
 			if (nameQuery && nameQuery != "") {
 				const response = await RequestProductsQuery(nameQuery);
+				console.log("1");
 				const all = {
 					data: response.data,
 					total: response.total,
@@ -33,6 +40,7 @@ export default function ProductMap() {
 				setFetchingStatus(false);
 			} else {
 				if (productList.next_page_url) {
+					console.log("2");
 					const response: IProductList = await RequestProducts(productList.next_page_url);
 					const all = {
 						data: response.data,
@@ -42,6 +50,7 @@ export default function ProductMap() {
 					dispatch(setPaginate(all));
 					setFetchingStatus(false);
 				} else {
+					console.log("3");
 					const response: IProductList = await RequestProducts();
 					const all = {
 						data: response.data,
@@ -62,15 +71,16 @@ export default function ProductMap() {
 	}
 
 	useEffect(() => {
-		Default();
+		if (nameQuery) Default(true);
+		else Default();
 	}, [nameQuery]);
 
 	return (
 		<>
 			{productList?.data?.map((product) => {
-				return <ProductMiniature data={product} />;
+				return <ProductMiniature key={product.id} data={product} />;
 			})}
-			<button onClick={Default} disabled={fetchingStatus}>
+			<button onClick={() => Default()} disabled={fetchingStatus}>
 				Teste
 			</button>
 		</>
