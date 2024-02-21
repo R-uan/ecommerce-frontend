@@ -1,6 +1,5 @@
 import { useRouter } from "next/navigation";
 import styles from "./styles/header-options.module.scss";
-import { smoochSans } from "@/scripts/fonts";
 
 export default function HeaderOptions() {
 	const router = useRouter();
