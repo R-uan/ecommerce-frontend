@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import ErrorProviderSlice from "./slices/ErrorProviderSlice";
-import ProductListSlice from "./slices/ProductListSlice";
+import ProductsDataSlice from "./slices/ProductsDataSlice";
 import AuthenticationSlice from "./slices/AuthenticationSlice";
 export const store = configureStore({
 	reducer: {
-		productList: ProductListSlice,
+		productsData: ProductsDataSlice,
 		errorProvider: ErrorProviderSlice,
 		authentication: AuthenticationSlice,
 	},

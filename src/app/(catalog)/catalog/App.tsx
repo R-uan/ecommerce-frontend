@@ -6,7 +6,7 @@ import ProductMap from "../components/ProductMap";
 import { useSearchParams } from "next/navigation";
 import Header from "../../components/Header/Header";
 export default function App() {
-	const productList = useSelector((s: RootState) => s.productList);
+	const productList = useSelector((s: RootState) => s.productsData);
 
 	function Cfl(str: string) {
 		return str.charAt(0).toUpperCase() + str.slice(1);
@@ -21,17 +21,7 @@ export default function App() {
 					<div className={styles.banner}>
 						<h3>{!q ? "Catalog" : q}</h3>
 					</div>
-					<div className={styles.catalog_itens}>
-						<div className={styles.upper_bar}>
-							<h3>Results</h3>
-							<p>
-								Showing {productList.data?.length} of {productList.total}
-							</p>
-						</div>
-						<section className={styles.catalog_map}>
-							<ProductMap />
-						</section>
-					</div>
+					<ProductMap />
 				</div>
 			</main>
 		</>

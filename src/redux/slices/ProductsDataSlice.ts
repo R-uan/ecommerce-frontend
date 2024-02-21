@@ -23,7 +23,7 @@ const initialState: IProductList = {
 	last_page: null,
 };
 
-const ProductListSlice = createSlice({
+const ProductsDataSlice = createSlice({
 	name: "ProductListing",
 	initialState: initialState,
 	reducers: {
@@ -48,5 +48,5 @@ const ProductListSlice = createSlice({
 	},
 });
 
-export default ProductListSlice.reducer;
-export const { setListData, setAll, setPaginate } = ProductListSlice.actions;
+export default ProductsDataSlice.reducer;
+export const { setListData, setAll, setPaginate } = ProductsDataSlice.actions;

@@ -42,41 +42,4 @@ $debug: 0;
 	justify-content: center;
 	flex-direction: column;
 	outline: $debug solid rgb(255, 0, 251);
-
-	.upper_bar {
-		outline: $debug solid red;
-		& > * {
-			color: black;
-		}
-
-		margin: 2vh 0 2vh 0;
-		width: 100%;
-		padding: 5px;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-
-		h3,
-		p {
-			font-family: "Smooch Sans", sans-serif;
-			font-size: 1.75rem;
-			line-height: 1.75rem;
-		}
-	}
-
-	.catalog_itens {
-		height: 100%;
-		display: flex;
-		width: clamp(1340px, 89vw, 89vw);
-		align-items: center;
-		flex-direction: column;
-		outline: $debug solid green;
-
-		.catalog_map {
-			display: grid;
-			row-gap: 40px;
-			column-gap: 30px;
-			grid-template-columns: repeat(4, auto);
-		}
-	}
 }
