@@ -36,3 +36,12 @@ export async function RequestProductsQuery(params: string, url?: string) {
 		last_page_url: response.last_page_url,
 	};
 }
+
+export async function RequestProductById(id: string) {
+	try {
+		const response = (await axios.get(`${BACKEND_URL}/api/products/${id}`)).data;
+		return response.data;
+	} catch (error) {
+		console.log(error);
+	}
+}
