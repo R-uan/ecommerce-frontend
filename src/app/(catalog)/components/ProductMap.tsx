@@ -1,12 +1,11 @@
-import { IProductList, setAll, setListData, setPaginate } from "@/redux/slices/ProductsDataSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { RequestProducts, RequestProductsQuery } from "@/scripts/requests/RequestProducts";
-import { redirect, useRouter, useSearchParams } from "next/navigation";
+import { IProductList, setAll, setPaginate } from "@/redux/slices/ProductsDataSlice";
 import { RootState } from "@/redux/store";
-import ProductMiniature from "./ProductMiniature";
+import { RequestProducts, RequestProductsQuery } from "@/scripts/requests/RequestProducts";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import styles from "./products-map.module.scss";
 import { useInView } from "react-intersection-observer";
+import { useDispatch, useSelector } from "react-redux";
+import ProductMiniature from "./ProductMiniature";
 
 export default function ProductMap() {
 	//#region
@@ -15,35 +14,15 @@ export default function ProductMap() {
 	const urlQuery = useSearchParams();
 	const ProductsData = useSelector((s: RootState) => s.productsData);
 	const [fetchingStatus, setFetchingStatus] = useState(false);
-
+	const [viewRef, inView] = useInView({ onChange: HandleNextPage });
 	const [currentQuery, setCurrentQuery] = useState<string | null>(null);
 	const query = urlQuery.get("name");
 
 	async function Default() {
-		console.log("Cur " + ProductsData.current_page);
-		console.log("Last " + ProductsData.last_page);
 		setFetchingStatus(true);
-		if (
-			ProductsData.current_page &&
-			ProductsData.current_page === ProductsData.last_page &&
-			query === currentQuery
-		) {
-			console.log("Last Page Reached");
-			return;
-		}
-		if (query != currentQuery && query != "") {
-			console.log("Fetching Query change");
-			setCurrentQuery(query);
-			await FetchQuery();
-		} else if (ProductsData.next_page_url) {
-			console.log("Fetching Paginate");
-			await FetchPaginate();
-		} else {
-			console.log("Initial Fetching");
-			await InitialFetch();
-		}
+		if (query && query != "") await FetchQuery();
+		else await InitialFetch();
 		setFetchingStatus(false);
-		console.log("Finish Fetching");
 	}
 
 	async function InitialFetch() {
@@ -84,32 +63,37 @@ export default function ProductMap() {
 		}
 	}
 
+	async function HandleNextPage() {
+		if (ProductsData.current_page === ProductsData.last_page) return;
+		if (!inView && !fetchingStatus) {
+			if (ProductsData.next_page_url && currentQuery === query) {
+				await FetchPaginate();
+			}
+		}
+	}
+
 	useEffect(() => {
+		setCurrentQuery(query);
 		Default();
 	}, [query]);
 	//#endregion
 
-	const [viewRef, inView] = useInView({ onChange: HandleNextPage });
-	async function HandleNextPage() {
-		console.log(inView);
-		if (!inView && !fetchingStatus) {
-			Default();
-		}
-	}
 	return (
-		<div className={styles.catalog_itens}>
-			<div className={styles.upper_bar}>
-				<h3>Results</h3>
-				<p>
+		<div className="h-full flex w-[clamp(1340px,89vw,89vw)] items-center flex-col justify-center mb-[50px] p-[5px]">
+			<div className="w-full flex flex-row justify-between mx-0 my-3">
+				<h3 className="text-[1.75rem] leading-7 smooch_sans">Results</h3>
+				<p className="text-[1.75rem] leading-7 smooch_sans">
 					Showing {ProductsData.data?.length} of {ProductsData.total}
 				</p>
 			</div>
-			<section className={styles.catalog_map}>
+			<section className="w-full grid gap-y-10 gap-x-[30px] grid-cols-[repeat(4,auto)]">
 				{ProductsData?.data?.map((product) => {
 					return <ProductMiniature key={product.id} data={product} />;
 				})}
 			</section>
-			<div ref={viewRef} className={styles.fetch_next_page}>
+			<div
+				ref={viewRef}
+				className="flex justify-center items-center w-full h-[25px] m-[5px] p-[5px]">
 				<button onClick={Default} disabled={fetchingStatus}>
 					Teste
 				</button>
