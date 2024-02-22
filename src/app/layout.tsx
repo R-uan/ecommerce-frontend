@@ -1,9 +1,26 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Smooch_Sans, Bebas_Neue } from "next/font/google";
+import localFont from "next/font/local";
+
+const Smooch = Smooch_Sans({
+	subsets: ["latin"],
+	display: "swap",
+	variable: "--font-smooch",
+});
+
+const Bebas = Bebas_Neue({
+	weight: "400",
+	subsets: ["latin"],
+	display: "swap",
+	variable: "--font-bebas",
+});
+
+const Kode = localFont({
+	src: "../../public/fonts/KodeMono-variable.ttf",
+	variable: "--font-kode",
+});
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -15,5 +32,9 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	return <html lang="en">{children}</html>;
+	return (
+		<html lang="en" className={`${Smooch.variable} ${Bebas.variable} ${Kode.variable}`}>
+			{children}
+		</html>
+	);
 }
