@@ -1,12 +1,12 @@
 "use client";
-import { SignupRequest } from "@/scripts/requests/AuthRequests";
-import { RegistrationError } from "@/scripts/error-handling/RegistrationError";
-import { setToken } from "@/redux/slices/AuthenticationSlice";
-import styles from "@/styles/sign-in.module.scss";
 import Link from "next/link";
+import styles from "../sign.module.scss";
+import { useDispatch } from "react-redux";
 import { redirect } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { setToken } from "@/redux/slices/AuthenticationSlice";
+import { SignupRequest } from "@/scripts/requests/AuthRequests";
+import { RegistrationError } from "@/scripts/error-handling/RegistrationError";
 
 export default function SignupForm() {
 	const dispatch = useDispatch();
@@ -75,9 +75,9 @@ export default function SignupForm() {
 					<input type="submit" value="Sign up" disabled={registering} />
 				</div>
 			</form>
-			<div className={styles.sign_up}>
+			<div className="gap-[5px] flex absolute justify-center items-center h-[30px] bg-[#f1f6f9] w-full rounded-[0px_0px_5px_5px] bottom-0 text-[1.25rem]">
 				<h3>Already registered ?</h3>
-				<Link className={styles.signup_link} href={"/signin"}>
+				<Link className="hover:text-[#7743db] text-[1.25rem]" href={"/signin"}>
 					Sign in
 				</Link>
 			</div>

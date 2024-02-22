@@ -5,6 +5,9 @@ $hover: #c8c8c8;
 $debug: 2px;
 
 .form {
+	* {
+		color: white;
+	}
 	margin-top: 20px;
 	display: flex;
 	align-items: center;
@@ -24,6 +27,7 @@ $debug: 2px;
 		margin-bottom: 15px;
 		input {
 			background-color: #222831;
+			font-size: 1.25rem;
 			padding-left: 5px;
 			border-radius: 3px;
 			width: 325px;
@@ -55,18 +59,19 @@ $debug: 2px;
 		width: 100%;
 		justify-content: space-between;
 		label {
-			font-size: 1rem;
-			line-height: 1rem;
+			font-size: 1.25rem;
+			line-height: 1.25rem;
 		}
 		button {
-			font-size: 1rem;
-			line-height: 1rem;
+			font-size: 1.25rem;
+			line-height: 1.25rem;
 		}
 	}
 
 	.submit_form {
 		margin-bottom: 80px;
 		input {
+			font-size: 1.25rem;
 			width: 330px;
 			height: 35px;
 			color: black;
@@ -77,32 +82,6 @@ $debug: 2px;
 				background-color: $hover;
 				cursor: pointer;
 			}
-		}
-	}
-}
-
-.sign_up {
-	border-radius: 0px 0px 5px 5px;
-	gap: 5px;
-	display: flex;
-	position: absolute;
-	justify-content: center;
-	align-items: center;
-	height: 30px;
-	bottom: 0;
-	background-color: $secondary_color;
-	width: 100%;
-
-	* {
-		font-family: "Teko", sans-serif;
-		font-size: 1.35rem;
-		line-height: 1.35rem;
-		color: black;
-	}
-
-	.signup_link {
-		&:hover {
-			color: #7743db;
 		}
 	}
 }

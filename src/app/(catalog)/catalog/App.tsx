@@ -1,29 +1,19 @@
 "use client";
-import { RootState } from "@/redux/store";
-import { useSelector } from "react-redux";
-import styles from "@/styles/catalog.module.scss";
-import ProductMap from "../components/ProductMap";
 import { useSearchParams } from "next/navigation";
-import Header from "../../components/Header/Header";
-export default function App() {
-	const productList = useSelector((s: RootState) => s.productsData);
+import ProductMap from "../components/ProductMap";
 
-	function Cfl(str: string) {
-		return str.charAt(0).toUpperCase() + str.slice(1);
-	}
+export default function App() {
 	const params = useSearchParams();
-	const q = params.get("q");
+	const q = params.get("name");
+
 	return (
-		<>
-			<Header />
-			<main className={styles.main}>
-				<div className={styles.cb1}>
-					<div className={styles.banner}>
-						<h3>{!q ? "Catalog" : q}</h3>
-					</div>
-					<ProductMap />
+		<main className="w-full">
+			<div className="h-full flex w-full relative items-center justify-center flex-col mt-[9vh]">
+				<div className="w-full h-[50vh] flex items-center justify-center bg-cover bg-no-repeat bg-banner">
+					<h1 className="text-white text-[4vw] font-bebas">{!q ? "Catalog" : q}</h1>
 				</div>
-			</main>
-		</>
+				<ProductMap />
+			</div>
+		</main>
 	);
 }

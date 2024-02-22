@@ -1,7 +1,5 @@
 "use client";
 import { store } from "@/redux/store";
-import styles from "@/styles/sign-in.module.scss";
-import Link from "next/link";
 import { useRef, useState } from "react";
 import { Provider } from "react-redux";
 import SignupForm from "./SignupForm";

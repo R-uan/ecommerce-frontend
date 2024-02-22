@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+$debug: 1px;
+
+.body {
+	height: 100%;
+	width: 100%;
+	background-color: #050a0e;
+	* {
+		color: white;
+	}
+}
+
+.main {
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	* {
+		font-family: "Roboto Condensed";
+	}
+
+	.catalog_button {
+		position: absolute;
+		bottom: 15vh;
+		right: 10vw;
+
+		button {
+			position: relative;
+			height: 100px;
+			width: 270px;
+			border: 2px solid white;
+			overflow: hidden;
+
+			span {
+				z-index: 2;
+				position: relative;
+				color: white;
+				transform: color 0.5;
+				font-size: clamp(1rem, 1.5vw, 1.5vw);
+			}
+
+			div {
+				z-index: 1;
+				top: 100%;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background-color: white;
+				transition: top 0.5s ease-out;
+			}
+
+			&:hover {
+				span {
+					color: black;
+					transform: color 1s;
+				}
+				div {
+					top: 0;
+					transition: top 0.5s ease-out;
+				}
+			}
+		}
+	}
+
+	.primary_bg_image {
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background-size: cover;
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+			url("/images/home/main-bg.jpg");
+	}
+}

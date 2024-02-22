@@ -1,5 +1,5 @@
-import styles from "@/styles/catalog.module.scss";
 import type { Metadata } from "next";
+import Header from "../components/Header/Header";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -8,5 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function CatalogLayout({ children }: { children: React.ReactNode }) {
-	return <body className={styles.body}>{children}</body>;
+	return (
+		<body className="flex overflow-x-hidden items-center flex-col bg-[#eeeeee] min-h-[90vh]">
+			<Header />
+			{children}
+		</body>
+	);
 }

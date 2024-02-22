@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
 import Link from "next/link";
-import styles from "@/styles/auth.module.scss";
 
 export const metadata: Metadata = {
 	title: "Sign in to Gemini",
@@ -15,12 +14,14 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={styles.body}>
-				<main className={styles.main}>
-					<div className={styles.logo}>
+			<body className="bg-[#0f0f0f]">
+				<main className="gap-2.5 flex flex-col items-center w-screen h-screen">
+					<div className="flex justify-center items-center w-[500px] h-[100px] mt-[50px]">
 						<Link href={"/"}>LOGO</Link>
 					</div>
-					<div className={styles.main_content}>{children}</div>
+					<div className="relative shadow-[0px_0px_30px_0px_rgba(0,0,0,0.75)] bg-[#151515] flex-col items-center h-fit w-[500px] flex rounded-[5px] border-t-[7px] border-t-[#f1f6f9] border-solid">
+						{children}
+					</div>
 				</main>
 			</body>
 		</html>
