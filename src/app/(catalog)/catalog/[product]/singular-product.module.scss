@@ -1,0 +1,109 @@
+$debug: 1px;
+
+.main {
+	background-color: #b2b2b2;
+
+	* {
+		font-family: "Smooch Sans", sans-serif;
+	}
+
+	width: 100%;
+	padding: 2px;
+	height: 100%;
+	display: flex;
+	margin-top: 10vh;
+	flex-direction: column;
+	outline: $debug solid red;
+}
+
+/* 360x480   */
+
+.main_product {
+	display: flex;
+	width: 100%;
+}
+
+.product_information {
+	display: flex;
+	padding: 5px;
+	flex: 1;
+	height: 480px;
+	outline: $debug solid purple;
+	gap: 5px;
+
+	.cb1 {
+		outline: $debug solid green;
+		width: 60%;
+	}
+
+	.cb2 {
+		gap: 5px;
+		outline: $debug solid green;
+		height: 100%;
+		width: 40%;
+		display: flex;
+		justify-content: center;
+
+		.buy_button {
+			font-size: 1.5vw;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 5px;
+			color: white;
+			background-color: rgb(34, 36, 157);
+			border-radius: 5px;
+			height: 3vw;
+			width: 10vw;
+		}
+
+		.add_to_cart {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: white;
+			background-color: blue;
+			border-radius: 5px;
+			height: 3vw;
+			width: 5vw;
+		}
+	}
+}
+
+.additional_information {
+	gap: 20px;
+	display: flex;
+	padding-left: 15px;
+	flex-direction: column;
+
+	.technical_information {
+		* {
+			font-size: 1.5vw;
+		}
+		th {
+			text-align: left;
+			width: 200px;
+		}
+		td {
+			width: 200px;
+		}
+	}
+
+	.user_reviews {
+		width: 100%;
+		display: grid;
+		outline: 2px solid red;
+		grid-template-columns: repeat(3, auto);
+	}
+
+	section {
+		gap: 20px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	h1 {
+		font-size: 1.7vw;
+		font-family: "Bebas Neue", sans-serif;
+	}
+}
