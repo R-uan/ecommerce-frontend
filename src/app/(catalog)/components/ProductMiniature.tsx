@@ -6,8 +6,8 @@ import testimage from "../../../../public/images/testvertical.jpg";
 export default function ProductMiniature({ data }: { data: IProducts }) {
 	const { availability } = data;
 	return (
-		<Link className="w-fit" href={`/catalog/${data.id}`}>
-			<div className="flex flex-col w-fit rounded-md min-h-[32.5vw] h-fit">
+		<Link className="w-fit h-fit" href={`/catalog/${data.id}`}>
+			<div className="flex flex-col w-fit rounded-md min-h-[30.5vw] h-fit">
 				<div className="relative w-[270px] h-[360px] overflow-hidden justify-center rounded-[5px]">
 					{availability ? null : (
 						<div className="w-full h-full bg-[rgba(0,0,0,0.5)] absolute flex justify-center items-center">

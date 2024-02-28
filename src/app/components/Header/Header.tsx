@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import HeaderOptions from "./HeaderOptions";
 import User from "./User";

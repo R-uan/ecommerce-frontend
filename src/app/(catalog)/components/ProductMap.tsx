@@ -81,8 +81,8 @@ export default function ProductMap() {
 	return (
 		<div className="h-full flex w-[clamp(1340px,89vw,89vw)] items-center flex-col justify-center mb-[50px] p-[5px]">
 			<div className="w-full flex flex-row justify-between mx-0 my-3">
-				<h3 className="text-[1.75rem] leading-7 smooch_sans">Results</h3>
-				<p className="text-[1.75rem] leading-7 smooch_sans">
+				<h3 className="text-[1.75rem] leading-7">Results</h3>
+				<p className="text-[1.75rem] leading-7">
 					Showing {ProductsData.data?.length} of {ProductsData.total}
 				</p>
 			</div>

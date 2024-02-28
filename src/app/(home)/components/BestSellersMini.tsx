@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./best-sellers.module.scss";
+import styles from "../styles/best-sellers.module.scss";
 import testimage from "/public/images/testvertical.jpg";
 
 export default function BestSellersMini() {

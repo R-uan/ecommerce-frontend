@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import styles from "./home.module.scss";
+import styles from "./styles/home.module.scss";
 import Header from "../components/Header/Header";
 import Image from "next/image";
 import BestSellers from "./components/BestSellers";
