@@ -1,19 +1,13 @@
-$debug: 1px;
+$debug: 0;
 
 .main {
-	background-color: #b2b2b2;
-
-	* {
-		font-family: "Smooch Sans", sans-serif;
-	}
-
+	background-color: #050a0e;
+	position: relative;
 	width: 100%;
-	padding: 2px;
+	padding: 10vh 2px 2px 2px;
 	height: 100%;
 	display: flex;
-	margin-top: 10vh;
 	flex-direction: column;
-	outline: $debug solid red;
 }
 
 /* 360x480   */
@@ -28,21 +22,26 @@ $debug: 1px;
 	padding: 5px;
 	flex: 1;
 	height: 480px;
+	position: relative;
 	outline: $debug solid purple;
 	gap: 5px;
 
 	.cb1 {
 		outline: $debug solid green;
-		width: 60%;
+		width: 50%;
 	}
 
 	.cb2 {
+		position: absolute;
+		right: 50px;
+		top: 0;
 		gap: 5px;
 		outline: $debug solid green;
 		height: 100%;
 		width: 40%;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 
 		.buy_button {
 			font-size: 1.5vw;
@@ -50,8 +49,9 @@ $debug: 1px;
 			justify-content: center;
 			align-items: center;
 			gap: 5px;
-			color: white;
-			background-color: rgb(34, 36, 157);
+			color: #050a0e;
+			font-weight: bold;
+			background-color: #00f0ff;
 			border-radius: 5px;
 			height: 3vw;
 			width: 10vw;
@@ -61,8 +61,8 @@ $debug: 1px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			color: white;
-			background-color: blue;
+			color: #050a0e;
+			background-color: #00f0ff;
 			border-radius: 5px;
 			height: 3vw;
 			width: 5vw;
@@ -70,40 +70,26 @@ $debug: 1px;
 	}
 }
 
-.additional_information {
-	gap: 20px;
+.technical_information {
+	gap: 15px;
 	display: flex;
-	padding-left: 15px;
 	flex-direction: column;
-
-	.technical_information {
-		* {
-			font-size: 1.5vw;
-		}
-		th {
-			text-align: left;
-			width: 200px;
-		}
-		td {
-			width: 200px;
-		}
+	* {
+		font-size: 1.5vw;
 	}
-
-	.user_reviews {
-		width: 100%;
-		display: grid;
-		outline: 2px solid red;
-		grid-template-columns: repeat(3, auto);
+	th {
+		text-align: left;
+		width: 250px;
 	}
-
-	section {
-		gap: 20px;
-		display: flex;
-		flex-direction: column;
+	td {
+		width: 200px;
 	}
+}
 
-	h1 {
-		font-size: 1.7vw;
-		font-family: "Bebas Neue", sans-serif;
-	}
+.user_reviews {
+	width: 100%;
+	display: grid;
+	row-gap: 20px;
+	column-gap: 20px;
+	grid-template-columns: repeat(3, auto);
 }
