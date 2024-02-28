@@ -1,5 +1,7 @@
 import axios, { AxiosError, isAxiosError } from "axios";
 import { config } from "dotenv";
+import ProductFetchingError from "../error-handling/ProductFetchingError";
+import UnexpectedError from "../error-handling/UnexpectedError";
 config();
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
@@ -37,11 +39,15 @@ export async function RequestProductsQuery(params: string, url?: string) {
 	};
 }
 
-export async function RequestProductById(id: string) {
+export async function RequestSingleProduct(id: string) {
 	try {
-		const response = (await axios.get(`${BACKEND_URL}/api/products/${id}`)).data;
-		return response.data;
+		const response: IProduct = (await axios.get(`${BACKEND_URL}/api/products/${id}`)).data;
+		return response;
 	} catch (error) {
-		console.log(error);
+		if (error instanceof AxiosError) {
+			if (error.response?.status == 404) {
+				throw new ProductFetchingError(error.response.data.message);
+			}
+		} else throw new UnexpectedError();
 	}
 }
