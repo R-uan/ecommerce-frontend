@@ -1,0 +1,102 @@
+.menu {
+	/* outline outline-2 outline-red-600 w-[40%] h-full */
+	display: flex;
+	flex-direction: column;
+	width: 20vw;
+	height: 100%;
+	gap: 5px;
+	padding: 25px 0 25px 0;
+	background-color: white;
+
+	button {
+		outline: 2px solid red;
+		height: 50px;
+		width: 100%;
+		:hover {
+			background-color: red;
+		}
+	}
+
+	.icon {
+		font-size: 2vw;
+		fill: black;
+	}
+
+	span {
+		align-items: center;
+		padding-left: 20px;
+		gap: 20px;
+		display: flex;
+		width: 100%;
+		height: 100%;
+		font-size: 1.5vw;
+		line-height: 1.5vw;
+		color: black;
+	}
+}
+
+.dashboard {
+	display: flex;
+	gap: 20px;
+	flex-direction: column;
+	width: 80vw;
+	height: 100%;
+	padding: 20px;
+}
+
+.user {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	width: 35vw;
+	height: 17vh;
+	background-color: white;
+	border-radius: 6px;
+	padding: 10px 10px 10px 30px;
+}
+
+.pfp {
+	border-radius: 100%;
+	width: 100px;
+	height: 100px;
+	background-color: black;
+}
+
+.user_information {
+	min-width: 250px;
+	h3 {
+		font-size: 2.5vw;
+		line-height: 2.5vw;
+	}
+	span {
+		font-size: 1.5vw;
+		line-height: 1.5vw;
+	}
+	* {
+		color: black;
+	}
+}
+
+.last_order {
+	* {
+		color: black;
+	}
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 5px;
+	padding: 10px 10px 10px 30px;
+	border-radius: 6px;
+	height: 100%;
+	width: 35vw;
+	background-color: white;
+}
+
+.bb {
+	padding-top: 10px;
+	background-color: white;
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
