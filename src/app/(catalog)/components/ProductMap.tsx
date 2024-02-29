@@ -86,7 +86,7 @@ export default function ProductMap() {
 					Showing {ProductsData.data?.length} of {ProductsData.total}
 				</p>
 			</div>
-			<section className="w-full grid gap-y-10 gap-x-[30px] grid-cols-[repeat(4,auto)]">
+			<section className="w-full grid gap-y-10 gap-x-[30px] justify-between grid-cols-[repeat(4,auto)]">
 				{ProductsData?.data?.map((product) => {
 					return <ProductMiniature key={product.id} data={product} />;
 				})}

@@ -2,6 +2,7 @@ import axios, { AxiosError, isAxiosError } from "axios";
 import { config } from "dotenv";
 import ProductFetchingError from "../error-handling/ProductFetchingError";
 import UnexpectedError from "../error-handling/UnexpectedError";
+import { ProductQuery } from "@/interfaces/ProductQuery";
 config();
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
@@ -22,12 +23,17 @@ export async function RequestProducts(url: string = `${BACKEND_URL}/api/products
 	}
 }
 
-export async function RequestProductsQuery(params: string, url?: string) {
+export async function RequestProductsQuery(
+	params: string,
+	url?: string,
+	query: ProductQuery = ProductQuery.Name
+) {
 	let response;
 	if (url) {
 		response = (await axios.get(url)).data;
 	} else {
-		response = (await axios.get(`${BACKEND_URL}/api/products/search?name[lk]=${params}`)).data;
+		response = (await axios.get(`${BACKEND_URL}/api/products/search?${query}[lk]=${params}`))
+			.data;
 	}
 	return {
 		data: response.data,
@@ -50,4 +56,11 @@ export async function RequestSingleProduct(id: string) {
 			}
 		} else throw new UnexpectedError();
 	}
+}
+
+export async function RequestFromManufacturer(id: number) {
+	try {
+		const response = (await axios.get(`${BACKEND_URL}/api/manufacturers/${id}/products`)).data;
+		return response;
+	} catch (error) {}
 }

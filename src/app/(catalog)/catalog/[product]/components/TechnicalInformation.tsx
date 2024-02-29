@@ -1,5 +1,5 @@
-import { useProductContext } from "./context/ProductProvider";
-import styles from "./singular-product.module.scss";
+import { useProductContext } from "../context/ProductProvider";
+import styles from "../singular-product.module.scss";
 
 export default function TechnicalInformation() {
 	const state = useProductContext();

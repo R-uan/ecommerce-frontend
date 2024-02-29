@@ -1,54 +1,44 @@
-import { useRouter } from "next/navigation";
 import styles from "./styles/header-options.module.scss";
 
 export default function HeaderOptions() {
-	const router = useRouter();
-	async function handleClick(event: MouseEvent) {
-		const input = event.target as HTMLInputElement;
-		const value = input.value;
-		const format = value.split(" ").join("_");
-		const url = `/catalog?q=${format}`;
-		router.push(url);
-	}
+	const Warships = [
+		"Bombers",
+		"Capital Ships",
+		"Carriers",
+		"Destroyers",
+		"Fighters",
+		"Interceptors",
+	];
 
+	const Exploration_Ships = ["Explorer Vessels", "Generational Vessels"];
 	return (
 		<div className={styles.menu_options}>
 			<ul>
-				<li>
+				<li key={"Warships"}>
 					<a href="">Warships</a>
 					<ul>
-						<li>
-							<input type="button" value="Bombers" />
-						</li>
-						<li>
-							<input type="button" value="Capital Ships" />
-						</li>
-						<li>
-							<input type="button" value="Carriers" />
-						</li>
-						<li>
-							<input type="button" value="Destroyers" />
-						</li>
-						<li>
-							<input type="button" value="Fighters" />
-						</li>
-						<li>
-							<input type="button" value="Interceptors" />
-						</li>
+						{Warships.map((ele, key) => {
+							return (
+								<li key={key}>
+									<input type="button" value={ele} />
+								</li>
+							);
+						})}
 					</ul>
 				</li>
-				<li>
+				<li key={"Exploration ships"}>
 					<a href="">Exploration Ships</a>
 					<ul>
-						<li>
-							<input type="button" value="Explorer Vessels" />
-						</li>
-						<li>
-							<input type="button" value="Generational Vessels" />
-						</li>
+						{Exploration_Ships.map((ele, key) => {
+							return (
+								<li key={key}>
+									<input type="button" value={ele} />
+								</li>
+							);
+						})}
 					</ul>
 				</li>
-				<li>
+				<li key={"Cargo Ships"}>
 					<a href="">Cargo Ships</a>
 				</li>
 			</ul>

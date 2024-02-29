@@ -1,10 +1,10 @@
-import { FaShoppingCart } from "react-icons/fa";
-import { FaCartPlus } from "react-icons/fa6";
 import Rating from "./Rating";
-import styles from "./singular-product.module.scss";
-import { RequestSingleProduct } from "@/scripts/requests/RequestProducts";
-import { useProductContext } from "./context/ProductProvider";
 import { useEffect } from "react";
+import { FaCartPlus } from "react-icons/fa6";
+import { FaShoppingCart } from "react-icons/fa";
+import styles from "../singular-product.module.scss";
+import { useProductContext } from "../context/ProductProvider";
+import { RequestSingleProduct } from "@/scripts/requests/RequestProducts";
 
 export default function ProductInformation({ productId }: { productId: string }) {
 	const state = useProductContext();

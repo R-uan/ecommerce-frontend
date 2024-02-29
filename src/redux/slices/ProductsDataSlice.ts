@@ -2,7 +2,7 @@ import IProducts from "@/interfaces/IProducts";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface IProductList {
-	data: IProducts[] | null;
+	data: IProductsPartial[] | null;
 	total: number | null;
 	current_page: number | null;
 	last_page: number | null;
@@ -10,7 +10,7 @@ export interface IProductList {
 }
 
 interface Pagination {
-	data: IProducts[] | null;
+	data: IProductsPartial[] | null;
 	current_page: number | null;
 	next_page_url: string | null;
 }
@@ -27,7 +27,7 @@ const ProductsDataSlice = createSlice({
 	name: "ProductListing",
 	initialState: initialState,
 	reducers: {
-		setListData: (state, action: PayloadAction<IProducts[]>) => {
+		setListData: (state, action: PayloadAction<IProductsPartial[]>) => {
 			state.data = action.payload;
 		},
 		setAll: (state, action: PayloadAction<IProductList>) => {

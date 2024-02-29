@@ -4,6 +4,12 @@ $color: #eeeeee;
 $debug: 0;
 
 .menu_options {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
 	padding: 5px;
 	outline: $debug solid purple;
 	width: fit-content;

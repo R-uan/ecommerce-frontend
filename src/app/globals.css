@@ -7,9 +7,12 @@
 * {
 	scroll-behavior: smooth;
 	color: white;
-	/* font-family: "Smooch Sans", sans-serif; */
 }
 
 .left_slider::-webkit-scrollbar {
 	display: none;
+}
+
+footer > * {
+	color: black;
 }

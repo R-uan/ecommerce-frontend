@@ -1,17 +1,17 @@
 "use client";
-import Reviews from "./Reviews";
-import ScreenCover from "./ScreenCover";
-import Suggestions from "./Suggestions";
-import ProductImages from "./ProductImages";
-import ProductDescription from "./ProductDescription";
-import ProductInformation from "./ProductInformation";
+import Reviews from "./components/ProductReviews";
+import ScreenCover from "./components/ScreenCover";
+import Suggestions from "./components/Suggestions";
+import ProductImages from "./components/ProductImages";
+import ProductDescription from "./components/ProductDescription";
+import ProductInformation from "./components/ProductInformation";
 import ProductProvider from "./context/ProductProvider";
-import TechnicalInformation from "./TechnicalInformation";
+import TechnicalInformation from "./components/TechnicalInformation";
 
 export default function Product({ params }: { params: { product: string } }) {
 	return (
 		<ProductProvider>
-			<main className="bg-[#050a0e] relative w-full h-full flex flex-col pt-[10vh] pb-0.5 px-0.5">
+			<main className="bg-[#050a0e] relative w-full h-full flex flex-col pt-[10vh] px-0.5 pb-[50px]">
 				<ScreenCover />
 				<div className="h-[50px] w-full"></div>
 				<div className="flex flex-col gap-[20px] w-full min-h-[85vh] p-[2px]">

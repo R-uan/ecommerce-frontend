@@ -1,6 +1,5 @@
-import { FaTruckLoading } from "react-icons/fa";
-import { useProductContext } from "./context/ProductProvider";
 import { useEffect, useState } from "react";
+import { useProductContext } from "../context/ProductProvider";
 
 export default function ScreenCover() {
 	const [show, setshow] = useState(true);
