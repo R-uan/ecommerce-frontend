@@ -30,7 +30,6 @@ export default function SignupForm() {
 			if (registration) {
 				dispatch(setToken(registration));
 				redirect("/");
-				console.log(registration);
 			}
 		} catch (error) {
 			if (error instanceof RegistrationError) {
@@ -75,7 +74,7 @@ export default function SignupForm() {
 					<input type="submit" value="Sign up" disabled={registering} />
 				</div>
 			</form>
-			<div className="gap-[5px] flex absolute justify-center items-center h-[30px] bg-[#f1f6f9] w-full rounded-[0px_0px_5px_5px] bottom-0 text-[1.25rem]">
+			<div className="gap-[5px] flex text-all-black absolute justify-center items-center h-[30px] bg-[#f1f6f9] w-full bottom-0 text-[1.25rem]">
 				<h3>Already registered ?</h3>
 				<Link className="hover:text-[#7743db] text-[1.25rem]" href={"/signin"}>
 					Sign in

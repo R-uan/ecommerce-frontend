@@ -13,17 +13,16 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body className="bg-[#0f0f0f]">
-				<main className="gap-2.5 flex flex-col items-center w-screen h-screen">
-					<div className="flex justify-center items-center w-[500px] h-[100px] mt-[50px]">
-						<Link href={"/"}>LOGO</Link>
+		<body className="bg-[#0f0f0f]">
+			<main className="flex flex-row w-screen h-screen">
+				<div className="relative bg-[#151515] flex-col items-center justify-center w-[500px] flex h-full shadow-[rgba(0,0,0,0.25)_0px_54px_55px,rgba(0,0,0,0.12)_0px_-12px_30px,rgba(0,0,0,0.12)_0px_4px_6px,rgba(0,0,0,0.17)_0px_12px_13px,rgba(0,0,0,0.09)_0px_-3px_5px]">
+					<div>
+						<Link href={"/"}>HOME</Link>
 					</div>
-					<div className="relative shadow-[0px_0px_30px_0px_rgba(0,0,0,0.75)] bg-[#151515] flex-col items-center h-fit w-[500px] flex rounded-[5px] border-t-[7px] border-t-[#f1f6f9] border-solid">
-						{children}
-					</div>
-				</main>
-			</body>
-		</html>
+					{children}
+				</div>
+				<div className="bg-white flex flex-1 bg-auth_bg bg-cover" />
+			</main>
+		</body>
 	);
 }

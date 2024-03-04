@@ -1,16 +1,17 @@
 "use client";
-import { setToken } from "@/redux/slices/AuthenticationSlice";
+import { RootState } from "@/redux/store";
 import AuthenticationError from "@/scripts/error-handling/AuthenticationError";
 import { SigninRequest } from "@/scripts/requests/AuthRequests";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "../sign.module.scss";
 
 export default function SigninForm() {
 	const dispatch = useDispatch();
+	const user = useSelector((s: RootState) => s.authentication);
 	const router = useRouter();
 	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
@@ -29,8 +30,6 @@ export default function SigninForm() {
 			if (email && password) {
 				const authentication = await SigninRequest(email, password);
 				if (authentication) {
-					console.log(authentication);
-					dispatch(setToken(authentication));
 					Cookies.set("jwt", authentication, { expires: 7 });
 					setAuthenticatingStatus(false);
 				}
@@ -69,9 +68,9 @@ export default function SigninForm() {
 					<input type="submit" value="Sign in" disabled={authenticating} />
 				</div>
 			</form>
-			<div className="gap-[5px] flex absolute justify-center items-center h-[30px] bg-[#f1f6f9] w-full rounded-[0px_0px_5px_5px] bottom-0 text-[1.25rem]">
-				<h3>New user ?</h3>
-				<Link className="hover:text-[#7743db] text-[1.25rem]" href={"/signup"}>
+			<div className="gap-[5px] flex absolute justify-center items-center h-[30px] bg-[#f1f6f9] w-full bottom-0 text-[1.25rem]">
+				<h3 className="text-focus-black font-smooch">New user ?</h3>
+				<Link className="hover:text-[#7743db] font-smooch text-focus-black text-[1.25rem]" href={"/signup"}>
 					Sign up
 				</Link>
 			</div>
