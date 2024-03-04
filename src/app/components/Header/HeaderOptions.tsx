@@ -14,7 +14,7 @@ export default function HeaderOptions() {
 	return (
 		<div className={styles.menu_options}>
 			<ul>
-				<li key={"Warships"}>
+				<li key={"warships"}>
 					<a href="">Warships</a>
 					<ul>
 						{Warships.map((ele, key) => {
@@ -26,7 +26,7 @@ export default function HeaderOptions() {
 						})}
 					</ul>
 				</li>
-				<li key={"Exploration ships"}>
+				<li key={"exploration_ships"}>
 					<a href="">Exploration Ships</a>
 					<ul>
 						{Exploration_Ships.map((ele, key) => {
@@ -38,7 +38,7 @@ export default function HeaderOptions() {
 						})}
 					</ul>
 				</li>
-				<li key={"Cargo Ships"}>
+				<li key={"cargo_ships"}>
 					<a href="">Cargo Ships</a>
 				</li>
 			</ul>

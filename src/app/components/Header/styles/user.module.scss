@@ -1,5 +1,6 @@
 .user_menu {
 	margin-right: 50px;
+	display: flex;
 	.options_menu_outer {
 		z-index: 20;
 		top: 0;
@@ -17,11 +18,12 @@
 		right: 45px;
 		z-index: 21;
 		width: 20vw;
-		height: 120px;
+		height: 25vw;
 		display: flex;
 		margin-top: 10px;
 		border-radius: 5px;
 		position: absolute;
+		padding: 20px;
 		align-items: center;
 		flex-direction: column;
 		justify-content: center;
