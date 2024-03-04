@@ -1,12 +1,15 @@
+import IUser from "@/interfaces/IUser";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface Authentication {
-	authenticated: boolean;
 	token: string | null;
+	user: IUser | null;
+	authenticated: boolean;
 }
 
 const initialState: Authentication = {
 	authenticated: false,
+	user: null,
 	token: null,
 };
 const AuthenticationSlice = createSlice({
@@ -17,8 +20,11 @@ const AuthenticationSlice = createSlice({
 			state.token = action.payload;
 			action.payload == null ? (state.authenticated = false) : (state.authenticated = true);
 		},
+		setUser: (state, action: PayloadAction<IUser | null>) => {
+			state.user = action.payload;
+		},
 	},
 });
 
 export default AuthenticationSlice.reducer;
-export const { setToken } = AuthenticationSlice.actions;
+export const { setToken, setUser } = AuthenticationSlice.actions;

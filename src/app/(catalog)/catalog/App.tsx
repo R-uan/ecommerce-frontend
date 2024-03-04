@@ -8,7 +8,7 @@ export default function App() {
 
 	return (
 		<main className="w-full min-h-[100vh]">
-			<div className="h-full flex w-full relative items-center justify-center flex-col mt-[9vh]">
+			<div className="h-full flex w-full relative items-center justify-center flex-col">
 				<div className="w-full h-[50vh] flex items-center justify-center bg-cover bg-no-repeat bg-banner">
 					<h1 className="text-white text-[4vw] font-bebas">{!q ? "Catalog" : q}</h1>
 				</div>

@@ -11,7 +11,7 @@ import TechnicalInformation from "./components/TechnicalInformation";
 export default function Product({ params }: { params: { product: string } }) {
 	return (
 		<ProductProvider>
-			<main className="bg-[#050a0e] relative w-full h-full flex flex-col pt-[10vh] px-0.5 pb-[50px]">
+			<main className="bg-[#050a0e] relative w-full h-full flex flex-col px-0.5 pb-[50px]">
 				<ScreenCover />
 				<div className="h-[50px] w-full"></div>
 				<div className="flex flex-col gap-[20px] w-full min-h-[85vh] p-[2px]">

@@ -7,16 +7,14 @@ export default function Footer() {
 		{ name: "Privacy Notice", link: "" },
 	];
 	return (
-		<footer className={styles.footer}>
+		<footer className="w-full flex h-fit items-center bg-[#eeeeee] justify-between p-5 text-all-black">
 			<div className="flex flex-col h-fit">
 				<h3 className="text-[2vw] leading-snug">Legal Information</h3>
 				<ul className="h-fit">
 					{constitutional.map((a, key) => {
 						return (
-							<Link href={a.link}>
-								<li key={key} className="text-[1.5vw] leading-snug">
-									{a.name}
-								</li>
+							<Link key={key} href={a.link}>
+								<li className="text-[1.5vw] leading-snug">{a.name}</li>
 							</Link>
 						);
 					})}
