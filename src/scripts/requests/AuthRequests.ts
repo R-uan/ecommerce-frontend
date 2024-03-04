@@ -1,13 +1,20 @@
 import axios, { AxiosError } from "axios";
 import AuthenticationError from "../error-handling/AuthenticationError";
 import { RegistrationError } from "../error-handling/RegistrationError";
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
+import api from "./AxiosInstance";
+
+interface ISignup {
+	first_name: string;
+	last_name: string;
+	email: string;
+	password: string;
+}
+
 export async function SigninRequest(email: string, password: string) {
 	try {
 		console.log("Auth request");
-		const endpoint = `${BACKEND_URL}/api/auth/login`;
 		const body = { email, password };
-		const response = await axios.post(endpoint, body);
+		const response = await api.post("/auth/login", body);
 		if (response.data) {
 			return response.data.token;
 		}
@@ -23,16 +30,10 @@ export async function SigninRequest(email: string, password: string) {
 		}
 	}
 }
-interface ISignup {
-	first_name: string;
-	last_name: string;
-	email: string;
-	password: string;
-}
 
 export async function SignupRequest(info: ISignup) {
 	try {
-		const response = await axios.post(`${BACKEND_URL}/api/auth/register`, info);
+		const response = await api.post("/auth/register", info);
 		return response.data.authToken;
 	} catch (error) {
 		if (error instanceof AxiosError) {

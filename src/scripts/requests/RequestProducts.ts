@@ -1,13 +1,13 @@
 import axios, { AxiosError, isAxiosError } from "axios";
-import { config } from "dotenv";
 import ProductFetchingError from "../error-handling/ProductFetchingError";
 import UnexpectedError from "../error-handling/UnexpectedError";
 import { ProductQuery } from "@/interfaces/ProductQuery";
 config();
+import { config } from "dotenv";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
-export async function RequestProducts(url: string = `${BACKEND_URL}/api/products/miniatures`) {
+export async function RequestProducts(url: string = `${BACKEND_URL}/products/miniatures`) {
 	try {
 		const response = (await axios.get(url)).data;
 		return {
@@ -23,17 +23,12 @@ export async function RequestProducts(url: string = `${BACKEND_URL}/api/products
 	}
 }
 
-export async function RequestProductsQuery(
-	params: string,
-	url?: string,
-	query: ProductQuery = ProductQuery.Name
-) {
+export async function RequestProductsQuery(params: string, url?: string, query: ProductQuery = ProductQuery.Name) {
 	let response;
 	if (url) {
 		response = (await axios.get(url)).data;
 	} else {
-		response = (await axios.get(`${BACKEND_URL}/api/products/search?${query}[lk]=${params}`))
-			.data;
+		response = (await axios.get(`${BACKEND_URL}/products/search?${query}[lk]=${params}`)).data;
 	}
 	return {
 		data: response.data,
@@ -47,7 +42,7 @@ export async function RequestProductsQuery(
 
 export async function RequestSingleProduct(id: string) {
 	try {
-		const response: IProduct = (await axios.get(`${BACKEND_URL}/api/products/${id}`)).data;
+		const response: IProduct = (await axios.get(`${BACKEND_URL}/products/${id}`)).data;
 		return response;
 	} catch (error) {
 		if (error instanceof AxiosError) {
@@ -60,7 +55,7 @@ export async function RequestSingleProduct(id: string) {
 
 export async function RequestFromManufacturer(id: number) {
 	try {
-		const response = (await axios.get(`${BACKEND_URL}/api/manufacturers/${id}/products`)).data;
+		const response = (await axios.get(`${BACKEND_URL}/manufacturers/${id}/products`)).data;
 		return response;
 	} catch (error) {}
 }
