@@ -9,10 +9,26 @@
 	color: white;
 }
 
-.left_slider::-webkit-scrollbar {
+.text-all-black * {
+	color: black;
+}
+
+.text-all-white * {
+	color: white;
+}
+
+.text-focus-black {
+	color: black;
+}
+
+.text-focus-white {
+	color: white;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
 	display: none;
 }
 
-footer > * {
-	color: black;
+.text-all-smooch * {
+	font-family: "Smooch Sans", monospace;
 }
