@@ -2,15 +2,21 @@ import DashboardUser from "./DashboardUser";
 import Order from "../components/Order";
 import DashboardOrders from "./DashboardOrders";
 import DashboardFocusOrder from "./DashboardFocusOrder";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 export default function DashboardHome() {
+	const state = useSelector((s: RootState) => s.expand_order);
+	const dispatch = useDispatch();
 	return (
 		<>
-			<div className=" z-50 w-[100%] h-full absolute p-[20px] invisible">
-				<div className="bg-white w-full h-full rounded-md text-all-black">
-					<DashboardFocusOrder />
+			{!state.expanded ? null : (
+				<div className=" z-50 w-[100%] h-full absolute p-[10px]">
+					<div className="bg-white w-full h-full rounded-md text-all-black">
+						<DashboardFocusOrder />
+					</div>
 				</div>
-			</div>
+			)}
 			<div className="flex flex-col w-full h-full gap-[20px] text-all-black">
 				<div className="flex h-[17vh] flex-col w-full justify-evenly">
 					<div className="h-fit w-full flex justify-between">
@@ -35,8 +41,6 @@ export default function DashboardHome() {
 				</div>
 				<div className="bg-[white] flex flex-col flex-1 items-center justify-center overflow-auto rounded-md hide-scrollbar">
 					<DashboardOrders />
-					{/* 					<DashboardFocusOrder />
-					 */}
 				</div>
 			</div>
 		</>

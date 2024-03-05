@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Order from "../components/Order";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { RequestUserOrders } from "@/scripts/requests/OrderRequests";
+import { RequestSingleOrder, RequestUserOrders } from "@/scripts/requests/OrderRequests";
 import Cookies from "js-cookie";
 import { RefreshToken } from "@/scripts/util";
 import IOrder from "@/interfaces/IOrder";
@@ -10,12 +10,11 @@ export default function DashboardOrders() {
 	const [userOrders, setUserOrders] = useState<IOrder[] | null>(null);
 	async function GetUserOrders() {
 		try {
-			const user_token = Cookies.get("jwt");
-			if (user_token) {
-				const user_orders = await RequestUserOrders(user_token);
-				user_orders ? setUserOrders(user_orders) : null;
-			}
-		} catch (error) {}
+			const user_orders = await RequestUserOrders();
+			user_orders ? setUserOrders(user_orders) : null;
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	useEffect(() => {

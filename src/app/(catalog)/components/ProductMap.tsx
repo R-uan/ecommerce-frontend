@@ -12,7 +12,7 @@ export default function ProductMap() {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const urlQuery = useSearchParams();
-	const ProductsData = useSelector((s: RootState) => s.productsData);
+	const ProductsData = useSelector((s: RootState) => s.products_data);
 	const [fetchingStatus, setFetchingStatus] = useState(false);
 	const [viewRef, inView] = useInView({ onChange: HandleNextPage });
 	const [currentQuery, setCurrentQuery] = useState<string | null>(null);
@@ -91,9 +91,7 @@ export default function ProductMap() {
 					return <ProductMiniature key={product.id} data={product} />;
 				})}
 			</section>
-			<div
-				ref={viewRef}
-				className="flex justify-center items-center w-full h-[25px] m-[5px] p-[5px]">
+			<div ref={viewRef} className="flex justify-center items-center w-full h-[25px] m-[5px] p-[5px]">
 				<button onClick={Default} disabled={fetchingStatus}>
 					Teste
 				</button>

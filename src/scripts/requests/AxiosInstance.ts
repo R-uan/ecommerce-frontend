@@ -8,13 +8,25 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
 const instance = axios.create({ baseURL: BACKEND_URL });
 
+instance.interceptors.request.use(
+	function (request) {
+		const token = Cookies.get("jwt");
+		if (!token) throw new AuthenticationError("No token was found.");
+		request.headers.Authorization = `Bearer ${token}`;
+		return request;
+	},
+
+	function (error) {
+		return error;
+	}
+);
+
 instance.interceptors.response.use(
 	function (response) {
-		console.log("Middlware sucess");
 		return response;
 	},
+
 	async function (error: AxiosError) {
-		console.log("Token Expired");
 		if (error.response && error.response.status === 401 && error.response.data === "Expired Token.") {
 			const expired_token = Cookies.get("jwt");
 			const config = { headers: { Authorization: `Bearer ${expired_token}` } };
