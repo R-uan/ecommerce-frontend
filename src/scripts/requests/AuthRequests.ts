@@ -16,29 +16,25 @@ export async function SigninRequest(email: string, password: string) {
 		const body = { email, password };
 		const response = await api.post("/auth/login", body);
 		if (response.data) {
-			return response.data.token;
+			return response.data;
 		}
 	} catch (error) {
 		if (error instanceof AxiosError) {
 			if (error.response?.status == 401) {
 				throw new AuthenticationError("Invalid email or password.");
-			} else {
-				throw error;
-			}
-		} else {
-			throw error;
-		}
+			} else throw new AuthenticationError("Failed to authenticate.");
+		} else throw error;
 	}
 }
 
 export async function SignupRequest(info: ISignup) {
 	try {
 		const response = await api.post("/auth/register", info);
-		return response.data.authToken;
+		return response.data.auth_token;
 	} catch (error) {
 		if (error instanceof AxiosError) {
 			if (error.status == 409) throw new RegistrationError(error.response?.data);
-			else throw error;
+			else throw new RegistrationError("Failed to register user.");
 		} else {
 			throw error;
 		}
