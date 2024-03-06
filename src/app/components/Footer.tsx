@@ -7,7 +7,7 @@ export default function Footer() {
 		{ name: "Privacy Notice", link: "" },
 	];
 	return (
-		<footer className="w-full flex h-fit items-center bg-[#eeeeee] justify-between p-5 text-all-black">
+		<footer className="w-full flex mt-[20px] h-fit items-center bg-[#eeeeee] justify-between p-5 text-all-black">
 			<div className="flex flex-col h-fit">
 				<h3 className="text-[2vw] leading-snug">Legal Information</h3>
 				<ul className="h-fit">
