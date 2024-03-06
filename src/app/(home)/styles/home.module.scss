@@ -3,72 +3,54 @@
 $debug: 1px;
 
 .body {
+	margin: 0;
 	height: 100%;
 	width: 100%;
-	background-color: #050a0e;
+	background-color: black;
 }
 
 .main {
-	* {
-		color: white;
-	}
-	height: fit-content;
 	display: flex;
 	flex-direction: column;
-	* {
-		font-family: "Roboto Condensed";
-	}
+	align-items: center;
+	width: 100%;
+	min-height: 100vh;
+	height: fit-content;
+	margin: 0;
+}
 
-	.catalog_button {
-		position: absolute;
-		bottom: 15vh;
-		right: 10vw;
+.cb1 {
+	background-color: #050a0e;
+	width: 100%;
+	height: 100vh;
+	background-size: cover;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/home/main-bg.jpg");
+}
 
-		button {
-			position: relative;
-			height: 100px;
-			width: 270px;
-			border: 2px solid white;
-			overflow: hidden;
+.cb_2_1 {
+	height: 100%;
+	width: 30%;
+	background-size: cover;
+	background-image: url("/images/home/secondary-bg-1.v2.jpg");
+}
 
-			span {
-				z-index: 2;
-				position: relative;
-				color: white;
-				transform: color 0.5;
-				font-size: clamp(1rem, 1.5vw, 1.5vw);
-			}
+.cb_2_2 {
+	overflow: hidden;
+	flex: 1;
+	background-size: cover;
+	background-image: url("/images/home/secondary-bg-2.v2.jpg");
+}
 
-			div {
-				z-index: 1;
-				top: 100%;
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				background-color: white;
-				transition: top 0.5s ease-out;
-			}
+.itens_1 {
+	display: grid;
+	justify-content: center;
+	gap: 2px;
+	grid-template-columns: auto 1fr auto;
+}
 
-			&:hover {
-				span {
-					color: black;
-					transform: color 1s;
-				}
-				div {
-					top: 0;
-					transition: top 0.5s ease-out;
-				}
-			}
-		}
-	}
-
-	.primary_bg_image {
-		z-index: -1;
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		background-size: cover;
-		background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-			url("/images/home/main-bg.jpg");
-	}
+.itens_2 {
+	display: grid;
+	justify-content: center;
+	gap: 2px;
+	grid-template-columns: auto auto 1fr;
 }

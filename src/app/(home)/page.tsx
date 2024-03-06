@@ -2,37 +2,37 @@
 import Link from "next/link";
 import BestSellers from "./components/BestSellers";
 import styles from "./styles/home.module.scss";
+import testimage from "../../../public/images/product-test-image.jpg";
+import Image from "next/image";
+import BestSellersMini from "./components/BestSellersMini";
 
 export default function Home() {
 	return (
 		<main className={styles.main}>
-			<div className="relative h-[100vh] flex justify-center align-middle p-[2px]">
-				<div className="flex flex-col justify-center w-[60%] h-[100%] p-[20px]">
-					<h1 className="text-[4vw] leading-[4vw]">
-						NUMBER ONE <br />
-						SPACESHIP DEALER <br />
-						IN THE SOLAR SYSTEM!
-					</h1>
-					<p className="text-[1.5vw] leading-[1.5vw]">We guarantee that you will receive your ship in up to 4 pluto years.</p>
-					<h6 className="text-[0.7vw]">Not eligible for descendants.</h6>
+			<div className="flex flex-col gap-[5px] w-full pb-[5px]">
+				<div className={styles.cb1}></div>
+				<div className="flex h-[50vh] w-full gap-[5px]">
+					<div className={styles.cb_2_1}></div>
+					<div className={styles.cb_2_2}></div>
 				</div>
-				<div className="w-[40%] m-[2px] h-[100%] relative">
-					<Link className={styles.catalog_button} href="/catalog">
-						<button>
-							<span>See our catalog</span>
-							<div />
-						</button>
-					</Link>
-				</div>
-				<div className={styles.primary_bg_image} />
 			</div>
-			<div className="flex flex-col justify-center align-middle gap-1 h-[100vh] p-[5px]">
-				<div className="w-full h-[40%]">
-					<p>Satisfying client all over the galaxy, Gemini is reference for the spaceship dealership field.</p>
+			<div className="h-[45vh] pt-[50px] w-full flex flex-col justify-center items-center">
+				<h1 className="text-[4.58vw] leading-[4.58vw] text-[#FF003C] text-center font-bebas">
+					NUMBER ONE SPACESHIP DEALER <br /> IN THE SOLAR SYSTEM!
+				</h1>
+				<p className="text-[1.5vw] leading-[1.5vw] text-[#FCEE09]">We guarantee that you will receive your ship in up to 4 pluto years.</p>
+				<h6 className="text-[0.9vw]">Descendants are not eligible for ownership.</h6>
+			</div>
+			<div className="flex flex-col gap-[10px] h-fit w-[97%] p-[5px]">
+				<div className={styles.itens_1}>
+					<BestSellersMini />
+					<BestSellersMini />
+					<BestSellersMini />
 				</div>
-				<div className="flex flex-col justify-end align-middle w-[100%] h-[60%] p-[5px]">
-					<h1 className="text-[2vw]">Best Sellers</h1>
-					<BestSellers />
+				<div className={styles.itens_2}>
+					<BestSellersMini />
+					<BestSellersMini />
+					<BestSellersMini />
 				</div>
 			</div>
 		</main>
