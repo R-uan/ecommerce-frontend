@@ -11,7 +11,7 @@ export default function Home() {
 		<main className={styles.main}>
 			<div className="flex flex-col gap-[5px] w-full pb-[5px]">
 				<div className={styles.cb1}></div>
-				<div className="flex h-[50vh] w-full gap-[5px]">
+				<div className="flex h-[70vh] w-full gap-[5px]">
 					<div className={styles.cb_2_1}></div>
 					<div className={styles.cb_2_2}></div>
 				</div>
