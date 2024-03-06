@@ -3,7 +3,7 @@ export default function ProductCart() {
 	return (
 		<>
 			<div>
-				<FaShoppingCart size={25} />
+				<FaShoppingCart className="text-[2vw]" />
 			</div>
 		</>
 	);

@@ -31,30 +31,31 @@ export default function User() {
 			Authentication();
 		}
 	});
+
 	return (
 		<>
-			<div className="flex flex-row items-center gap-[5px]">
+			<div className="flex flex-row items-center w-[55%] h-[80%] gap-[5px]">
 				<div className="flex flex-col">
-					<p className="text-[1.25vw] leading-[1.25vw]">Hello{!authenticated ? "" : `, ${user?.first_name}`}</p>
+					<p className="text-[1.5vw] leading-[1.5vw]">Hello{!authenticated ? "" : `, ${user?.first_name}`}</p>
 					<div className="flex gap-[7px]">
 						{!authenticated ? (
 							<>
 								<Link href={"/signin"} className="h-fit">
-									<span className="text-[1.25vw] leading-[1.25vw]">Sign in</span>
+									<span className="text-[1.5vw] leading-[1.5vw]">Sign in</span>
 								</Link>
 								<span>•</span>
 								<Link href={"/signup"} className="h-fit">
-									<span className="text-[1.25vw] leading-[1.25vw]">Sign up</span>
+									<span className="text-[1.5vw] leading-[1.5vw]">Sign up</span>
 								</Link>
 							</>
 						) : (
 							<>
 								<Link href={"/my-account"} className="h-fit">
-									<span className="text-[1.25vw] leading-[1.25vw]">My Account</span>
+									<span className="text-[1.5vw] leading-[1.5vw]">My Account</span>
 								</Link>
 								<span>•</span>
 								<button onClick={() => Logout()} className="h-fit">
-									<span className="text-[1.25vw] leading-[1.25vw]">Logout</span>
+									<span className="text-[1.5vw] leading-[1.5vw]">Logout</span>
 								</button>
 							</>
 						)}

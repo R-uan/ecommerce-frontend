@@ -6,31 +6,36 @@ $debug: 0;
 .menu_options {
 	position: absolute;
 	top: 0;
-	bottom: 0;
 	left: 0;
 	right: 0;
+	bottom: 0;
 	margin: auto;
-	padding: 5px;
 	outline: $debug solid purple;
-	width: fit-content;
-	height: fit-content;
+	width: 40%;
+	height: 100%;
 
 	& > ul {
-		gap: 20px;
 		display: flex;
-
+		outline: $debug solid red;
+		height: 100%;
+		width: 100%;
 		& > li {
 			position: relative;
-			padding: 2px 40px 2px 40px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+			width: 33%;
 			outline: $debug solid yellow;
-			font-size: clamp(1.5rem, 1.5vw, 1.5vw);
-			line-height: clamp(1.5rem, 1.5vw, 1.5vw);
+			font-size: 1.5vw;
+			line-height: 1.5vw;
 			transition: opacity 0.5s;
 
 			& > ul {
 				gap: 4px;
 				left: 50%;
 				top: 100%;
+				opacity: 0;
 				width: 100%;
 				display: flex;
 				overflow: hidden;
@@ -41,18 +46,18 @@ $debug: 0;
 				padding: 10px 0 10px 0;
 				flex-direction: column;
 				justify-content: center;
-				opacity: 0;
 				transition: opacity 0.5s;
 				transform: translate(-50%, 0%);
-				background-color: $color;
+				/* shadow-[0px_5px_20px_0px_rgba(0,0,0,0.75)] */
+				box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.75);
 
 				& > li {
 					input:hover {
 						cursor: pointer;
 					}
 					width: fit-content;
-					font-size: clamp(1rem, 1.4vw, 1.4vw);
-					line-height: clamp(1rem, 1.4vw, 1.4vw);
+					font-size: 1.5vw;
+					line-height: 1.5vw;
 				}
 			}
 
