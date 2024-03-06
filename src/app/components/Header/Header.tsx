@@ -28,9 +28,9 @@ export default function Header({ transparent = false, color = "black", absolute 
 				className={`z-[101] top-0 justify-between items-center relative flex h-[13vh] w-full shadow-[0px_5px_20px_0px_rgba(0,0,0,0.75)] p-px text-all-${color}`}>
 				<Link href={"/"}>HOME</Link>
 				{isOpen ? null : <HeaderOptions transparent />}
-				<div className="h-full items-center outline outline-2 outline-red-600 w-[25%] justify-around flex gap-[15px]">
+				<div className="h-full items-center w-[25%] justify-around flex gap-[15px]">
 					<User />
-					<div className="flex gap-[15px] outline w-[25%] h-[50%] justify-center items-center">
+					<div className="flex gap-[15px] w-[25%] h-[50%] justify-center items-center">
 						<div className="h-fit flex items-center" onClick={() => setIsOpen(!isOpen)}>
 							<button onClick={() => setIsOpen(!isOpen)}>
 								<FaSearch className="text-[2vw]" />
