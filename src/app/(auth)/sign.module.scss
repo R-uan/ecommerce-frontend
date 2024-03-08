@@ -71,7 +71,10 @@ $debug: 2px;
 
 	.submit_form {
 		margin-bottom: 80px;
-		input {
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			font-size: 1.25rem;
 			width: 330px;
 			height: 35px;

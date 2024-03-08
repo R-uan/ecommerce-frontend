@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../sign.module.scss";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function SigninForm() {
 	const dispatch = useDispatch();
@@ -42,17 +43,18 @@ export default function SigninForm() {
 			}
 		}
 	}
+
 	return (
 		<>
 			<form action="POST" onSubmit={HandleSubmit} className={styles.form}>
 				<span>Sign in to your Gemini account</span>
 				<div className={styles.form_field}>
 					<label htmlFor="email">Email</label>
-					<input ref={emailRef} name="email" type="email" required />
+					<input ref={emailRef} name="email" type="email" required disabled={authenticating} />
 				</div>
 				<div className={styles.form_field}>
 					<label htmlFor="password">Password</label>
-					<input ref={passwordRef} name="password" type="password" required />
+					<input ref={passwordRef} name="password" type="password" required disabled={authenticating} />
 					<div className={styles.auth_message}>
 						<span>{authErrorMessage}</span>
 					</div>
@@ -65,7 +67,9 @@ export default function SigninForm() {
 					<button>Forgot password ?</button>
 				</div>
 				<div className={styles.submit_form}>
-					<input type="submit" value="Sign in" disabled={authenticating} />
+					<button disabled={authenticating} type="submit">
+						{authenticating ? <AiOutlineLoading3Quarters className="animate-spin" fill="black" /> : "Sign up"}
+					</button>
 				</div>
 			</form>
 			<div className="gap-[5px] flex absolute justify-center items-center h-[30px] bg-[#f1f6f9] w-full bottom-0 text-[1.25rem]">
