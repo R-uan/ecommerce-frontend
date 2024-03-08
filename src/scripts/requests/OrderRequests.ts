@@ -1,11 +1,8 @@
-import api from "./AxiosInstance";
-import { RefreshToken } from "../util";
-import Cookies from "js-cookie";
-import { AxiosRequestConfig, isAxiosError } from "axios";
-import AuthenticationError from "../error-handling/AuthenticationError";
-import UnexpectedError from "../error-handling/UnexpectedError";
 import IOrder from "@/interfaces/IOrder";
+import { isAxiosError } from "axios";
 import FetchingError from "../error-handling/FetchingError";
+import UnexpectedError from "../error-handling/UnexpectedError";
+import api from "./AuthenticatedAxiosInstance";
 
 export async function RequestUserOrders() {
 	try {

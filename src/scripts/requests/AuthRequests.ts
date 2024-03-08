@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import AuthenticationError from "../error-handling/AuthenticationError";
 import { RegistrationError } from "../error-handling/RegistrationError";
-import api from "./AxiosInstance";
+import api from "./PublicAxiosInstance";
 
 interface ISignup {
 	first_name: string;
