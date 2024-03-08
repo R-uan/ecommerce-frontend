@@ -3,9 +3,9 @@ import Reviews from "./components/ProductReviews";
 import ScreenCover from "./components/ScreenCover";
 import Suggestions from "./components/Suggestions";
 import ProductImages from "./components/ProductImages";
+import ProductProvider from "./context/ProductProvider";
 import ProductDescription from "./components/ProductDescription";
 import ProductInformation from "./components/ProductInformation";
-import ProductProvider from "./context/ProductProvider";
 import TechnicalInformation from "./components/TechnicalInformation";
 
 export default function Product({ params }: { params: { product: string } }) {

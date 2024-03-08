@@ -1,22 +1,23 @@
+"use client";
 import { IProductList, setAll, setPaginate } from "@/redux/slices/ProductsDataSlice";
 import { RootState } from "@/redux/store";
 import { RequestProducts, RequestProductsQuery } from "@/scripts/requests/RequestProducts";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
 import ProductMiniature from "./ProductMiniature";
+import { useSearchParams } from "next/navigation";
 
-export default function ProductMap() {
+export default function ProductMap(/* { query = null }: { query?: string | null } */) {
 	//#region
-	const router = useRouter();
+
+	const searchParams = useSearchParams();
+	const query = searchParams.get("name");
 	const dispatch = useDispatch();
-	const urlQuery = useSearchParams();
 	const ProductsData = useSelector((s: RootState) => s.products_data);
 	const [fetchingStatus, setFetchingStatus] = useState(false);
 	const [viewRef, inView] = useInView({ onChange: HandleNextPage });
 	const [currentQuery, setCurrentQuery] = useState<string | null>(null);
-	const query = urlQuery.get("name");
 
 	async function Default() {
 		setFetchingStatus(true);
@@ -79,14 +80,14 @@ export default function ProductMap() {
 	//#endregion
 
 	return (
-		<div className="h-full flex w-[clamp(1340px,89vw,89vw)] items-center flex-col justify-center mb-[50px] p-[5px]">
+		<div className="h-full flex w-[clamp(1300px,85vw,89vw)] items-center flex-col justify-center mb-[50px] p-[5px]">
 			<div className="w-full flex flex-row justify-between mx-0 my-3 text-all-white">
 				<h3 className="text-[1.75rem] leading-7">Results</h3>
 				<p className="text-[1.75rem] leading-7">
 					Showing {ProductsData.data?.length} of {ProductsData.total}
 				</p>
 			</div>
-			<section className="w-full grid gap-y-[30px] gap-x-[30px] justify-between grid-cols-[repeat(4,auto)]">
+			<section className="w-full grid gap-y-[30px] gap-x-[auto] justify-between grid-cols-[repeat(4,auto)]">
 				{ProductsData?.data?.map((product) => {
 					return <ProductMiniature key={product.id} data={product} />;
 				})}

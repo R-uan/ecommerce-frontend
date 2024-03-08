@@ -1,16 +1,15 @@
 import IProducts from "@/interfaces/IProducts";
 import Image from "next/image";
 import Link from "next/link";
-import testimage from "../../../../public/images/testvertical.jpg";
+import testimage from "../../../../public/images/product-test-image.jpg";
 
 export default function ProductMiniature({ data }: { data: IProductsPartial }) {
-	const { availability } = data;
 	return (
 		<Link className="w-fit h-fit" href={`/catalog/${data.id}`}>
 			<div className="flex flex-col w-[20vw] rounded-md min-h-[25.5vw] h-fit text-all-white">
 				<div className="relative w-[20vw] h-[20vw] overflow-hidden justify-center rounded-[5px]">
-					{availability ? null : (
-						<div className="w-full h-full bg-[rgba(0,0,0,0.5)] absolute flex justify-center items-center">
+					{data.availability ? null : (
+						<div className="w-full h-full bg-[rgba(0,0,0,0.5)] z-50 absolute flex justify-center items-center">
 							<h3 className="text-[clamp(1rem,2vw,2vw)] leading-[clamp(1rem,2vw,2vw)] font-bebas">NOT AVAILABLE</h3>
 						</div>
 					)}
