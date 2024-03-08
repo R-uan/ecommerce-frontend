@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
+import Footer from "../components/Footer";
 import Header from "../components/Header/Header";
 import "../globals.css";
-import Link from "next/link";
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
-import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-	title: "Catalog",
+	title: "Gemini - Catalog",
 	description: "",
 };
 
