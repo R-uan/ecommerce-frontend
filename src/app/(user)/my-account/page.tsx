@@ -7,7 +7,7 @@ import styles from "./page.module.scss";
 export default function Profile() {
 	return (
 		<Provider store={store}>
-			<main className="flex items-center relative w-full h-[90vh] min-h-[90vh] bg-[#050a0e]">
+			<main className="flex relative flex-1 bg-[#050a0e]">
 				<DashboardMenu />
 				<div className={styles.dashboard}>
 					<DashboardHome />

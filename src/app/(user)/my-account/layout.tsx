@@ -4,7 +4,7 @@ import Footer from "@/app/components/Footer";
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<body className="w-full bg-black">
+		<body className="flex flex-col w-full h-[100vh]">
 			<Header />
 			{children}
 		</body>

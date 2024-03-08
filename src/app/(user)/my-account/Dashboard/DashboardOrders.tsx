@@ -23,7 +23,7 @@ export default function DashboardOrders() {
 	return (
 		<section className="relative pt-2.5 w-full h-full flex flex-col gap-[5px]">
 			{!userOrders ? (
-				<div className="absolute top-0 left-0 bottom-0 right-0 w-full h-full items-center justify-center flex m-auto">
+				<div className="w-full h-full items-center justify-center flex m-auto">
 					<span className="animate-spin">
 						<AiOutlineLoading3Quarters size={50} />
 					</span>

@@ -17,7 +17,7 @@ export default function DashboardHome() {
 					</div>
 				</div>
 			)}
-			<div className="flex flex-col w-full h-full gap-[20px] text-all-black">
+			<div className="relative flex flex-col w-full h-full gap-[20px] text-all-black">
 				<div className="flex h-[17vh] flex-col w-full justify-evenly">
 					<div className="h-fit w-full flex justify-between">
 						<DashboardUser />
@@ -36,10 +36,10 @@ export default function DashboardHome() {
 						</section>
 					</div>
 				</div>
-				<div className="ml-[5px] mb-[-20px]">
+				{/* <div className="ml-[5px] mb-[-20px]">
 					<span className="text-[2vw] text-focus-white leading-[2vw] font-bebas">Orders</span>
-				</div>
-				<div className="bg-[white] flex flex-col flex-1 items-center justify-center overflow-auto rounded-md hide-scrollbar">
+				</div> */}
+				<div className="bg-[white] max-h-full h-[63vh] relative flex-col overflow-auto rounded-md hide-scrollbar">
 					<DashboardOrders />
 				</div>
 			</div>

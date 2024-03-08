@@ -38,7 +38,7 @@ export default function DashboardMenu() {
 					Profile
 				</span>
 			</button>
-			<div className="absolute bottom-0 w-full h-fit">
+			<div className="absolute bottom-[2px] w-full h-fit">
 				<button onClick={Logout} type="button" className="h-[50px] w-full hover:bg-[#eeeeee]">
 					<span className="items-center gap-5 flex w-full h-full text-[1.5vw] leading-[1.5vw] text-[black] pl-5">
 						<RiLogoutBoxRLine className="text-[2vw] fill-[black]" />
