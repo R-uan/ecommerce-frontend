@@ -36,27 +36,23 @@ export default function Suggestions() {
 		<>
 			<section className="gap-[15px] flex flex-col">
 				<div className="flex gap-[20px]">
-					<h1 className="text-[2vw] leading-snug font-bebas text-[#FF003C]">
-						SIMILAR PRODUCTS
-					</h1>
+					<h1 className="text-[2vw] leading-snug font-bebas text-[#FF003C]">SIMILAR PRODUCTS</h1>
 					<div className="flex">
 						<button
 							onClick={() => {
 								similarProductsRef.current!.scrollLeft -= 1000;
 							}}>
-							<IoMdArrowDropleft className="text-[2vw] leading-snug" />
+							<IoMdArrowDropleft fill="white" className="text-[2vw] leading-snug" />
 						</button>
 						<button
 							onClick={() => {
 								similarProductsRef.current!.scrollLeft += 1000;
 							}}>
-							<IoMdArrowDropright className="text-[2vw] leading-snug" />
+							<IoMdArrowDropright fill="white" className="text-[2vw] leading-snug" />
 						</button>
 					</div>
 				</div>
-				<div
-					ref={similarProductsRef}
-					className="flex w-full gap-5 overflow-x-scroll pr-[10px] left_slider">
+				<div ref={similarProductsRef} className="flex w-full gap-5 overflow-x-scroll pr-[10px] hide-scrollbar">
 					<ProductMiniature data={ProductTestData} />
 					<ProductMiniature data={ProductTestData} />
 					<ProductMiniature data={ProductTestData} />
@@ -70,27 +66,23 @@ export default function Suggestions() {
 			{!manuSuggestions ? null : (
 				<section className="gap-[15px] flex flex-col">
 					<div className="flex gap-[20px]">
-						<h1 className="text-[2vw] leading-snug font-bebas text-[#FF003C]">
-							More From {state.product?.manufacturer}
-						</h1>
+						<h1 className="text-[2vw] leading-snug font-bebas text-[#FF003C]">More From {state.product?.manufacturer}</h1>
 						<div className="flex">
 							<button
 								onClick={() => {
 									sameManufacturerRef.current!.scrollLeft -= 1000;
 								}}>
-								<IoMdArrowDropleft className="text-[2vw] leading-snug" />
+								<IoMdArrowDropleft fill="white" className="text-[2vw] leading-snug" />
 							</button>
 							<button
 								onClick={() => {
 									sameManufacturerRef.current!.scrollLeft += 1000;
 								}}>
-								<IoMdArrowDropright className="text-[2vw] leading-snug" />
+								<IoMdArrowDropright fill="white" className="text-[2vw] leading-snug" />
 							</button>
 						</div>
 					</div>
-					<div
-						ref={sameManufacturerRef}
-						className="flex w-full gap-5 overflow-x-scroll pr-[10px] left_slider">
+					<div ref={sameManufacturerRef} className="flex w-full gap-5 h-[33vw] overflow-x-scroll pr-[10px] hide-scrollbar">
 						{manuSuggestions?.map((product) => {
 							return <ProductMiniature key={product.id} data={product} />;
 						})}

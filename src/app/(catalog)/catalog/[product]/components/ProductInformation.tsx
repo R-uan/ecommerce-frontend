@@ -26,22 +26,20 @@ export default function ProductInformation({ productId }: { productId: string })
 	useEffect(() => {
 		Default();
 	}, []);
+
 	return (
 		<section className={styles.product_information}>
 			<div className="w-[60%] flex flex-col justify-between gap-[30px]">
 				<div>
 					<Rating />
-					<h1 className="text-[3.5vw] leading-[3vw] font-bebas text-[#FF003C]">
-						{product?.name}
-					</h1>
-					<h3 className="text-[2vw] leading-snug">{product?.manufacturer}</h3>
-					<h3 className="text-[3vw] leading-[3vw]">${product?.unit_price}</h3>
+					<h1 className="text-[3.5vw] leading-[3vw] font-bebas text-[#FF003C]">{product?.name}</h1>
+					<p className="text-[2vw] leading-snug text-white">{product?.manufacturer}</p>
+					<p className="text-[3vw] leading-[3vw] text-white">${product?.unit_price}</p>
+					<p className="text-[1.5vw] leading-[1.5vw] text-white">+7% taxes</p>
 				</div>
 
-				<div>
-					<label
-						className="flex flex-col w-[200px] text-[1.5rem] leading-snug mb-[20px]"
-						htmlFor="destiny">
+				<div className="text-all-white">
+					<label className="flex flex-col w-[200px] text-[1.5rem] leading-snug mb-[20px]" htmlFor="destiny">
 						Planet Dropoff
 						<select className="bg-[#2E3840]" name="" id="destiny">
 							<option value="earth">Earth</option>
@@ -56,9 +54,7 @@ export default function ProductInformation({ productId }: { productId: string })
 						</select>
 					</label>
 					<h3 className="text-[1.5vw] leading-[1.5vw]">Delivery Price: ${"10"}</h3>
-					<h3 className="text-[1.5vw] leading-[1.5vw]">
-						Estimated Time of Production (Pluto Years): 2-3
-					</h3>
+					<h3 className="text-[1.5vw] leading-[1.5vw]">Estimated Time of Production (Pluto Years): {"2-3"}</h3>
 				</div>
 			</div>
 			<div className={styles.cb2}>

@@ -7,11 +7,8 @@ export default function TechnicalInformation() {
 	return (
 		<section className="gap-[15px] flex flex-col">
 			<h1 className="text-[2vw] w-full font-bebas text-[#FF003C]">Technical Information</h1>
-			<div className="flex flex-col gap-[20px]">
-				<p className="text-[1.5vw] leading-snug"></p>
-			</div>
 			<div className={styles.technical_information}>
-				<table className="flex flex-col">
+				<table className="flex flex-col text-all-white">
 					<tbody>
 						<tr>
 							<th>Energy System</th>
