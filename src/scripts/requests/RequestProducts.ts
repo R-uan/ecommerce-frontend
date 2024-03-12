@@ -2,8 +2,11 @@ import axios, { AxiosError, isAxiosError } from "axios";
 import ProductFetchingError from "../error-handling/ProductFetchingError";
 import UnexpectedError from "../error-handling/UnexpectedError";
 import { ProductQuery } from "@/interfaces/ProductQuery";
+import api from "./PublicAxiosInstance";
 config();
 import { config } from "dotenv";
+import { IPlanetDestination } from "@/interfaces/IOrder";
+import { ICart } from "@/interfaces/ICart";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
@@ -43,6 +46,7 @@ export async function RequestProductsQuery(params: string, url?: string, query: 
 export async function RequestSingleProduct(id: string) {
 	try {
 		const response: IProduct = (await axios.get(`${BACKEND_URL}/products/${id}`)).data;
+		console.log(response);
 		return response;
 	} catch (error) {
 		if (error instanceof AxiosError) {
@@ -58,4 +62,28 @@ export async function RequestFromManufacturer(id: number) {
 		const response = (await axios.get(`${BACKEND_URL}/manufacturers/${id}/products`)).data;
 		return response;
 	} catch (error) {}
+}
+
+export async function RequestDestinations() {
+	try {
+		const response = await api.get("/destinations");
+		const data: IPlanetDestination[] = response.data;
+		return data;
+	} catch (error) {
+		console.log(error);
+	}
+}
+
+export async function RequestSome() {
+	try {
+		const storage = localStorage.getItem("cart");
+		if (storage) {
+			const cart: ICart = JSON.parse(storage);
+			const request = await api.post("/products/some", { products: cart.uniques });
+			const data = request.data;
+			return data;
+		}
+	} catch (error) {
+		console.log(error);
+	}
 }

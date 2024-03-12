@@ -1,23 +1,19 @@
-"use client";
 import { store } from "@/redux/store";
 import { Provider } from "react-redux";
-import Item from "./Item";
+import ItensMap from "./ItensMap";
+import CheckoutProvider from "./contexts/CheckoutContext";
 
 export default function Checkout() {
 	return (
-		<Provider store={store}>
-			<main className="w-full h-full flex-1 bg-black p-[20px]">
-				<div className="flex flex-row bg-[white] gap-[15px] justify-between w-full h-[40vw] p-[5px] rounded-md">
-					<div className="flex flex-col gap-[10px] rounded-md w-[70%] h-full overflow-auto">
-						<Item />
-						<Item />
-						<Item />
-						<Item />
-						<Item />
-					</div>
-					<div className="bg-[#eeeeee] rounded-md w-[30%]"></div>
+		<main className="w-full h-full flex-1 bg-black p-[20px]">
+			<div className="flex flex-row bg-[white] gap-[15px] justify-between w-full h-[40vw] p-[10px] rounded-md">
+				<div className="flex flex-col gap-[10px] rounded-md w-[70%] h-full overflow-auto">
+					<CheckoutProvider>
+						<ItensMap />
+					</CheckoutProvider>
 				</div>
-			</main>
-		</Provider>
+				<div className="bg-[#eeeeee] rounded-md w-[30%]"></div>
+			</div>
+		</main>
 	);
 }

@@ -7,6 +7,7 @@ import api from "./AuthenticatedAxiosInstance";
 export async function RequestUserOrders() {
 	try {
 		const request = await api.get("/orders");
+		console.log(request.data);
 		return request.data ?? new UnexpectedError();
 	} catch (error) {
 		if (isAxiosError(error)) throw new FetchingError(error.message);

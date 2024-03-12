@@ -4,7 +4,7 @@ interface IProduct {
 	category: string;
 	unit_price: string;
 	image_url: string;
-	insurance: string;
+	production_time: string;
 	availability: boolean;
 	long_description: string;
 	short_description: string;

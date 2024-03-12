@@ -4,11 +4,18 @@ export default interface IOrder {
 	status: string;
 	order_date: string;
 	payment_method: string;
-	planet_destination: string;
 	payment_received: null | string;
 	product_finished: null | string;
 	order_finalized: null | string;
+	planet_destination: IPlanetDestination;
 	order_itens: OrderItem[];
+}
+
+export interface IPlanetDestination {
+	id: number;
+	name: string;
+	delivery_price: string;
+	special_conditions: string;
 }
 
 export interface OrderItem {

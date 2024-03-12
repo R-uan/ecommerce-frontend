@@ -5,10 +5,12 @@ import { FaShoppingCart } from "react-icons/fa";
 import styles from "../singular-product.module.scss";
 import { useProductContext } from "../context/ProductProvider";
 import { RequestSingleProduct } from "@/scripts/requests/RequestProducts";
+import PlanetDestination from "./PlanetDestination";
 
 export default function ProductInformation({ productId }: { productId: string }) {
 	const state = useProductContext();
 	const product = state.product;
+
 	async function Default() {
 		try {
 			state.setFetchStatus(true);
@@ -20,6 +22,29 @@ export default function ProductInformation({ productId }: { productId: string })
 				state.setErrorMessage(error.message);
 				state.setFetchStatus(false);
 			}
+		}
+	}
+
+	interface ICart {
+		uniques: number[];
+		[key: number]: number;
+	}
+
+	function AddToCart() {
+		try {
+			const storage = localStorage.getItem("cart");
+			if (storage && product) {
+				const cart: ICart = JSON.parse(storage);
+				cart.uniques.includes(product.id) ? null : cart.uniques.push(product.id);
+				cart[product.id] ? cart[product.id]++ : (cart[product.id] = 1);
+				localStorage.setItem("cart", JSON.stringify(cart));
+			} else if (!storage && product) {
+				const cart: ICart = { uniques: [product.id] };
+				cart[product.id] = 1;
+				localStorage.setItem("cart", JSON.stringify(cart));
+			}
+		} catch (error) {
+			console.log(error);
 		}
 	}
 
@@ -39,22 +64,8 @@ export default function ProductInformation({ productId }: { productId: string })
 				</div>
 
 				<div className="text-all-white">
-					<label className="flex flex-col w-[200px] text-[1.5rem] leading-snug mb-[20px]" htmlFor="destiny">
-						Planet Dropoff
-						<select className="bg-[#2E3840]" name="" id="destiny">
-							<option value="earth">Earth</option>
-							<option value="mars">Mars</option>
-							<option value="saturn">Saturn</option>
-							<option value="neptune">Neptune</option>
-							<option value="uranus">Uranus</option>
-							<option value="venus">Venus</option>
-							<option value="mercury">Mercury</option>
-							<option value="moon">Moon</option>
-							<option value="pluto">Pluto</option>
-						</select>
-					</label>
-					<h3 className="text-[1.5vw] leading-[1.5vw]">Delivery Price: ${"10"}</h3>
-					<h3 className="text-[1.5vw] leading-[1.5vw]">Estimated Time of Production (Pluto Years): {"2-3"}</h3>
+					<PlanetDestination />
+					<h3 className="text-[1.5vw] leading-[1.5vw]">Estimated Time of Production: {state.product?.production_time} Pluto Years</h3>
 				</div>
 			</div>
 			<div className={styles.cb2}>
@@ -62,7 +73,7 @@ export default function ProductInformation({ productId }: { productId: string })
 					<FaShoppingCart fill="#050A0E" className="text-[1.5vw]" />
 					BUY NOW
 				</button>
-				<button type="button" className={styles.add_to_cart}>
+				<button onClick={AddToCart} type="button" className={styles.add_to_cart}>
 					<FaCartPlus fill="#050A0E" className="text-[1.5vw]" />
 				</button>
 			</div>

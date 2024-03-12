@@ -51,7 +51,7 @@ export default function Header({ transparent = false, color = "black", absolute 
 								<div className="z-[-1] absolute w-screen bg-transparent h-full right-0 top-0" onClick={() => setIsOpen(!isOpen)} />
 							</div>
 						)}
-						<div>
+						<div className="flex">
 							<Link href="/checkout">
 								<FaShoppingCart className="text-[1.4vw]" />
 							</Link>
