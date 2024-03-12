@@ -1,18 +1,15 @@
 "use client";
 import { RequestSome } from "@/scripts/requests/RequestProducts";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Item from "./Item";
-import CheckoutProvider, { useCheckpointContext } from "./contexts/CheckoutContext";
+import { useCheckpointContext } from "./contexts/CheckoutContext";
+import { IProductsPartial } from "@/interfaces/IProductsPartial";
 
 export default function ItensMap() {
-	const { cartItens, setItens } = useCheckpointContext();
-	async function Fetch() {
-		const itens: IProductsPartial[] = await RequestSome();
-		if (itens) setItens(itens);
-	}
+	const { cartItens, InitialCartItensFetch } = useCheckpointContext();
 
 	useEffect(() => {
-		Fetch();
+		InitialCartItensFetch();
 	}, []);
 
 	return (

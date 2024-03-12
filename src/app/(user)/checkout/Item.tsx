@@ -5,10 +5,11 @@ import { FaTrashCan } from "react-icons/fa6";
 import testimage from "../../../../public/images/product-test-image.jpg";
 import { useCheckpointContext } from "./contexts/CheckoutContext";
 import { ICart } from "@/interfaces/ICart";
+import { IProductsPartial } from "@/interfaces/IProductsPartial";
 
 export default function Item({ product, index }: { product: IProductsPartial; index: number }) {
 	const [productAmount, setAmount] = useState(1);
-	const { cartItens, setItens } = useCheckpointContext();
+	const { cartItens, setItens, UpdateItemAmount } = useCheckpointContext();
 
 	function RemoveProperty(obj: ICart, propToRemove: number) {
 		const { [propToRemove]: removedProp, ...rest } = obj;
@@ -31,15 +32,6 @@ export default function Item({ product, index }: { product: IProductsPartial; in
 		}
 	}
 
-	useEffect(() => {
-		const storage = localStorage.getItem("cart");
-		if (storage) {
-			const cart = JSON.parse(storage);
-			cart[product.id] = productAmount;
-			localStorage.setItem("cart", JSON.stringify(cart));
-		}
-	}, [productAmount]);
-
 	return (
 		<div className="flex relative gap-[5px] flex-row w-full h-[8vw]">
 			<div className="relative w-[8vw] h-[8vw] bg-[#eeeeee]">
@@ -54,7 +46,7 @@ export default function Item({ product, index }: { product: IProductsPartial; in
 				<div className="flex flex-col justify-center">
 					<div className="flex flex-col items-center justify-center">
 						<label htmlFor="amount" className="text-[1.25vw] leading-[1.25vw] text-center">
-							Units
+							Units: {product.units}
 						</label>
 						<input
 							id="amount"
@@ -63,13 +55,7 @@ export default function Item({ product, index }: { product: IProductsPartial; in
 							max={5}
 							defaultValue={productAmount}
 							onChange={(e) => {
-								setAmount(parseInt(e.target.value));
-								const storage = localStorage.getItem("cart");
-								if (storage) {
-									const cart = JSON.parse(storage);
-									cart[product.id] = e.target.value;
-									localStorage.setItem("cart", JSON.stringify(cart));
-								}
+								UpdateItemAmount(product.id, parseInt(e.target.value));
 							}}
 							className="w-[50px] text-[1.5vw] text-center bg-transparent font-bold border-[1px] border-black"
 						/>
