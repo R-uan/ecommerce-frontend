@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { config } from "dotenv";
 import Cookies from "js-cookie";
-import AuthenticationError from "../error-handling/AuthenticationError";
+import AuthenticationError from "../../error-handling/AuthenticationError";
 config();
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/redux/slices/AuthenticationSlice";
 import { redirect } from "next/navigation";
 import { RootState } from "@/redux/store";
+import IUser from "@/interfaces/IUser";
 
 export default function DashboardUser() {
 	const dispatch = useDispatch();
@@ -17,15 +18,14 @@ export default function DashboardUser() {
 		async function Default() {
 			const token = Cookies.get("jwt");
 			if (token) {
-				const user = jwtDecode(token).user;
-				user ? dispatch(setUser(user)) : redirect("/signin");
+				const decoded_token: { user: IUser } = jwtDecode(token);
+				decoded_token.user ? dispatch(setUser(decoded_token.user)) : redirect("/signin");
 			} else {
 				redirect("/signin");
 			}
 		}
 		Default();
-	}, []);
-
+	}, [dispatch]);
 	return (
 		<section className="flex items-center gap-[30px] w-[35vw] h-[17vh] bg-[white] pl-[30px] pr-2.5 py-2.5 rounded-md">
 			<div>

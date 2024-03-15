@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import AuthenticationError from "../error-handling/AuthenticationError";
 import { RegistrationError } from "../error-handling/RegistrationError";
-import api from "./PublicAxiosInstance";
+import api from "./axios-instances/PublicAxiosInstance";
 
 interface ISignup {
 	first_name: string;
@@ -12,7 +12,6 @@ interface ISignup {
 
 export async function SigninRequest(email: string, password: string) {
 	try {
-		console.log("Auth request");
 		const body = { email, password };
 		const response = await api.post("/auth/login", body);
 		if (response.data) {

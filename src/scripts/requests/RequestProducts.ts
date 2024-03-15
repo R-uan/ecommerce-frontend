@@ -2,7 +2,7 @@ import axios, { AxiosError, isAxiosError } from "axios";
 import ProductFetchingError from "../error-handling/ProductFetchingError";
 import UnexpectedError from "../error-handling/UnexpectedError";
 import { ProductQuery } from "@/interfaces/ProductQuery";
-import api from "./PublicAxiosInstance";
+import api from "./axios-instances/PublicAxiosInstance";
 config();
 import { config } from "dotenv";
 import { IPlanetDestination } from "@/interfaces/IOrder";

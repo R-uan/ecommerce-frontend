@@ -14,10 +14,10 @@ export default function User() {
 	function Authentication() {
 		const token = Cookies.get("jwt");
 		if (token) {
-			const user = jwtDecode(token).user;
-			if (user) {
+			const decode_token: { user: IUser } = jwtDecode(token);
+			if (decode_token.user) {
 				setAuthenticationStatus(true);
-				setUser(user);
+				setUser(decode_token.user);
 			}
 		}
 	}

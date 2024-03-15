@@ -2,7 +2,7 @@ import IOrder from "@/interfaces/IOrder";
 import { isAxiosError } from "axios";
 import FetchingError from "../error-handling/FetchingError";
 import UnexpectedError from "../error-handling/UnexpectedError";
-import api from "./AuthenticatedAxiosInstance";
+import api from "./axios-instances/AuthenticatedAxiosInstance";
 
 export async function RequestUserOrders() {
 	try {
