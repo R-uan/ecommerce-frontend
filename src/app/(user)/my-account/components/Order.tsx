@@ -20,6 +20,7 @@ export default function Order({ order }: { order: IOrder }) {
 			console.log(error);
 		}
 	}
+
 	return (
 		<button onClick={ExpandOrder}>
 			<div className="w-full gap-[20px] flex items-center h-[100px] bg-[#eeeeee]">
@@ -42,7 +43,7 @@ export default function Order({ order }: { order: IOrder }) {
 					</div>
 					<div>
 						<p className="text-[1.5vw] leading-[1.5vw]">Planet Destination</p>
-						<span className="text-[1.5vw] leading-[1.5vw]">{order.planet_destination}</span>
+						<span className="text-[1.5vw] leading-[1.5vw]">{order.planet_destination.name}</span>
 					</div>
 				</div>
 			</div>

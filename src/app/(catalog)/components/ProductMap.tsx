@@ -19,13 +19,6 @@ export default function ProductMap(/* { query = null }: { query?: string | null 
 	const [viewRef, inView] = useInView({ onChange: HandleNextPage });
 	const [currentQuery, setCurrentQuery] = useState<string | null>(null);
 
-	async function Default() {
-		setFetchingStatus(true);
-		if (query && query != "") await FetchQuery();
-		else await InitialFetch();
-		setFetchingStatus(false);
-	}
-
 	async function InitialFetch() {
 		const response = await RequestProducts();
 		const data = {
@@ -74,10 +67,15 @@ export default function ProductMap(/* { query = null }: { query?: string | null 
 	}
 
 	useEffect(() => {
+		async function Default() {
+			setFetchingStatus(true);
+			if (query && query != "") await FetchQuery();
+			else await InitialFetch();
+			setFetchingStatus(false);
+		}
 		setCurrentQuery(query);
 		Default();
 	}, [query]);
-	//#endregion
 
 	return (
 		<div className="h-full flex w-[clamp(1300px,85vw,89vw)] items-center flex-col justify-center mb-[50px] p-[5px]">
@@ -92,11 +90,7 @@ export default function ProductMap(/* { query = null }: { query?: string | null 
 					return <ProductMiniature key={product.id} data={product} />;
 				})}
 			</section>
-			<div ref={viewRef} className="flex justify-center items-center w-full h-[25px] m-[5px] p-[5px]">
-				<button onClick={Default} disabled={fetchingStatus}>
-					Teste
-				</button>
-			</div>
+			<div ref={viewRef} className="flex justify-center items-center w-full h-[25px] m-[5px] p-[5px]"></div>
 		</div>
 	);
 }

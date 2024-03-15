@@ -1,4 +1,5 @@
 import IProducts from "@/interfaces/IProducts";
+import { IProductsPartial } from "@/interfaces/IProductsPartial";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface IProductList {

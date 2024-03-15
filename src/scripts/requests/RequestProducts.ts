@@ -12,6 +12,7 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
 export async function RequestProducts(url: string = `${BACKEND_URL}/products/miniatures`) {
 	try {
+		console.log("request");
 		const response = (await axios.get(url)).data;
 		return {
 			data: response.data,
@@ -21,6 +22,7 @@ export async function RequestProducts(url: string = `${BACKEND_URL}/products/min
 			next_page_url: response.next_page_url || "end",
 		};
 	} catch (error) {
+		console.log(error);
 		if (isAxiosError(error)) throw new Error(error.message);
 		else throw new Error("Unexpected Error.");
 	}

@@ -3,6 +3,7 @@ import ProductMiniature from "../../../components/ProductMiniature";
 import { RequestFromManufacturer } from "@/scripts/requests/RequestProducts";
 import { useProductContext } from "../context/ProductProvider";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import { IProductsPartial } from "@/interfaces/IProductsPartial";
 
 const ProductTestData = {
 	id: 1,
@@ -22,16 +23,17 @@ export default function Suggestions() {
 	const similarProductsRef = useRef<HTMLDivElement>(null);
 	const sameManufacturerRef = useRef<HTMLDivElement>(null);
 
-	async function FromManufacturer() {
-		if (state.product) {
-			const products = await RequestFromManufacturer(state.product.manufacturers_id);
-			setManuSuggestions(products);
-		}
-	}
-
 	useEffect(() => {
+		async function FromManufacturer() {
+			if (state.product) {
+				const products = await RequestFromManufacturer(state.product.manufacturers_id);
+				setManuSuggestions(products);
+			}
+		}
+
 		FromManufacturer();
 	}, [state.fetched]);
+
 	return (
 		<>
 			<section className="gap-[15px] flex flex-col">

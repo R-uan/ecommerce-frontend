@@ -2,6 +2,7 @@ import IProducts from "@/interfaces/IProducts";
 import Image from "next/image";
 import Link from "next/link";
 import testimage from "../../../../public/images/product-test-image.jpg";
+import { IProductsPartial } from "@/interfaces/IProductsPartial";
 
 export default function ProductMiniature({ data }: { data: IProductsPartial }) {
 	return (

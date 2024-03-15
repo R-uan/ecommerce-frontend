@@ -11,20 +11,6 @@ export default function ProductInformation({ productId }: { productId: string })
 	const state = useProductContext();
 	const product = state.product;
 
-	async function Default() {
-		try {
-			state.setFetchStatus(true);
-			const response = await RequestSingleProduct(productId);
-			if (response) state.setProduct(response);
-			state.setFetchStatus(false);
-		} catch (error) {
-			if (error instanceof Error) {
-				state.setErrorMessage(error.message);
-				state.setFetchStatus(false);
-			}
-		}
-	}
-
 	interface ICart {
 		uniques: number[];
 		[key: number]: number;
@@ -49,6 +35,20 @@ export default function ProductInformation({ productId }: { productId: string })
 	}
 
 	useEffect(() => {
+		async function Default() {
+			try {
+				state.setFetchStatus(true);
+				const response = await RequestSingleProduct(productId);
+				if (response) state.setProduct(response);
+				state.setFetchStatus(false);
+			} catch (error) {
+				if (error instanceof Error) {
+					state.setErrorMessage(error.message);
+					state.setFetchStatus(false);
+				}
+			}
+		}
+
 		Default();
 	}, []);
 

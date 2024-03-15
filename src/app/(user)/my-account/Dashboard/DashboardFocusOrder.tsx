@@ -68,7 +68,7 @@ export default function DashboardFocusOrder() {
 						</div>
 						<div className="text-center">
 							<p className="text-[1.5vw] leading-[1.5vw]">Planet Dropoff</p>
-							<p className="text-[1.5vw] leading-[1.5vw]">{state.order?.planet_destination}</p>
+							<p className="text-[1.5vw] leading-[1.5vw]">{state.order?.planet_destination.name}</p>
 						</div>
 					</div>
 				</div>
