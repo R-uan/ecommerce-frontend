@@ -1,7 +1,7 @@
 "use client";
 import { ICart } from "@/interfaces/ICart";
 import { IProductsPartial } from "@/interfaces/IProductsPartial";
-import { RequestSome } from "@/scripts/requests/RequestProducts";
+import { RequestSomeMiniatures } from "@/scripts/requests/RequestProducts";
 import { ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 
 interface ICheckoutContext {
@@ -25,7 +25,7 @@ export default function CheckoutProvider({ children }: { children: ReactNode }) 
 	}
 
 	async function InitialCartItensFetch() {
-		const itens: IProductsPartial[] = await RequestSome();
+		const itens: IProductsPartial[] = await RequestSomeMiniatures();
 		const update_itens = itens.map((product) => ({
 			...product,
 			units: 1,

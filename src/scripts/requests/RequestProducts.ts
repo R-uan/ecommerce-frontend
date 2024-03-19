@@ -12,7 +12,6 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
 export async function RequestProducts(url: string = `${BACKEND_URL}/products/miniatures`) {
 	try {
-		console.log("request");
 		const response = (await axios.get(url)).data;
 		return {
 			data: response.data,
@@ -30,11 +29,9 @@ export async function RequestProducts(url: string = `${BACKEND_URL}/products/min
 
 export async function RequestProductsQuery(params: string, url?: string, query: ProductQuery = ProductQuery.Name) {
 	let response;
-	if (url) {
-		response = (await axios.get(url)).data;
-	} else {
-		response = (await axios.get(`${BACKEND_URL}/products/search?${query}[lk]=${params}`)).data;
-	}
+	if (url) response = (await axios.get(url)).data;
+	else response = (await axios.get(`${BACKEND_URL}/products/search?${query}[lk]=${params}`)).data;
+
 	return {
 		data: response.data,
 		total: response.total,
@@ -48,7 +45,6 @@ export async function RequestProductsQuery(params: string, url?: string, query: 
 export async function RequestSingleProduct(id: string) {
 	try {
 		const response: IProduct = (await axios.get(`${BACKEND_URL}/products/${id}`)).data;
-		console.log(response);
 		return response;
 	} catch (error) {
 		if (error instanceof AxiosError) {
@@ -76,12 +72,12 @@ export async function RequestDestinations() {
 	}
 }
 
-export async function RequestSome() {
+export async function RequestSomeMiniatures() {
 	try {
 		const storage = localStorage.getItem("cart");
 		if (storage) {
 			const cart: ICart = JSON.parse(storage);
-			const request = await api.post("/products/some", { products: cart.uniques });
+			const request = await api.post("/products/miniatures", { products: cart.uniques });
 			const data = request.data;
 			return data;
 		}

@@ -78,18 +78,20 @@ export default function ProductMap(/* { query = null }: { query?: string | null 
 	}, [query]);
 
 	return (
-		<div className="h-full flex w-[clamp(1300px,85vw,89vw)] items-center flex-col justify-center mb-[50px] p-[5px]">
-			<div className="w-full flex flex-row justify-between mx-0 my-3 text-all-white">
+		<div className="h-full flex w-fit flex-col mb-[50px] p-[5px]">
+			{/* <div className="w-full flex flex-row justify-between mx-0 my-3 text-all-white">
 				<h3 className="text-[1.75rem] leading-7">Results</h3>
 				<p className="text-[1.75rem] leading-7">
 					Showing {ProductsData.data?.length} of {ProductsData.total}
 				</p>
+			</div> */}
+			<div className="w-full flex justify-between">
+				<section className="w-fit grid gap-y-[10px] gap-x-[10px] justify-between grid-cols-[repeat(4,auto)] outline">
+					{ProductsData?.data?.map((product) => {
+						return <ProductMiniature key={product.id} data={product} />;
+					})}
+				</section>
 			</div>
-			<section className="w-full grid gap-y-[30px] gap-x-[auto] justify-between grid-cols-[repeat(4,auto)]">
-				{ProductsData?.data?.map((product) => {
-					return <ProductMiniature key={product.id} data={product} />;
-				})}
-			</section>
 			<div ref={viewRef} className="flex justify-center items-center w-full h-[25px] m-[5px] p-[5px]"></div>
 		</div>
 	);

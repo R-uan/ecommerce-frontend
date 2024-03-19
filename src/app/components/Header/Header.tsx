@@ -39,7 +39,7 @@ export default function Header({ transparent = false, color = "black", absolute 
 								<form className="z-[1] flex items-center w-[40%] h-[50%] relative" method="get" onSubmit={HandleSubmit}>
 									<input
 										style={{ backgroundColor: transparent ? "transparent" : "#050A0E", color: "white" }}
-										className="z-[5] text-[clamp(1.5rem,1.75vw,1.75vw)] leading-[clamp(1.5rem,1.75vw,1.75vw)] w-full h-[70%] pl-[5px] pr-[50px] rounded-[5px]  shadow-[0px_5px_20px_0px_rgba(0,0,0,0.5)]"
+										className="z-[5] text-[clamp(1.5rem,1.75vw,1.75vw)] leading-[clamp(1.5rem,1.75vw,1.75vw)] w-full h-[70%] pl-[5px] pr-[50px] rounded-[5px] shadow-[0px_5px_20px_0px_rgba(0,0,0,0.5)]"
 										name="name"
 										type="text"
 										placeholder="Search"
