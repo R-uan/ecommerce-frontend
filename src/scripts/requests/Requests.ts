@@ -1,8 +1,8 @@
 import { isAxiosError } from "axios";
 import Api from "./axios-instances/PublicAxiosInstance";
 import IPaginateResponse from "@/interfaces/IPaginateResponse";
-import ApiRequestError from "../error-handling/APIRequestError";
 import UnexpectedError from "../error-handling/UnexpectedError";
+import ApiRequestError from "../error-handling/ApiRequestError";
 
 export default class Requests {
 	static async Paginate(next_page: string | null) {

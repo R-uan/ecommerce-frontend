@@ -1,42 +1,36 @@
 "use client";
 import Link from "next/link";
-import styles from "../sign.module.scss";
-import { useDispatch } from "react-redux";
+import styles from "../auth.module.scss";
 import { redirect } from "next/navigation";
+import { IRegisterUser } from "@/interfaces/IAuth";
 import { FormEvent, useRef, useState } from "react";
-import { setToken } from "@/redux/slices/AuthenticationSlice";
-import { SignupRequest } from "@/scripts/requests/AuthRequests";
+import AuthRequests from "@/scripts/requests/AuthRequests";
 import { RegistrationError } from "@/scripts/error-handling/RegistrationError";
 
-export default function SignupForm() {
-	const dispatch = useDispatch();
+export default function RegisterForm() {
 	const emailRef = useRef<HTMLInputElement>(null);
-	const passwordRef = useRef<HTMLInputElement>(null);
 	const fNameRef = useRef<HTMLInputElement>(null);
 	const lNameRef = useRef<HTMLInputElement>(null);
+	const passwordRef = useRef<HTMLInputElement>(null);
 	const [registering, setRegisteringStatus] = useState<boolean>(false);
 	const [authErrorMessage, setAuthErrorMessage] = useState<string | null>(null);
+
 	async function HandleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 		setRegisteringStatus(true);
+		const user_information: IRegisterUser = {
+			first_name: fNameRef.current!.value,
+			last_name: lNameRef.current!.value,
+			email: emailRef.current!.value,
+			password: passwordRef.current!.value,
+		};
+
 		try {
-			const data = {
-				first_name: fNameRef.current!.value,
-				last_name: lNameRef.current!.value,
-				email: emailRef.current!.value,
-				password: passwordRef.current!.value,
-			};
-			const registration = await SignupRequest(data);
-			if (registration) {
-				dispatch(setToken(registration));
-				redirect("/");
-			}
+			const registration = await AuthRequests.Register(user_information);
+			sessionStorage.setItem("jwt", registration);
+			redirect("/");
 		} catch (error) {
-			if (error instanceof RegistrationError) {
-				setAuthErrorMessage(error.message);
-			} else {
-				setAuthErrorMessage("Unable to register. Try later.");
-			}
+			error instanceof RegistrationError ? setAuthErrorMessage(error.message) : setAuthErrorMessage("Unable to register. Try later.");
 			setRegisteringStatus(false);
 		}
 	}
@@ -59,13 +53,7 @@ export default function SignupForm() {
 				</div>
 				<div className={styles.form_field}>
 					<label htmlFor="password">Password</label>
-					<input
-						ref={passwordRef}
-						name="password"
-						type="password"
-						required
-						minLength={8}
-					/>
+					<input ref={passwordRef} name="password" type="password" required minLength={8} />
 					<div className={styles.auth_message}>
 						<span>{authErrorMessage}</span>
 					</div>

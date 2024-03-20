@@ -1,14 +1,12 @@
 "use client";
 import { store } from "@/redux/store";
 import { Provider } from "react-redux";
-import SigninForm from "./SigninForm";
+import LoginForm from "./LoginForm";
 
 export default function Signin() {
 	return (
-		<>
-			<Provider store={store}>
-				<SigninForm />
-			</Provider>
-		</>
+		<Provider store={store}>
+			<LoginForm />
+		</Provider>
 	);
 }

@@ -1,18 +1,14 @@
 "use client";
-import { RootState } from "@/redux/store";
-import AuthenticationError from "@/scripts/error-handling/AuthenticationError";
-import { SigninRequest } from "@/scripts/requests/AuthRequests";
-import Cookies from "js-cookie";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import styles from "../auth.module.scss";
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "../sign.module.scss";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import AuthRequests from "@/scripts/requests/AuthRequests";
+import AuthenticationError from "@/scripts/error-handling/AuthenticationError";
 
-export default function SigninForm() {
-	const dispatch = useDispatch();
-	const user = useSelector((s: RootState) => s.authentication);
+export default function LoginForm() {
 	const router = useRouter();
 	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
@@ -21,21 +17,19 @@ export default function SigninForm() {
 	const [authErrorMessage, setAuthErrorMessage] = useState<string | null>(null);
 
 	async function HandleSubmit(event: FormEvent<HTMLFormElement>) {
-		event.preventDefault();
 		try {
+			event.preventDefault();
 			setAuthErrorMessage(null);
 			setAuthenticatingStatus(true);
 			const email = emailRef.current?.value;
 			const password = passwordRef.current?.value;
 			const remember = rememberRef.current?.checked;
 			if (email && password) {
-				const authentication = await SigninRequest(email, password);
-				if (authentication) {
-					Cookies.set("jwt", authentication, { expires: 7 });
-					setAuthenticatingStatus(false);
-				}
+				const auth_token = await AuthRequests.Login(email, password);
+				remember ? Cookies.set("jwt", auth_token, { expires: 7 }) : sessionStorage.setItem("jwt", auth_token);
+				setAuthenticatingStatus(false);
 				router.push("/");
-			}
+			} else setAuthErrorMessage("Please provide your credentials.");
 		} catch (error) {
 			if (error instanceof AuthenticationError) {
 				setAuthenticatingStatus(false);

@@ -1,41 +1,35 @@
 import axios, { AxiosError } from "axios";
+import { IRegisterUser } from "@/interfaces/IAuth";
+import api from "./axios-instances/PublicAxiosInstance";
 import AuthenticationError from "../error-handling/AuthenticationError";
 import { RegistrationError } from "../error-handling/RegistrationError";
-import api from "./axios-instances/PublicAxiosInstance";
 
-interface ISignup {
-	first_name: string;
-	last_name: string;
-	email: string;
-	password: string;
-}
-
-export async function SigninRequest(email: string, password: string) {
-	try {
-		const body = { email, password };
-		const response = await api.post("/auth/login", body);
-		if (response.data) {
+export default class AuthRequests {
+	static async Login(email: string, password: string) {
+		try {
+			const request_body = { email, password };
+			const response = await api.post("/auth/login", request_body);
 			return response.data;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				if (error.response?.status == 401) {
+					throw new AuthenticationError("Invalid email or password.");
+				} else throw new AuthenticationError("Failed to authenticate.");
+			} else throw error;
 		}
-	} catch (error) {
-		if (error instanceof AxiosError) {
-			if (error.response?.status == 401) {
-				throw new AuthenticationError("Invalid email or password.");
-			} else throw new AuthenticationError("Failed to authenticate.");
-		} else throw error;
 	}
-}
 
-export async function SignupRequest(info: ISignup) {
-	try {
-		const response = await api.post("/auth/register", info);
-		return response.data.auth_token;
-	} catch (error) {
-		if (error instanceof AxiosError) {
-			if (error.status == 409) throw new RegistrationError(error.response?.data);
-			else throw new RegistrationError("Failed to register user.");
-		} else {
-			throw error;
+	static async Register(info: IRegisterUser) {
+		try {
+			const response = await api.post("/auth/register", info);
+			return response.data;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				if (error.status == 409) throw new RegistrationError(error.response?.data);
+				else throw new RegistrationError("Failed to register user.");
+			} else {
+				throw error;
+			}
 		}
 	}
 }
