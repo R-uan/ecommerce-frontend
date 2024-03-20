@@ -41,17 +41,17 @@
 }
 /* width */
 *::-webkit-scrollbar {
-	width: 2px;
+	width: 5px;
 }
 
 /* Track */
 *::-webkit-scrollbar-track {
-	background: #f1f1f1;
+	background: #000000;
 }
 
 /* Handle */
 *::-webkit-scrollbar-thumb {
-	background: #888;
+	background: #ffffff;
 }
 
 /* Handle on hover */
