@@ -31,7 +31,7 @@ interface Product {
 	name: string;
 	category: string;
 	image_url: string;
-	manufacturers_id: number;
+	manufacturers_id?: number;
 	manufacturer: Manufacturer;
 }
 
