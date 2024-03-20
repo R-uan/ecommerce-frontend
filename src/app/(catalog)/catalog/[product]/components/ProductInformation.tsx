@@ -4,8 +4,8 @@ import { FaCartPlus } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import styles from "../singular-product.module.scss";
 import { useProductContext } from "../context/ProductProvider";
-import { RequestSingleProduct } from "@/scripts/requests/RequestProducts";
 import PlanetDestination from "./PlanetDestination";
+import { RequestProducts } from "@/scripts/requests/RequestProducts";
 
 export default function ProductInformation({ productId }: { productId: string }) {
 	const state = useProductContext();
@@ -38,7 +38,7 @@ export default function ProductInformation({ productId }: { productId: string })
 		async function Default() {
 			try {
 				state.setFetchStatus(true);
-				const response = await RequestSingleProduct(productId);
+				const response = await RequestProducts.One(productId);
 				if (response) state.setProduct(response);
 				state.setFetchStatus(false);
 			} catch (error) {

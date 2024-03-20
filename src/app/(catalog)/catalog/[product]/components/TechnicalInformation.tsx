@@ -12,35 +12,35 @@ export default function TechnicalInformation() {
 					<tbody>
 						<tr>
 							<th>Energy System</th>
-							<td>{product?.product_details.energy_system}</td>
+							<td>{product?.product_details?.energy_system}</td>
 						</tr>
 						<tr>
 							<th>Landing System</th>
-							<td>{product?.product_details.landing_system}</td>
+							<td>{product?.product_details?.landing_system}</td>
 						</tr>
 						<tr>
 							<th>Emergency System</th>
-							<td>{product?.product_details.emergency_system}</td>
+							<td>{product?.product_details?.emergency_system}</td>
 						</tr>
 						<tr>
 							<th>Propulsion System</th>
-							<td>{product?.product_details.propulsion_system}</td>
+							<td>{product?.product_details?.propulsion_system}</td>
 						</tr>
 						<tr>
 							<th>Navigation System</th>
-							<td>{product?.product_details.navigation_system}</td>
+							<td>{product?.product_details?.navigation_system}</td>
 						</tr>
 						<tr>
 							<th>Comunication System</th>
-							<td>{product?.product_details.comunication_system}</td>
+							<td>{product?.product_details?.comunication_system}</td>
 						</tr>
 						<tr>
 							<th>Termic Protection</th>
-							<td>{product?.product_details.termic_protection}</td>
+							<td>{product?.product_details?.termic_protection}</td>
 						</tr>
 						<tr>
 							<th>External Structure</th>
-							<td>{product?.product_details.external_structure}</td>
+							<td>{product?.product_details?.external_structure}</td>
 						</tr>
 					</tbody>
 				</table>

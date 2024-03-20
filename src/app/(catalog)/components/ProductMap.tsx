@@ -1,93 +1,54 @@
 "use client";
-import { IProductList, setAll, setPaginate } from "@/redux/slices/ProductsDataSlice";
 import { RootState } from "@/redux/store";
-import { RequestProducts, RequestProductsQuery } from "@/scripts/requests/RequestProducts";
-import { Suspense, useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import { useDispatch, useSelector } from "react-redux";
-import ProductMiniature from "./ProductMiniature";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import ProductMiniature from "./ProductMiniature";
+import { useDispatch, useSelector } from "react-redux";
+import { useInView } from "react-intersection-observer";
+import IPaginateResponse from "@/interfaces/IPaginateResponse";
+import { RequestProducts } from "@/scripts/requests/RequestProducts";
+import { setPagination, setProductList } from "@/redux/slices/ProductListing";
 
-export default function ProductMap(/* { query = null }: { query?: string | null } */) {
-	//#region
-
+export default function ProductMap() {
 	const searchParams = useSearchParams();
 	const query = searchParams.get("name");
 	const dispatch = useDispatch();
-	const ProductsData = useSelector((s: RootState) => s.products_data);
+	const ProductListing = useSelector((s: RootState) => s.product_listing);
 	const [fetchingStatus, setFetchingStatus] = useState(false);
 	const [viewRef, inView] = useInView({ onChange: HandleNextPage });
 	const [currentQuery, setCurrentQuery] = useState<string | null>(null);
 
-	async function InitialFetch() {
-		const response = await RequestProducts();
-		const data = {
-			data: response.data,
-			total: response.total,
-			current_page: response.current_page,
-			last_page: response.last_page,
-			next_page_url: response.next_page_url,
-		};
-		dispatch(setAll(data));
-	}
-
-	async function FetchQuery() {
-		const response = await RequestProductsQuery(query!);
-		const all = {
-			data: response.data,
-			total: response.total,
-			current_page: response.current_page,
-			last_page: response.last_page,
-			last_page_url: response.last_page_url,
-			next_page_url: response.next_page_url,
-		};
-		dispatch(setAll(all));
-	}
-
-	async function FetchPaginate() {
-		const { next_page_url } = ProductsData;
-		if (next_page_url) {
-			const response: IProductList = await RequestProducts(next_page_url);
-			const information = {
-				data: response.data,
-				current_page: response.current_page,
-				next_page_url: response.next_page_url,
-			};
-			dispatch(setPaginate(information));
-		}
-	}
-
 	async function HandleNextPage() {
-		if (ProductsData.current_page === ProductsData.last_page) return;
+		if (ProductListing.current_page === ProductListing.last_page) return;
 		if (!inView && !fetchingStatus) {
-			if (ProductsData.next_page_url && currentQuery === query) {
-				await FetchPaginate();
+			if (ProductListing.next_page_url && currentQuery === query) {
+				const next_page = await RequestProducts.Paginate(ProductListing.next_page_url);
+				next_page ? dispatch(setPagination(next_page)) : null;
 			}
 		}
 	}
 
 	useEffect(() => {
-		async function Default() {
+		async function InitialFetch() {
 			setFetchingStatus(true);
-			if (query && query != "") await FetchQuery();
-			else await InitialFetch();
+			if (query && query != "") {
+				const response: IPaginateResponse = await RequestProducts.Query(query!);
+				dispatch(setProductList(response));
+			} else {
+				const response: IPaginateResponse = await RequestProducts.All();
+				dispatch(setProductList(response));
+			}
 			setFetchingStatus(false);
 		}
 		setCurrentQuery(query);
-		Default();
+		InitialFetch();
 	}, [query]);
 
 	return (
-		<div className="h-full flex w-fit flex-col mb-[50px] p-[5px]">
-			{/* <div className="w-full flex flex-row justify-between mx-0 my-3 text-all-white">
-				<h3 className="text-[1.75rem] leading-7">Results</h3>
-				<p className="text-[1.75rem] leading-7">
-					Showing {ProductsData.data?.length} of {ProductsData.total}
-				</p>
-			</div> */}
+		<div className="h-full flex w-fit flex-col mb-[50px]">
 			<div className="w-full flex justify-between">
-				<section className="w-fit grid gap-y-[10px] gap-x-[10px] justify-between grid-cols-[repeat(4,auto)] outline">
-					{ProductsData?.data?.map((product) => {
+				<section className="w-[65vw] grid gap-y-[10px] gap-x-[10px] justify-between grid-cols-[repeat(4,auto)]">
+					{ProductListing?.data?.map((product) => {
 						return <ProductMiniature key={product.id} data={product} />;
 					})}
 				</section>

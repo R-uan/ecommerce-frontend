@@ -1,9 +1,9 @@
+import { IProduct } from "@/interfaces/IProduct";
 import { useEffect, useRef, useState } from "react";
-import ProductMiniature from "../../../components/ProductMiniature";
-import { RequestFromManufacturer } from "@/scripts/requests/RequestProducts";
 import { useProductContext } from "../context/ProductProvider";
+import ProductMiniature from "../../../components/ProductMiniature";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
-import { IProductsPartial } from "@/interfaces/IProductsPartial";
+import { RequestProducts } from "@/scripts/requests/RequestProducts";
 
 const ProductTestData = {
 	id: 1,
@@ -19,15 +19,15 @@ const ProductTestData = {
 
 export default function Suggestions() {
 	const state = useProductContext();
-	const [manuSuggestions, setManuSuggestions] = useState<IProductsPartial[] | null>(null);
+	const [manuSuggestions, setManuSuggestions] = useState<IProduct[] | null>(null);
 	const similarProductsRef = useRef<HTMLDivElement>(null);
 	const sameManufacturerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		async function FromManufacturer() {
 			if (state.product) {
-				const products = await RequestFromManufacturer(state.product.manufacturers_id);
-				setManuSuggestions(products);
+				const products = await RequestProducts.FromManufacturer(state.product.manufacturer);
+				setManuSuggestions(products.data);
 			}
 		}
 
@@ -84,7 +84,7 @@ export default function Suggestions() {
 							</button>
 						</div>
 					</div>
-					<div ref={sameManufacturerRef} className="flex w-full gap-5 h-[33vw] overflow-x-scroll pr-[10px] hide-scrollbar">
+					<div ref={sameManufacturerRef} className="flex w-full gap-5 h-fit overflow-x-scroll pr-[10px] hide-scrollbar">
 						{manuSuggestions?.map((product) => {
 							return <ProductMiniature key={product.id} data={product} />;
 						})}

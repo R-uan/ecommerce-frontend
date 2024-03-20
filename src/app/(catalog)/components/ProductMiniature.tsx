@@ -1,10 +1,9 @@
-import IProducts from "@/interfaces/IProducts";
+import { IProduct } from "@/interfaces/IProduct";
 import Image from "next/image";
 import Link from "next/link";
 import testimage from "../../../../public/images/product-test-image.jpg";
-import { IProductsPartial } from "@/interfaces/IProductsPartial";
 
-export default function ProductMiniature({ data }: { data: IProductsPartial }) {
+export default function ProductMiniature({ data }: { data: IProduct }) {
 	return (
 		<Link className="w-fit h-fit" href={`/catalog/${data.id}`}>
 			<div className="flex flex-col w-[15vw] rounded-md min-h-[22.5vw] h-fit text-all-white">

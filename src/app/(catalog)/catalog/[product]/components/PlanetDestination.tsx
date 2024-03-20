@@ -1,5 +1,5 @@
 import { IPlanetDestination } from "@/interfaces/IOrder";
-import { RequestDestinations } from "@/scripts/requests/RequestProducts";
+import { RequestProducts } from "@/scripts/requests/RequestProducts";
 import { useEffect, useState } from "react";
 
 export default function PlanetDestination() {
@@ -15,7 +15,7 @@ export default function PlanetDestination() {
 	useEffect(() => {
 		async function Fetch() {
 			try {
-				const destinations = await RequestDestinations();
+				const destinations = await RequestProducts.RequestDestinations();
 				if (destinations) setDestinations(destinations);
 			} catch (error) {
 				console.log(error);
