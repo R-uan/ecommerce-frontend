@@ -1,4 +1,4 @@
-export interface IProductsPartial {
+export interface IPartialProduct {
 	id: number;
 	name: string;
 	category: string;
