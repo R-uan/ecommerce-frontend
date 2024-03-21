@@ -1,4 +1,4 @@
-export enum ProductQuery {
+export enum QueryType {
 	Name = "name",
 	Category = "category",
 	Availability = "availability",

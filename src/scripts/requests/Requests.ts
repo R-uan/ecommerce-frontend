@@ -3,6 +3,7 @@ import Api from "./axios-instances/PublicAxiosInstance";
 import IPaginateResponse from "@/interfaces/IPaginateResponse";
 import UnexpectedError from "../error-handling/UnexpectedError";
 import ApiRequestError from "../error-handling/ApiRequestError";
+import { QueryType } from "@/interfaces/QueryType";
 
 export default class Requests {
 	static async Paginate(next_page: string | null) {

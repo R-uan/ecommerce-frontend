@@ -1,26 +1,32 @@
-import { ProductQuery } from "@/interfaces/ProductQuery";
-import { RootState } from "@/redux/store";
-import { RequestProducts } from "@/scripts/requests/RequestProducts";
 import { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 import s from "./filter-options.module.scss";
+import { QueryType } from "@/interfaces/QueryType";
+import { useDispatch, useSelector } from "react-redux";
 import { setProductList } from "@/redux/slices/ProductListing";
+import { FilterType, RequestProducts } from "@/scripts/requests/RequestProducts";
 
 export default function FilterOptions() {
+	const setState = useDispatch();
+	const [option, setOption] = useState(true);
+	const min_price = useRef<HTMLInputElement>(null);
+	const max_price = useRef<HTMLInputElement>(null);
 	const name_input = useRef<HTMLInputElement>(null);
 	const manufacturer_input = useRef<HTMLInputElement>(null);
-	const [option, setOption] = useState(true);
 	const ProductListing = useSelector((s: RootState) => s.product_listing);
-	const setState = useDispatch();
 
 	async function ApplyFilters() {
-		if (name_input.current) {
+		const price_range = { min: min_price.current?.value, max: max_price.current?.value };
+		if (name_input.current?.value) {
 			const name = name_input.current.value;
-			const request = await RequestProducts.Query(name, ProductQuery.Name);
+			const request = await RequestProducts.CatalogFilter({ name: name, price: price_range }, FilterType.Product);
 			setState(setProductList(request));
-		} else if (manufacturer_input.current) {
+		} else if (manufacturer_input.current?.value) {
 			const manufacturer = manufacturer_input.current.value;
-			const request = await RequestProducts.FromManufacturer(manufacturer);
+			const request = await RequestProducts.CatalogFilter({ name: manufacturer, price: price_range }, FilterType.Manufacturer);
+			setState(setProductList(request));
+		} else {
+			const request = await RequestProducts.CatalogFilter({ price: price_range }, FilterType.Price);
 			setState(setProductList(request));
 		}
 	}
@@ -42,9 +48,9 @@ export default function FilterOptions() {
 			<div className={s.price_options}>
 				<span>Price Range</span>
 				<div className={s.price_range}>
-					<input type="number" placeholder="0" />
+					<input ref={min_price} type="number" placeholder="0" />
 					<span>to</span>
-					<input type="number" placeholder="10000000" />
+					<input ref={max_price} type="number" placeholder="10000000" />
 				</div>
 			</div>
 			<div className={s.buttons}>
