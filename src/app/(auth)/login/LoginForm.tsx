@@ -1,12 +1,12 @@
 "use client";
-import Link from "next/link";
+import AuthenticationError from "@/scripts/error-handling/AuthenticationError";
+import AuthRequests from "@/scripts/requests/AuthRequests";
 import Cookies from "js-cookie";
-import styles from "../auth.module.scss";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import AuthRequests from "@/scripts/requests/AuthRequests";
-import AuthenticationError from "@/scripts/error-handling/AuthenticationError";
+import styles from "../auth.module.scss";
 
 export default function LoginForm() {
 	const router = useRouter();

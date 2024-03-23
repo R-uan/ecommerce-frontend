@@ -1,7 +1,6 @@
 import IPaginateResponse from "@/interfaces/IPaginateResponse";
 import { IProduct } from "@/interfaces/IProduct";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
 interface InitialState {
 	data: IProduct[] | null;
 	total: number | null;

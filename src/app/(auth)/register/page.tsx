@@ -1,5 +1,5 @@
-import { Metadata } from "next";
 import { store } from "@/redux/store";
+import { Metadata } from "next";
 import { Provider } from "react-redux";
 import SignupForm from "./RegisterForm";
 export const metadata: Metadata = {

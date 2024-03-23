@@ -1,12 +1,12 @@
 "use client";
+import ProductDescription from "./components/ProductDescription";
+import ProductImages from "./components/ProductImages";
+import ProductInformation from "./components/ProductInformation";
 import Reviews from "./components/ProductReviews";
 import ScreenCover from "./components/ScreenCover";
 import Suggestions from "./components/Suggestions";
-import ProductImages from "./components/ProductImages";
-import ProductProvider from "./context/ProductProvider";
-import ProductDescription from "./components/ProductDescription";
-import ProductInformation from "./components/ProductInformation";
 import TechnicalInformation from "./components/TechnicalInformation";
+import ProductProvider from "./context/ProductProvider";
 
 export default function Product({ params }: { params: { product: string } }) {
 	return (

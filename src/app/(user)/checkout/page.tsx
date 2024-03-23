@@ -1,7 +1,5 @@
-import { store } from "@/redux/store";
-import { Provider } from "react-redux";
-import ItensMap from "./ItensMap";
 import CheckoutProvider from "./contexts/CheckoutContext";
+import ItensMap from "./ItensMap";
 import OrderOverview from "./OrderOverview";
 
 export default function Checkout() {

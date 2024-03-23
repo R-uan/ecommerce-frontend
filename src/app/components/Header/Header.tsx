@@ -17,7 +17,7 @@ export default function Header({ transparent = false, color = "black", absolute 
 		const input = event.target as HTMLFormElement;
 		const value = (input.elements.namedItem("name") as HTMLInputElement).value;
 		const format = value.split(" ").join("_");
-		router.push(`/catalog?name=${format}`);
+		router.push(`/catalog?q=product&name=${format}`);
 	}
 
 	return (

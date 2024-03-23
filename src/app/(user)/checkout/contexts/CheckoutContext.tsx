@@ -1,18 +1,17 @@
 "use client";
-import { ICart } from "@/interfaces/ICart";
-import { IProductsPartial } from "@/interfaces/IProductsPartial";
-import { RequestSomeMiniatures } from "@/scripts/requests/RequestProducts";
-import { ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react";
+import { IProduct } from "@/interfaces/IProduct";
+import { RequestProducts } from "@/scripts/requests/RequestProducts";
+import { ReactNode, SetStateAction, createContext, useContext, useState } from "react";
 
 interface ICheckoutContext {
-	cartItens: IProductsPartial[] | null;
-	setItens: React.Dispatch<SetStateAction<IProductsPartial[] | null>>;
+	cartItens: IProduct[] | null;
+	setItens: React.Dispatch<SetStateAction<IProduct[] | null>>;
 	InitialCartItensFetch: () => void;
 	UpdateItemAmount: (product_id: number, amount: number) => void;
 }
 const CheckoutContext = createContext<ICheckoutContext | null>(null);
 export default function CheckoutProvider({ children }: { children: ReactNode }) {
-	const [cartItens, setItens] = useState<IProductsPartial[] | null>(null);
+	const [cartItens, setItens] = useState<IProduct[] | null>(null);
 
 	async function UpdateItemAmount(product_id: number, amount: number) {
 		if (cartItens) {
@@ -25,7 +24,8 @@ export default function CheckoutProvider({ children }: { children: ReactNode }) 
 	}
 
 	async function InitialCartItensFetch() {
-		const itens: IProductsPartial[] = await RequestSomeMiniatures();
+		const itens: IProduct[] = await RequestProducts.Miniatures();
+		console.log(itens);
 		const update_itens = itens.map((product) => ({
 			...product,
 			units: 1,
@@ -35,7 +35,11 @@ export default function CheckoutProvider({ children }: { children: ReactNode }) 
 		setItens(update_itens);
 	}
 
-	return <CheckoutContext.Provider value={{ cartItens, setItens, InitialCartItensFetch, UpdateItemAmount }}>{children}</CheckoutContext.Provider>;
+	return (
+		<CheckoutContext.Provider value={{ cartItens, setItens, InitialCartItensFetch, UpdateItemAmount }}>
+			{children}
+		</CheckoutContext.Provider>
+	);
 }
 
 export function useCheckpointContext() {

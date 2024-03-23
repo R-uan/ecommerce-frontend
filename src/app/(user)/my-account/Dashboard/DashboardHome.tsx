@@ -1,9 +1,8 @@
-import DashboardUser from "./DashboardUser";
-import Order from "../components/Order";
-import DashboardOrders from "./DashboardOrders";
-import DashboardFocusOrder from "./DashboardFocusOrder";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import DashboardUser from "./DashboardUser";
+import DashboardOrders from "./DashboardOrders";
+import { useDispatch, useSelector } from "react-redux";
+import DashboardFocusOrder from "./DashboardFocusOrder";
 
 export default function DashboardHome() {
 	const state = useSelector((s: RootState) => s.expand_order);
@@ -36,9 +35,6 @@ export default function DashboardHome() {
 						</section>
 					</div>
 				</div>
-				{/* <div className="ml-[5px] mb-[-20px]">
-					<span className="text-[2vw] text-focus-white leading-[2vw] font-bebas">Orders</span>
-				</div> */}
 				<div className="bg-[white] max-h-full h-[63vh] relative flex-col overflow-auto rounded-md hide-scrollbar">
 					<DashboardOrders />
 				</div>

@@ -4,7 +4,7 @@ export interface IProduct {
 	category: string;
 	image_url: string;
 	manufacturer: string;
-	unit_price?: string;
+	unit_price: string;
 	production_time?: string;
 	availability?: boolean;
 	long_description?: string;

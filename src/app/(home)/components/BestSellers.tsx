@@ -1,5 +1,4 @@
 import BestSellersMini from "./BestSellersMini";
-import styles from "./best-sellers.module.scss";
 
 export default function BestSellers() {
 	return (

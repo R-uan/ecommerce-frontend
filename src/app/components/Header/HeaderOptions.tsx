@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "./styles/header-options.module.scss";
 import { IoHomeSharp } from "react-icons/io5";
+import styles from "./styles/header-options.module.scss";
 export default function HeaderOptions({ transparent = false }: { transparent?: boolean }) {
 	const Warships = ["Bombers", "Capital Ships", "Carriers", "Destroyers", "Fighters", "Interceptors"];
 

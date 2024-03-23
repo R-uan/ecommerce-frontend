@@ -1,5 +1,5 @@
 import { IProduct } from "@/interfaces/IProduct";
-import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useState } from "react";
+import { ReactNode, SetStateAction, createContext, useContext, useState } from "react";
 
 interface IProductContext {
 	product: IProduct | null;

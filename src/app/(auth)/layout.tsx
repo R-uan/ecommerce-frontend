@@ -1,7 +1,7 @@
-import "../globals.css";
-import Link from "next/link";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { GiRingedPlanet } from "react-icons/gi";
+import "../globals.css";
 
 export const metadata: Metadata = {
 	title: "Gemini Authentication",

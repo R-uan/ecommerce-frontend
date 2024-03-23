@@ -1,11 +1,11 @@
 "use client";
-import Link from "next/link";
-import styles from "../auth.module.scss";
-import { redirect } from "next/navigation";
 import { IRegisterUser } from "@/interfaces/IAuth";
-import { FormEvent, useRef, useState } from "react";
-import AuthRequests from "@/scripts/requests/AuthRequests";
 import { RegistrationError } from "@/scripts/error-handling/RegistrationError";
+import AuthRequests from "@/scripts/requests/AuthRequests";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { FormEvent, useRef, useState } from "react";
+import styles from "../auth.module.scss";
 
 export default function RegisterForm() {
 	const emailRef = useRef<HTMLInputElement>(null);

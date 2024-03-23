@@ -1,6 +1,5 @@
-import { FaInstagram, FaGithub, FaFacebook, FaLinkedin } from "react-icons/fa6";
 import Link from "next/link";
-import styles from "./footer.module.scss";
+import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
 export default function Footer() {
 	const constitutional = [
 		{ name: "About Gemini", link: "" },

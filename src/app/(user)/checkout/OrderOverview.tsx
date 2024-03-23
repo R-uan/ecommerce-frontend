@@ -1,8 +1,7 @@
 "use client";
 
-import { ICart } from "@/interfaces/ICart";
-import { useCheckpointContext } from "./contexts/CheckoutContext";
 import { useEffect, useState } from "react";
+import { useCheckpointContext } from "./contexts/CheckoutContext";
 
 export default function OrderOverview() {
 	const { cartItens, setItens } = useCheckpointContext();

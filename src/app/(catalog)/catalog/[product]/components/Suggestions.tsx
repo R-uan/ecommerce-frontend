@@ -1,9 +1,9 @@
 import { IProduct } from "@/interfaces/IProduct";
+import ManufacturerRequests from "@/scripts/requests/ManufacturerRequests";
 import { useEffect, useRef, useState } from "react";
-import { useProductContext } from "../context/ProductProvider";
-import ProductMiniature from "../../../components/ProductMiniature";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
-import { RequestProducts } from "@/scripts/requests/RequestProducts";
+import ProductMiniature from "../../../components/ProductMiniature";
+import { useProductContext } from "../context/ProductProvider";
 
 const ProductTestData = {
 	id: 1,
@@ -26,11 +26,10 @@ export default function Suggestions() {
 	useEffect(() => {
 		async function FromManufacturer() {
 			if (state.product) {
-				const products = await RequestProducts.FromManufacturer(state.product.manufacturer);
+				const products = await ManufacturerRequests.Products(state.product.manufacturer);
 				setManuSuggestions(products.data);
 			}
 		}
-
 		FromManufacturer();
 	}, [state.fetched]);
 

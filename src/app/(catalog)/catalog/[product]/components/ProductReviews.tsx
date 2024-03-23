@@ -1,5 +1,5 @@
-import UserReview from "./UserReview";
 import styles from "../singular-product.module.scss";
+import UserReview from "./UserReview";
 
 export default function ProductReviews() {
 	return (

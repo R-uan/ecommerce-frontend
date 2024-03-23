@@ -1,11 +1,11 @@
-import Rating from "./Rating";
-import { useEffect } from "react";
-import { FaCartPlus } from "react-icons/fa6";
-import { FaShoppingCart } from "react-icons/fa";
-import styles from "../singular-product.module.scss";
-import { useProductContext } from "../context/ProductProvider";
-import PlanetDestination from "./PlanetDestination";
 import { RequestProducts } from "@/scripts/requests/RequestProducts";
+import { useEffect } from "react";
+import { FaShoppingCart } from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa6";
+import { useProductContext } from "../context/ProductProvider";
+import styles from "../singular-product.module.scss";
+import PlanetDestination from "./PlanetDestination";
+import Rating from "./Rating";
 
 export default function ProductInformation({ productId }: { productId: string }) {
 	const state = useProductContext();
@@ -13,23 +13,21 @@ export default function ProductInformation({ productId }: { productId: string })
 
 	interface ICart {
 		uniques: number[];
-		[key: number]: number;
 	}
 
 	function AddToCart() {
 		try {
 			const storage = localStorage.getItem("cart");
 			if (storage && product) {
-				const cart: ICart = JSON.parse(storage);
-				cart.uniques.includes(product.id) ? null : cart.uniques.push(product.id);
-				cart[product.id] ? cart[product.id]++ : (cart[product.id] = 1);
+				const cart: { products: number[] } = JSON.parse(storage);
+				cart.products.includes(product.id) ? null : cart.products.push(product.id);
 				localStorage.setItem("cart", JSON.stringify(cart));
 			} else if (!storage && product) {
-				const cart: ICart = { uniques: [product.id] };
-				cart[product.id] = 1;
+				const cart: { products: number[] } = { products: [product.id] };
 				localStorage.setItem("cart", JSON.stringify(cart));
 			}
 		} catch (error) {
+			// TODO Error handling
 			console.log(error);
 		}
 	}

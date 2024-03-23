@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
 import Order from "../components/Order";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { RequestSingleOrder, RequestUserOrders } from "@/scripts/requests/OrderRequests";
-import Cookies from "js-cookie";
-import { RefreshToken } from "@/scripts/util";
 import IOrder from "@/interfaces/IOrder";
+import { useEffect, useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { RequestUserOrders } from "@/scripts/requests/OrderRequests";
+import ApiRequestError from "@/scripts/error-handling/ApiRequestError";
 
 export default function DashboardOrders() {
 	const [userOrders, setUserOrders] = useState<IOrder[] | null>(null);
+	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 	async function GetUserOrders() {
 		try {
 			const user_orders = await RequestUserOrders();
-			user_orders ? setUserOrders(user_orders) : null;
+			user_orders ? setUserOrders(user_orders) : setErrorMessage("Unable do retrieve orders.");
 		} catch (error) {
-			console.log(error);
+			if (error instanceof ApiRequestError) setErrorMessage(error.message);
+			else setErrorMessage("Unexpected Error");
 		}
 	}
 
@@ -28,9 +29,9 @@ export default function DashboardOrders() {
 						<AiOutlineLoading3Quarters size={50} />
 					</span>
 				</div>
-			) : userOrders.length === 0 ? (
+			) : userOrders.length === 0 || errorMessage ? (
 				<div className="absolute top-0 left-0 bottom-0 right-0 w-full h-full items-center justify-center flex m-auto">
-					<span className="text-[2vw]">No orders were found.</span>
+					<span className="text-[2vw]">{errorMessage ? errorMessage : "No orders were found."}</span>
 				</div>
 			) : (
 				userOrders.map((order) => {
