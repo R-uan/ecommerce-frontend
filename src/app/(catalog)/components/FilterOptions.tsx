@@ -1,34 +1,54 @@
-import { useRef, useState } from "react";
-import { RootState } from "@/redux/store";
-import s from "./filter-options.module.scss";
-import { QueryType } from "@/interfaces/QueryType";
-import { useDispatch, useSelector } from "react-redux";
+import { QueryParams, QueryType } from "@/interfaces/ICatalogQueries";
 import { setProductList } from "@/redux/slices/ProductListing";
-import { FilterType, RequestProducts } from "@/scripts/requests/RequestProducts";
+import { RootState } from "@/redux/store";
+import { RequestProducts } from "@/scripts/requests/RequestProducts";
+import Util from "@/scripts/Util";
+import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import s from "./filter-options.module.scss";
 
 export default function FilterOptions() {
+	// TODO Filter by category and availability
 	const setState = useDispatch();
+	const router = useRouter();
 	const [option, setOption] = useState(true);
 	const min_price = useRef<HTMLInputElement>(null);
 	const max_price = useRef<HTMLInputElement>(null);
-	const name_input = useRef<HTMLInputElement>(null);
+	const product_input = useRef<HTMLInputElement>(null);
 	const manufacturer_input = useRef<HTMLInputElement>(null);
-	const ProductListing = useSelector((s: RootState) => s.product_listing);
+	const product_listing = useSelector((s: RootState) => s.product_listing);
 
 	async function ApplyFilters() {
 		const price_range = { min: min_price.current?.value, max: max_price.current?.value };
-		if (name_input.current?.value) {
-			const name = name_input.current.value;
-			const request = await RequestProducts.CatalogFilter({ name: name, price: price_range }, FilterType.Product);
-			setState(setProductList(request));
+		let products;
+		if (product_input.current?.value) {
+			const name = product_input.current.value;
+			products = await RequestProducts.QueryHandler({ name: name, price: price_range }, QueryType.Product);
 		} else if (manufacturer_input.current?.value) {
 			const manufacturer = manufacturer_input.current.value;
-			const request = await RequestProducts.CatalogFilter({ name: manufacturer, price: price_range }, FilterType.Manufacturer);
-			setState(setProductList(request));
+			products = await RequestProducts.QueryHandler({ name: manufacturer, price: price_range }, QueryType.Manufacturer);
 		} else {
-			const request = await RequestProducts.CatalogFilter({ price: price_range }, FilterType.Price);
-			setState(setProductList(request));
+			products = await RequestProducts.QueryHandler({ price: price_range }, QueryType.Price);
 		}
+		setState(setProductList(products));
+	}
+
+	function teste() {
+		const product = product_input.current ? product_input.current.value : null;
+		const manufacturer = manufacturer_input.current ? manufacturer_input.current.value : null;
+		const minp = min_price.current ? min_price.current.value : null;
+		const maxp = max_price.current ? max_price.current.value : null;
+		const type = manufacturer ? QueryType.Manufacturer : QueryType.Product;
+		const params: QueryParams = {
+			name: product ?? manufacturer ?? null,
+			price: {
+				min: minp,
+				max: maxp,
+			},
+		};
+		const query = Util.QueryBuilder(params, type);
+		router.push(`/catalog${query}`);
 	}
 
 	return (
@@ -40,7 +60,7 @@ export default function FilterOptions() {
 					<span className={!option ? s.selected : ""}>Manufacturer</span>
 				</a>
 				{option ? (
-					<input ref={name_input} type="text w-full bg-white" placeholder="Enter name" />
+					<input ref={product_input} type="text w-full bg-white" placeholder="Enter name" />
 				) : (
 					<input ref={manufacturer_input} type="text w-full bg-white" placeholder="Enter manufacturer" />
 				)}
@@ -54,13 +74,13 @@ export default function FilterOptions() {
 				</div>
 			</div>
 			<div className={s.buttons}>
-				<button onClick={ApplyFilters} className={s.apply_filters}>
+				<button onClick={teste} className={s.apply_filters}>
 					Apply Filters
 				</button>
 			</div>
 			<div className={s.found}>
 				<span>
-					Showing {ProductListing.data?.length} of {ProductListing.total}
+					Showing {product_listing.data?.length} of {product_listing.total}
 				</span>
 			</div>
 		</div>
