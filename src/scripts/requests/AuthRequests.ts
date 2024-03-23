@@ -1,8 +1,10 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { IRegisterUser } from "@/interfaces/IAuth";
 import api from "./axios-instances/PublicAxiosInstance";
+import authenticated from "./axios-instances/AuthenticatedAxiosInstance";
 import AuthenticationError from "../error-handling/AuthenticationError";
 import { RegistrationError } from "../error-handling/RegistrationError";
+import { jwtDecode } from "jwt-decode";
 
 export default class AuthRequests {
 	static async Login(email: string, password: string) {
@@ -30,6 +32,24 @@ export default class AuthRequests {
 			} else {
 				throw error;
 			}
+		}
+	}
+
+	static async RefreshToken(user_token: string) {
+		try {
+			const decodedToken = jwtDecode(user_token);
+			const currentTime = Date.now() / 1000;
+
+			if (!decodedToken || !decodedToken.exp) throw new AuthenticationError("No valid token was provided.");
+			if (decodedToken.exp && decodedToken.exp > currentTime) return null;
+
+			const config: AxiosRequestConfig = { headers: { Authorization: `Bearer ${user_token}` } };
+			const refreshRequest = await authenticated.get("/auth/refresh", config);
+			if (refreshRequest.status != 200) throw Error("Unable to refresh token");
+
+			return refreshRequest.data;
+		} catch (error) {
+			// TODO Error Handling
 		}
 	}
 }

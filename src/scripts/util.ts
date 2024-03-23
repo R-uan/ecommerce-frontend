@@ -1,26 +1,27 @@
-import { jwtDecode } from "jwt-decode";
-import AuthenticationError from "./error-handling/AuthenticationError";
-import axios, { AxiosRequestConfig } from "axios";
+import { QueryParams, QueryType } from "@/interfaces/ICatalogQueries";
 
-config();
-import { config } from "dotenv";
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL as string;
+export default class Util {
+	static QueryBuilderApi(params: QueryParams, type: QueryType) {
+		const { availability, category, name, price } = params;
+		const query: string[] = [];
+		name && type == QueryType.Product ? query.push(`name[lk]=${name}`) : null;
+		category ? query.push(`category[eq]=${category}`) : null;
+		availability ? query.push(`availability[eq]=${availability}`) : null;
+		price && price.min ? query.push(`price[gte]=${price.min}`) : null;
+		price && price.max ? query.push(`price[lte]=${price.max}`) : null;
+		const full_query = `${query.join("&")}`;
+		return full_query;
+	}
 
-export async function RefreshToken(user_token: string) {
-	try {
-		const decodedToken = jwtDecode(user_token);
-		const currentTime = Date.now() / 1000;
-
-		if (!decodedToken || !decodedToken.exp) throw new AuthenticationError("No valid token was provided.");
-		if (decodedToken.exp && decodedToken.exp > currentTime) return null;
-
-		const config: AxiosRequestConfig = { headers: { Authorization: `Bearer ${user_token}` } };
-		const refreshRequest = await axios.get(`${BACKEND_URL}/auth/refresh`, config);
-		if (refreshRequest.status != 200) throw Error("Unable to refresh token");
-
-		return refreshRequest.data;
-	} catch (error) {
-		// Not implemented yet
-		console.log(error);
+	static QueryBuilder(params: QueryParams, type: QueryType) {
+		const { availability, category, name, price } = params;
+		const query: string[] = [];
+		name ? query.push(`name=${name}`) : null;
+		category ? query.push(`cat=${category}`) : null;
+		availability ? query.push(`av=${availability}`) : null;
+		price && price.min ? query.push(`minp=${price.min}`) : null;
+		price && price.max ? query.push(`maxp=${price.max}`) : null;
+		const full_query = `?q=${type}&${query.join("&")}`;
+		return full_query;
 	}
 }
