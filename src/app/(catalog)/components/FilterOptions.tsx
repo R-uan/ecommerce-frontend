@@ -1,16 +1,13 @@
 import { QueryParams, QueryType } from "@/interfaces/ICatalogQueries";
-import { setProductList } from "@/redux/slices/ProductListing";
 import { RootState } from "@/redux/store";
-import { RequestProducts } from "@/scripts/requests/RequestProducts";
-import Util from "@/scripts/Util";
+import Util from "@/scripts/utils/Query";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import s from "./filter-options.module.scss";
 
 export default function FilterOptions() {
 	// TODO Filter by category and availability
-	const setState = useDispatch();
 	const router = useRouter();
 	const [option, setOption] = useState(true);
 	const min_price = useRef<HTMLInputElement>(null);
@@ -20,21 +17,6 @@ export default function FilterOptions() {
 	const product_listing = useSelector((s: RootState) => s.product_listing);
 
 	async function ApplyFilters() {
-		const price_range = { min: min_price.current?.value, max: max_price.current?.value };
-		let products;
-		if (product_input.current?.value) {
-			const name = product_input.current.value;
-			products = await RequestProducts.QueryHandler({ name: name, price: price_range }, QueryType.Product);
-		} else if (manufacturer_input.current?.value) {
-			const manufacturer = manufacturer_input.current.value;
-			products = await RequestProducts.QueryHandler({ name: manufacturer, price: price_range }, QueryType.Manufacturer);
-		} else {
-			products = await RequestProducts.QueryHandler({ price: price_range }, QueryType.Price);
-		}
-		setState(setProductList(products));
-	}
-
-	function teste() {
 		const product = product_input.current ? product_input.current.value : null;
 		const manufacturer = manufacturer_input.current ? manufacturer_input.current.value : null;
 		const minp = min_price.current ? min_price.current.value : null;
@@ -74,7 +56,7 @@ export default function FilterOptions() {
 				</div>
 			</div>
 			<div className={s.buttons}>
-				<button onClick={teste} className={s.apply_filters}>
+				<button onClick={ApplyFilters} className={s.apply_filters}>
 					Apply Filters
 				</button>
 			</div>

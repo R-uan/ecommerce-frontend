@@ -6,7 +6,7 @@ import { IProduct } from "@/interfaces/IProduct";
 import { isAxiosError } from "axios";
 import ApiRequestError from "../error-handling/ApiRequestError";
 import UnexpectedError from "../error-handling/UnexpectedError";
-import Util from "../Util";
+import Util from "../utils/Query";
 import api from "./axios-instances/PublicAxiosInstance";
 import Requests from "./Requests";
 
