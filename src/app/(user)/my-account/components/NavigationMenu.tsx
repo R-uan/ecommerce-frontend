@@ -1,16 +1,15 @@
-import { setToken, setUser } from "@/redux/slices/AuthenticationSlice";
 import Cookies from "js-cookie";
-import { redirect, useRouter } from "next/navigation";
-import { FaGithub } from "react-icons/fa6";
+import s from "../page.module.scss";
 import { useDispatch } from "react-redux";
-import DashboardUser from "../Dashboard/DashboardUser";
-import { FaUserEdit } from "react-icons/fa";
-import Image from "next/image";
+import { FaGithub } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
 import { RiLogoutBoxRLine } from "react-icons/ri";
+import { setToken, setUser } from "@/redux/slices/AuthenticationSlice";
 
 export default function DashboardMenu() {
-	const dispatch = useDispatch();
 	const router = useRouter();
+	const dispatch = useDispatch();
+
 	function Logout() {
 		Cookies.remove("jwt");
 		dispatch(setToken(null));
@@ -19,28 +18,34 @@ export default function DashboardMenu() {
 	}
 
 	return (
-		<nav className="flex flex-col w-[20vw] h-full gap-[5px] bg-[white] px-0 py-[25px] relative">
-			<button type="button" className="h-[50px] w-full hover:bg-[#eeeeee]">
-				<span className="items-center gap-5 flex w-full h-full text-[1.5vw] leading-[1.5vw] text-[black] pl-5">
+		<nav className={s.navigation_menu}>
+			<button type="button">
+				<span>
 					<FaGithub className="text-[2vw] fill-[black]" />
 					Dashboard
 				</span>
 			</button>
-			<button type="button" className="h-[50px] w-full hover:bg-[#eeeeee]">
-				<span className="items-center gap-5 flex w-full h-full text-[1.5vw] leading-[1.5vw] text-[black] pl-5">
+			<button type="button">
+				<span>
 					<FaGithub className="text-[2vw] fill-[black]" />
 					My Orders
 				</span>
 			</button>
-			<button type="button" className="h-[50px] w-full hover:bg-[#eeeeee]">
-				<span className="items-center gap-5 flex w-full h-full text-[1.5vw] leading-[1.5vw] text-[black] pl-5">
+			<button type="button">
+				<span>
 					<FaGithub className="text-[2vw] fill-[black]" />
 					Profile
 				</span>
 			</button>
+			<button type="button">
+				<span>
+					<FaGithub className="text-[2vw] fill-[black]" />
+					Favourites
+				</span>
+			</button>
 			<div className="absolute bottom-[2px] w-full h-fit">
-				<button onClick={Logout} type="button" className="h-[50px] w-full hover:bg-[#eeeeee]">
-					<span className="items-center gap-5 flex w-full h-full text-[1.5vw] leading-[1.5vw] text-[black] pl-5">
+				<button onClick={Logout} type="button">
+					<span>
 						<RiLogoutBoxRLine className="text-[2vw] fill-[black]" />
 						Logout
 					</span>

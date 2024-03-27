@@ -6,12 +6,13 @@ import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/redux/slices/AuthenticationSlice";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { RootState } from "@/redux/store";
 import IUser from "@/interfaces/IUser";
-
+import s from "../page.module.scss";
 export default function DashboardUser() {
 	const dispatch = useDispatch();
+	const router = useRouter();
 	const user = useSelector((s: RootState) => s.authentication).user;
 
 	useEffect(() => {
@@ -21,18 +22,20 @@ export default function DashboardUser() {
 				const decoded_token: { user: IUser } = jwtDecode(token);
 				decoded_token.user ? dispatch(setUser(decoded_token.user)) : redirect("/signin");
 			} else {
-				redirect("/signin");
+				router.push("/login");
 			}
 		}
 		Default();
 	}, [dispatch]);
+
 	return (
-		<section className="flex items-center gap-[30px] w-[35vw] h-[17vh] bg-[white] pl-[30px] pr-2.5 py-2.5 rounded-md">
+		<section className={s.dashboard_user}>
 			<div>
-				<Image className="w-[100px] h-[100px] bg-[black] rounded-[100%]" src={""} alt="profile-picture"></Image>
+				<Image className={s.user_profile_picture} src={""} alt="profile-picture"></Image>
 			</div>
-			<div className="min-w-[250px]">
-				<h3 className="text-[2.5vw] leading-[2.5vw]">{`${user?.first_name} ${user?.last_name}`}</h3>
+			<div>
+				{!user ? <div className="absolute top-0 left-0 w-full h-full bg-[white] rounded-md z-50" /> : null}
+				<span>{`${user?.first_name} ${user?.last_name}`}</span>
 				<span className="text-[1.5vw] leading-[1.5vw]">{`${user?.email}`}</span>
 			</div>
 			<div className="ml-[20px] flex items-center h-full">
