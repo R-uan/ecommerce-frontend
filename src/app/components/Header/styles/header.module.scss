@@ -1,0 +1,243 @@
+$color: #eeeeee;
+$debug: 0;
+
+.header {
+	/* `z-[101] shadow-[0px_5px_20px_0px_rgba(0,0,0,0.05)] p-px  */
+	width: 100%;
+	z-index: 101;
+	display: flex;
+	position: relative;
+	align-items: center;
+	height: clamp(70px, 6vw, 6vw);
+	justify-content: space-between;
+
+	& > div:last-child {
+		gap: 15px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		padding: 0 4vw 0 4vw;
+		justify-content: space-between;
+	}
+}
+
+.header_user {
+	gap: 1.25vw;
+	width: 30%;
+	height: 80%;
+	display: flex;
+	align-items: center;
+
+	.icon {
+		font-size: clamp(2rem, 3vw, 3vw);
+	}
+
+	& > div:last-child {
+		gap: 2px;
+		display: flex;
+		flex-direction: column;
+
+		& > p {
+			font-size: clamp(1rem, 1.5vw, 1.5vw);
+			line-height: clamp(1rem, 1.5vw, 1.5vw);
+		}
+		/* "flex h-[1.5vw] gap-[1vw] items-center" */
+		& > div {
+			gap: 1.25vw;
+			display: flex;
+			height: 1.5vw;
+			align-items: center;
+			justify-content: space-between;
+
+			span {
+				font-size: clamp(1rem, 1.5vw, 1.5vw);
+				line-height: clamp(1rem, 1.5vw, 1.5vw);
+			}
+		}
+	}
+}
+
+.right_icons {
+	gap: clamp(5px, 1vw, 15px);
+	height: 50%;
+	display: flex;
+	width: fit-content;
+	align-items: center;
+	justify-content: center;
+
+	.icon {
+		font-size: clamp(1.25rem, 1.5vw, 1.75rem);
+	}
+}
+
+.menu_options {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 35%;
+	height: 100%;
+	margin: auto;
+	display: flex;
+	position: absolute;
+	align-items: center;
+	outline: $debug solid purple;
+
+	& > ul {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: space-evenly;
+
+		& > li {
+			width: fit-content;
+			height: 100%;
+			display: flex;
+			font-size: 1.5vw;
+			line-height: 1.5vw;
+			position: relative;
+			align-items: center;
+			justify-content: center;
+			outline: $debug solid yellow;
+
+			& > ul {
+				* {
+					color: black;
+				}
+
+				gap: 4px;
+				left: 50%;
+				top: 100%;
+				width: 13vw;
+				opacity: 0;
+				display: flex;
+				overflow: hidden;
+				position: absolute;
+				height: fit-content;
+				visibility: hidden;
+				flex-direction: column;
+				padding: 10px 0 10px 0;
+				/*justify-content: center;*/
+				transition: opacity 0.2s;
+				transform: translate(-50%, 0%);
+				/*box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.4);*/
+
+				& > li {
+					input:hover {
+						cursor: pointer;
+					}
+
+					&:hover {
+						background-color: #dddddd;
+					}
+
+					width: 100%;
+					font-size: 1.5vw;
+					line-height: 1.5vw;
+					text-align: center;
+				}
+			}
+
+			&:hover {
+				& > ul {
+					visibility: visible;
+					opacity: 1;
+					transition: opacity 0.2s;
+				}
+			}
+		}
+	}
+}
+
+.menu {
+	visibility: hidden;
+	position: absolute;
+	.menu_button {
+		font-size: clamp(1.5rem, 2vw, 1.75rem);
+	}
+}
+
+@media (max-width: 760px) {
+	.menu_options {
+		visibility: hidden;
+	}
+
+	.header_user {
+		width: 40%;
+	}
+
+	.menu {
+		position: relative;
+		visibility: visible;
+
+		.lateral_bar {
+			top: 0;
+			left: 0;
+			gap: 2vw;
+			width: 270px;
+			height: 100vh;
+			display: flex;
+			position: fixed;
+			visibility: visible;
+			flex-direction: column;
+			background-color: #050a0e;
+			padding: clamp(15px, 1vw, 1vw);
+
+			& > div:first-child {
+				padding: 3px;
+			}
+
+			.user {
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				display: flex;
+				color: white;
+				position: absolute;
+				height: fit-content;
+				background-color: #00000020;
+
+				& > div:last-child {
+					display: flex;
+					flex-direction: column;
+					gap: 2px;
+					width: 100%;
+					height: 55px;
+					padding: 5px;
+
+					button {
+						border-radius: 6px;
+						width: 100%;
+						height: 55px;
+						color: black;
+						background-color: white;
+						font-size: clamp(1.25rem, 1.75vw, 1.75vw);
+						line-height: clamp(1.25rem, 1.75vw, 1.75vw);
+					}
+				}
+			}
+
+			.nav {
+				color: white;
+				& > ul {
+					display: flex;
+					flex-direction: column;
+					gap: clamp(5px, 2vw, 7px);
+					hr {
+						margin: 1vw 0px 1vw;
+					}
+					span {
+						color: #ff003c;
+						font-size: clamp(1.25rem, 1.25rem, 1.25vw);
+						line-height: clamp(1.25rem, 1.25rem, 1.25vw);
+					}
+
+					li {
+						font-size: clamp(1.5rem, 1.75vw, 1.75vw);
+						line-height: clamp(1.5rem, 1.75vw, 1.75vw);
+					}
+				}
+			}
+		}
+	}
+}

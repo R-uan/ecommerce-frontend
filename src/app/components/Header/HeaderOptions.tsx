@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { IoHomeSharp } from "react-icons/io5";
-import styles from "./styles/header-options.module.scss";
+import s from "./styles/header.module.scss";
+
 export default function HeaderOptions({ transparent = false }: { transparent?: boolean }) {
 	const Warships = ["Bombers", "Capital Ships", "Carriers", "Destroyers", "Fighters", "Interceptors"];
 
 	const Exploration_Ships = ["Explorer Vessels", "Generational Vessels"];
 	return (
-		<div className={styles.menu_options}>
+		<div className={s.menu_options}>
 			<Link href={"/"}>
 				<IoHomeSharp className="text-[1.4vw]" />
 			</Link>
