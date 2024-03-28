@@ -34,10 +34,6 @@ $debug: 0;
 			outline: $debug solid yellow;
 
 			& > ul {
-				* {
-					color: black;
-				}
-
 				gap: 4px;
 				left: 50%;
 				top: 100%;
@@ -50,10 +46,8 @@ $debug: 0;
 				visibility: hidden;
 				flex-direction: column;
 				padding: 10px 0 10px 0;
-				/*justify-content: center;*/
 				transition: opacity 0.2s;
 				transform: translate(-50%, 0%);
-				/*box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.4);*/
 
 				& > li {
 					input:hover {

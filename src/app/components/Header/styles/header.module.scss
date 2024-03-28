@@ -218,7 +218,6 @@ $debug: 0;
 			}
 
 			.nav {
-				color: white;
 				& > ul {
 					display: flex;
 					flex-direction: column;
@@ -233,6 +232,10 @@ $debug: 0;
 					}
 
 					li {
+						& > input {
+							color: white;
+						}
+						color: white;
 						font-size: clamp(1.5rem, 1.75vw, 1.75vw);
 						line-height: clamp(1.5rem, 1.75vw, 1.75vw);
 					}

@@ -1,16 +1,15 @@
 "use client";
-import { store } from "@/redux/store";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { FaSearch, FaShoppingCart } from "react-icons/fa";
-import { Provider } from "react-redux";
-import HeaderOptions from "./HeaderOptions";
 import User from "./User";
-import s from "./styles/header.module.scss";
+import Link from "next/link";
+import { useState } from "react";
 import HeaderSearch from "./Search";
+import { store } from "@/redux/store";
+import { Provider } from "react-redux";
 import LateralMenu from "./LateralMenu";
-import { IoMenuSharp } from "react-icons/io5";
+import HeaderOptions from "./HeaderOptions";
+import s from "./styles/header.module.scss";
+import { FaSearch, FaShoppingCart } from "react-icons/fa";
+
 export default function Header({
 	transparent = false,
 	color = "black",
@@ -21,7 +20,7 @@ export default function Header({
 	absolute?: boolean;
 }) {
 	const [isOpen, setIsOpen] = useState(false);
-
+	// TODO Login pop up
 	return (
 		<Provider store={store}>
 			<header
