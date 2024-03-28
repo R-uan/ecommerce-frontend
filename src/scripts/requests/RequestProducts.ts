@@ -18,6 +18,7 @@ export class RequestProducts extends Requests {
 			const { data, total, current_page, last_page, next_page_url } = response;
 			return { data, total, current_page, last_page, next_page_url };
 		} catch (error) {
+			console.log(error);
 			if (isAxiosError(error)) throw new Error(error.message);
 			else throw new Error("Unexpected Error.");
 		}
@@ -45,51 +46,16 @@ export class RequestProducts extends Requests {
 		}
 	}
 
-	static async Miniatures() {
+	static async Miniatures(product_ids: number[]) {
 		try {
-			const storage = localStorage.getItem("cart");
-			if (storage) {
-				const cart: ICart = JSON.parse(storage);
-				const request = await api.post("/products/miniatures", { products: cart.uniques });
-				const data = request.data;
-				return data;
-			}
+			const request = await api.post("/products/miniatures", { products: product_ids });
+			const data = request.data;
+			return data;
 		} catch (error) {
 			if (!isAxiosError(error)) throw new UnexpectedError();
 			throw new ApiRequestError(error.response?.data);
 		}
 	}
-
-	/* static async Query(params: QueryOptions) {
-		try {
-			let name_query = null;
-			let price_query = null;
-			let category_query = null;
-			let availability_query = null;
-			params.name ? (name_query = `name[lk]=${params.name}`) : null;
-			params.category ? (category_query = `category[lk]=${params.category}`) : null;
-			params.availability ? (availability_query = `availability[eq]=${params.availability}`) : null;
-			if (params.price && params.price.min && params.price.max) {
-				price_query = `price[gte]=${params.price.min}&price[lte]=${params.price.max}`;
-			} else if (params.price && params.price.min) {
-				price_query = `price[gte]=${params.price.min}`;
-			} else if (params.price && params.price.max) {
-				price_query = `price[lte]=${params.price.max}`;
-			}
-			let full_query = [name_query, price_query, availability_query, category_query]
-				.filter((ele) => {
-					return ele != null;
-				})
-				.join("&");
-			const request = await api.get(`/products/search?${full_query}`);
-			const response: IPaginateResponse = request.data;
-			const { data, total, current_page, last_page, last_page_url, next_page_url } = response;
-			return { data, total, current_page, last_page, last_page_url, next_page_url };
-		} catch (error) {
-			if (isAxiosError(error)) throw new ApiRequestError(error.message);
-			else throw new Error("Unexpected Error.");
-		}
-	} */
 
 	static async QueryHandler(params: QueryParams, type: QueryType) {
 		try {

@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { IRegisterUser } from "@/interfaces/IAuth";
+import Cookies from "js-cookie";
 import api from "./axios-instances/PublicAxiosInstance";
 import authenticated from "./axios-instances/AuthenticatedAxiosInstance";
 import AuthenticationError from "../error-handling/AuthenticationError";

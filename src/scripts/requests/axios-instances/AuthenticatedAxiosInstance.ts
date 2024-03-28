@@ -35,7 +35,15 @@ instance.interceptors.response.use(
 				Cookies.set("jwt", refreshed_token);
 				error.config.headers.Authorization = `Bearer ${refreshed_token}`;
 				return instance.request(error.config);
-			} else return Promise.reject(new AuthenticationError("Error During Token Renovation"));
+			} else {
+				Cookies.remove("jwt");
+				return Promise.reject(new AuthenticationError("Error During Token Renovation."));
+			}
+		} else if (error.response && error.response.status === 401) {
+			Cookies.remove("jwt");
+			return Promise.reject(new AuthenticationError(error.response.data as string));
+		} else {
+			throw error;
 		}
 	}
 );
