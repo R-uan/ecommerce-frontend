@@ -4,7 +4,7 @@ import AuthRequests from "@/scripts/requests/AuthRequests";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import styles from "../auth.module.scss";
 
@@ -31,12 +31,16 @@ export default function LoginForm() {
 				router.push("/");
 			} else setAuthErrorMessage("Please provide your credentials.");
 		} catch (error) {
-			if (error instanceof AuthenticationError) {
-				setAuthenticatingStatus(false);
-				setAuthErrorMessage(error.message);
-			}
+			if (error instanceof AuthenticationError) setAuthErrorMessage(error.message);
+			else setAuthErrorMessage("Unable to authenticate. Try again later");
+			setAuthenticatingStatus(false);
 		}
 	}
+
+	useEffect(() => {
+		const token = Cookies.get("jwt");
+		if (token) router.push("/");
+	}, []);
 
 	return (
 		<>
