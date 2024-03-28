@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useCheckpointContext } from "./contexts/CheckoutContext";
+import s from "./checkout.module.scss";
 
 export default function OrderOverview() {
 	const { cartItens, setItens } = useCheckpointContext();
@@ -10,7 +11,7 @@ export default function OrderOverview() {
 	const [totalOfShips, setTotalOfShips] = useState<number>(0);
 
 	useEffect(() => {
-		if (cartItens) {
+		if (cartItens && cartItens.length > 0) {
 			const ship_total = cartItens
 				.map((product) => {
 					return product.units! * parseInt(product.unit_price);
@@ -31,26 +32,26 @@ export default function OrderOverview() {
 	}, [cartItens]);
 
 	return (
-		<>
-			<div className="w-full flex justify-between text-[1.5vw] leading-[1.5vw]">
+		<div className={s.overview}>
+			<div className={s.overview_fiels}>
 				<span>Total Ships Price</span>
 				<span>${shipTotal}</span>
 			</div>
-			<div className="w-full flex justify-between text-[1.5vw] leading-[1.5vw]">
+			<div className={s.overview_fiels}>
 				<span>Total Ship Units</span>
 				<span>{totalOfShips} units</span>
 			</div>
-			<div className="w-full flex justify-between text-[1.5vw] leading-[1.5vw]">
+			<div className={s.overview_fiels}>
 				<div>
 					<span>Total Taxes</span>
-					<div className="ml-[15px]">
-						<p className="text-[1vw] leading-[1vw]">5% for cargo ships</p>
-						<p className="text-[1vw] leading-[1vw]">7% for exploration ships</p>
-						<p className="text-[1vw] leading-[1vw]">10% for warships</p>
+					<div className={s.under_field}>
+						<p>3% for cargo ships</p>
+						<p>4% for exploration ships</p>
+						<p>7% for warships</p>
 					</div>
 				</div>
 				<span>${totalTaxes}</span>
 			</div>
-		</>
+		</div>
 	);
 }

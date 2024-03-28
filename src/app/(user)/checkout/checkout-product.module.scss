@@ -1,0 +1,140 @@
+.product {
+	gap: 5px;
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	position: relative;
+
+	.product_image {
+		width: 10vw;
+		height: 10vw;
+		position: relative;
+		background: #eeeeee;
+	}
+
+	.information {
+		width: 50%;
+		display: flex;
+		padding-top: 5px;
+		flex-direction: column;
+
+		& > span:nth-child(1) {
+			font-weight: 500;
+			font-size: clamp(1.5rem, 2.5vw, 2.5vw);
+			line-height: clamp(1.5rem, 2.5vw, 2.5vw);
+		}
+
+		& > span:nth-child(2) {
+			font-size: clamp(1.25rem, 1.75vw, 1.5rem);
+			line-height: clamp(1.25rem, 1.75vw, 1.5rem);
+		}
+
+		& > span:nth-child(3) {
+			font-size: clamp(1rem, 1.45vw, 1.45vw);
+			line-height: clamp(1rem, 1.45vw, 1.45vw);
+		}
+	}
+
+	.other {
+		display: flex;
+		align-items: center;
+		padding: 5px 5px 5px 5px;
+		justify-content: space-between;
+
+		& > div:first-child {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			& > div {
+				display: flex;
+				align-items: center;
+				flex-direction: column;
+				justify-content: center;
+
+				& > label {
+					text-align: center;
+					font-size: clamp(1rem, 1.25vw, 1.25vw);
+					line-height: clamp(1rem, 1.25vw, 1.25vw);
+				}
+
+				& > input {
+					width: 50px;
+					font-weight: bold;
+					text-align: center;
+					background: transparent;
+					border: 1px solid black;
+					font-size: clamp(1rem, 1.25vw, 1.25vw);
+				}
+			}
+		}
+
+		& > div:last-child {
+			display: flex;
+			align-items: flex-end;
+			flex-direction: column;
+
+			& > label {
+				font-size: clamp(1rem, 1.25vw, 1.25vw);
+				line-height: clamp(1rem, 1.25vw, 1.25vw);
+			}
+
+			& > p {
+				font-size: clamp(1.25rem, 1.75vw, 1.75vw);
+				line-height: clamp(1.25rem, 1.75vw, 1.75vw);
+			}
+
+			& > span {
+				font-size: clamp(0.8rem, 0.95vw, 0.95vw);
+				line-height: clamp(0.8rem, 0.95vw, 0.95vw);
+			}
+		}
+	}
+
+	button {
+		right: 0;
+		width: 2vw;
+		height: 100%;
+		display: flex;
+		margin-right: 20px;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+@media (max-width: 760px) {
+	.product {
+		gap: 10px;
+		width: 220px;
+		height: 100%;
+		padding: 15px;
+		border-radius: 6px;
+		align-items: center;
+		justify-items: center;
+		flex-direction: column;
+		background-color: #eeeeee;
+
+		.product_image {
+			width: 200px;
+			height: 200px;
+		}
+
+		.other {
+			width: 100%;
+			height: fit-content;
+			flex-direction: row;
+		}
+
+		.information {
+			width: 100%;
+			padding-top: 0px;
+			align-items: center;
+		}
+
+		button {
+			width: 100%;
+			height: 30px;
+			margin-right: 0;
+		}
+	}
+}

@@ -24,8 +24,11 @@ export default function CheckoutProvider({ children }: { children: ReactNode }) 
 	}
 
 	async function InitialCartItensFetch() {
-		const itens: IProduct[] = await RequestProducts.Miniatures();
-		console.log(itens);
+		const storage = localStorage.getItem("cart");
+		if (!storage) return;
+		const cart: { products: number[] } = JSON.parse(storage);
+		const product_ids = cart.products;
+		const itens: IProduct[] = await RequestProducts.Miniatures(product_ids);
 		const update_itens = itens.map((product) => ({
 			...product,
 			units: 1,
