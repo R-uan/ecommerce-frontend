@@ -11,24 +11,15 @@ export default function ProductInformation({ productId }: { productId: string })
 	const state = useProductContext();
 	const product = state.product;
 
-	interface ICart {
-		uniques: number[];
-	}
-
 	function AddToCart() {
-		try {
-			const storage = localStorage.getItem("cart");
-			if (storage && product) {
-				const cart: { products: number[] } = JSON.parse(storage);
-				cart.products.includes(product.id) ? null : cart.products.push(product.id);
-				localStorage.setItem("cart", JSON.stringify(cart));
-			} else if (!storage && product) {
-				const cart: { products: number[] } = { products: [product.id] };
-				localStorage.setItem("cart", JSON.stringify(cart));
-			}
-		} catch (error) {
-			// TODO Error handling
-			console.log(error);
+		const storage = localStorage.getItem("cart");
+		if (storage && product) {
+			const cart: { products: number[] } = JSON.parse(storage);
+			cart.products.includes(product.id) ? null : cart.products.push(product.id);
+			localStorage.setItem("cart", JSON.stringify(cart));
+		} else if (!storage && product) {
+			const cart: { products: number[] } = { products: [product.id] };
+			localStorage.setItem("cart", JSON.stringify(cart));
 		}
 	}
 
@@ -63,7 +54,9 @@ export default function ProductInformation({ productId }: { productId: string })
 
 				<div className="text-all-white">
 					<PlanetDestination />
-					<h3 className="text-[1.5vw] leading-[1.5vw]">Estimated Time of Production: {state.product?.production_time} Pluto Years</h3>
+					<h3 className="text-[1.5vw] leading-[1.5vw]">
+						Estimated Time of Production: {state.product?.production_time} Pluto Years
+					</h3>
 				</div>
 			</div>
 			<div className={styles.cb2}>

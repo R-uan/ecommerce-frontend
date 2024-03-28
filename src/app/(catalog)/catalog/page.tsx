@@ -6,6 +6,7 @@ import ProductMap from "../components/ProductMap";
 import FilterOptions from "../components/FilterOptions";
 
 export default function Catalog() {
+	// TODO Media query, filter toggle to show the filter
 	return (
 		<Provider store={store}>
 			<main className="w-full min-h-[100vh]">
