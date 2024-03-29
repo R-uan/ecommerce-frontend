@@ -1,17 +1,14 @@
-import { useSelector } from "react-redux";
-import s from "./styles/header.module.scss";
-import User from "./User";
-import { RootState } from "@/redux/store";
-import { IoMenuSharp } from "react-icons/io5";
 import { useState } from "react";
-export default function LateralMenu() {
-	const state = useSelector((s: RootState) => s.authentication);
-	const [isOpen, setStatus] = useState(false);
+import { IoMenuSharp } from "react-icons/io5";
+import s from "../styles/lateral-menu.module.scss";
 
-	const Warships = ["Bombers", "Capital Ships", "Carriers", "Destroyers", "Fighters", "Interceptors"];
+export default function LateralMenu() {
+	const [isOpen, setStatus] = useState(false);
 	const Exploration_Ships = ["Explorer Vessels", "Generational Vessels"];
+	const Warships = ["Bombers", "Capital Ships", "Carriers", "Destroyers", "Fighters", "Interceptors"];
+
 	return (
-		<div className={s.menu}>
+		<div className={s.lateral_menu}>
 			<div>
 				<button onClick={() => setStatus(!isOpen)}>
 					<IoMenuSharp className={s.menu_button} />
