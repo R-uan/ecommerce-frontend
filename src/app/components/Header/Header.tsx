@@ -1,14 +1,12 @@
 "use client";
-import User from "./User";
-import Link from "next/link";
-import { useState } from "react";
-import HeaderSearch from "./Search";
+import User from "./components/User";
 import { store } from "@/redux/store";
+import RightIcons from "./components/RightIcons";
 import { Provider } from "react-redux";
-import LateralMenu from "./LateralMenu";
-import HeaderOptions from "./HeaderOptions";
+import Search from "./components/Search";
+import MediaQuery from "react-responsive";
 import s from "./styles/header.module.scss";
-import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import LateralMenu from "./components/LateralMenu";
 
 export default function Header({
 	transparent = false,
@@ -19,8 +17,6 @@ export default function Header({
 	color?: string;
 	absolute?: boolean;
 }) {
-	const [isOpen, setIsOpen] = useState(false);
-	// TODO Login pop up
 	return (
 		<Provider store={store}>
 			<header
@@ -29,19 +25,15 @@ export default function Header({
 					position: absolute ? "absolute" : "relative",
 				}}
 				className={s.header}>
-				{isOpen ? null : <HeaderOptions transparent />}
 				<div className={`text-all-${color}`}>
-					<LateralMenu />
+					<MediaQuery maxWidth={749}>
+						<LateralMenu />
+					</MediaQuery>
 					<User />
-					{!isOpen ? null : <HeaderSearch setIsOpen={setIsOpen} transparent={transparent} />}
-					<div className={s.right_icons}>
-						<button onClick={() => setIsOpen(!isOpen)}>
-							<FaSearch className={s.icon} />
-						</button>
-						<Link href="/checkout">
-							<FaShoppingCart className={s.icon} />
-						</Link>
-					</div>
+					<MediaQuery minWidth={700}>
+						<Search transparent={transparent} />
+					</MediaQuery>
+					<RightIcons />
 				</div>
 			</header>
 		</Provider>
