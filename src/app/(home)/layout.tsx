@@ -1,6 +1,6 @@
 import Footer from "../components/Footer";
-import Header from "../components/Header/Header";
 import styles from "./styles/home.module.scss";
+import Header from "../components/Header/Header";
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
 	return (
