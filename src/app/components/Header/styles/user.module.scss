@@ -1,40 +1,35 @@
-.user_menu {
-	margin-right: 50px;
+.user {
+	gap: 1.25vw;
+	height: 80%;
 	display: flex;
-	.options_menu_outer {
-		z-index: 20;
-		top: 0;
-		right: 0;
-		position: fixed;
-		width: 100vw;
-		overflow: auto;
-		background-color: rgba(0, 0, 0, 0.4);
-		height: 100%;
+	width: fit-content;
+	align-items: center;
+
+	.icon {
+		font-size: clamp(2rem, 3vw, 3vw);
 	}
 
-	.options_menu {
-		gap: 15px;
-		top: 45px;
-		right: 45px;
-		z-index: 21;
-		width: 20vw;
-		height: 25vw;
+	& > div:last-child {
+		gap: 2px;
 		display: flex;
-		margin-top: 10px;
-		border-radius: 5px;
-		position: absolute;
-		padding: 20px;
-		align-items: center;
 		flex-direction: column;
-		justify-content: center;
-		background-color: #0c131b;
 
-		button {
-			* {
-				color: black;
+		& > p {
+			font-size: clamp(1rem, 1.5vw, 1.5vw);
+			line-height: clamp(1rem, 1.5vw, 1.5vw);
+		}
+
+		& > div {
+			gap: 1.25vw;
+			display: flex;
+			height: 1.5vw;
+			align-items: center;
+			justify-content: space-between;
+
+			span {
+				font-size: clamp(1rem, 1.5vw, 1.5vw);
+				line-height: clamp(1rem, 1.5vw, 1.5vw);
 			}
-			width: 15vw;
-			background-color: white;
 		}
 	}
 }
