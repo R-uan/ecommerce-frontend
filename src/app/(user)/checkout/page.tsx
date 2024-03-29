@@ -1,6 +1,6 @@
 import CheckoutProvider from "./contexts/CheckoutContext";
-import ItensMap from "./ItensMap";
-import OrderOverview from "./OrderOverview";
+import ProductMapping from "./components/ProductMapping";
+import OrderOverview from "./components/OrderOverview";
 import s from "./checkout.module.scss";
 
 export default function Checkout() {
@@ -8,7 +8,7 @@ export default function Checkout() {
 		<main className={s.main}>
 			<div className={s.checkout}>
 				<CheckoutProvider>
-					<ItensMap />
+					<ProductMapping />
 					<OrderOverview />
 				</CheckoutProvider>
 			</div>

@@ -1,8 +1,7 @@
 "use client";
-
 import { useEffect, useState } from "react";
-import { useCheckpointContext } from "./contexts/CheckoutContext";
-import s from "./checkout.module.scss";
+import s from "../styles/checkout.module.scss";
+import { useCheckpointContext } from "../contexts/CheckoutContext";
 
 export default function OrderOverview() {
 	const { cartItens, setItens } = useCheckpointContext();

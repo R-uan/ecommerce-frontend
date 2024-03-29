@@ -1,10 +1,10 @@
 "use client";
+import Product from "./Product";
 import { useEffect } from "react";
-import Item from "./Item";
-import { useCheckpointContext } from "./contexts/CheckoutContext";
-import s from "./checkout.module.scss";
+import s from "../styles/checkout.module.scss";
+import { useCheckpointContext } from "../contexts/CheckoutContext";
 
-export default function ItensMap() {
+export default function ProductMapping() {
 	const { cartItens, InitialCartItensFetch } = useCheckpointContext();
 
 	useEffect(() => {
@@ -16,7 +16,7 @@ export default function ItensMap() {
 			{cartItens && cartItens?.length > 0 ? (
 				<div className={s.grid}>
 					{cartItens?.map((product, index) => {
-						return <Item key={product.id} product={product} index={index} />;
+						return <Product key={product.id} product={product} index={index} />;
 					})}
 				</div>
 			) : (

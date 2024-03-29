@@ -1,14 +1,14 @@
 "use client";
-import { ICart } from "@/interfaces/ICart";
-import { IProduct } from "@/interfaces/IProduct";
 import Image from "next/image";
 import { useState } from "react";
+import { ICart } from "@/interfaces/ICart";
 import { FaTrashCan } from "react-icons/fa6";
+import s from "../styles/product.module.scss";
+import { IProduct } from "@/interfaces/IProduct";
+import { useCheckpointContext } from "../contexts/CheckoutContext";
 import testimage from "../../../../public/images/product-test-image.jpg";
-import { useCheckpointContext } from "./contexts/CheckoutContext";
-import s from "./checkout-product.module.scss";
 
-export default function Item({ product, index }: { product: IProduct; index: number }) {
+export default function Product({ product, index }: { product: IProduct; index: number }) {
 	const [productAmount, setAmount] = useState(1);
 	const { cartItens, setItens, UpdateItemAmount } = useCheckpointContext();
 
