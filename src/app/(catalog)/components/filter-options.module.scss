@@ -108,3 +108,10 @@ $padding_size: 15px;
 		}
 	}
 }
+
+@media (max-width: 1249px) {
+	.aside {
+		visibility: hidden;
+		position: absolute;
+	}
+}

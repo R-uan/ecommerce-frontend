@@ -1,0 +1,85 @@
+.miniature {
+	width: clamp(230px, 18vw, 18vw);
+	display: flex;
+	color: white;
+	border-radius: 6px;
+	min-height: 25.5vw;
+	height: fit-content;
+	flex-direction: column;
+}
+
+.image {
+	width: clamp(230px, 18vw, 18vw);
+	height: clamp(230px, 18vw, 18vw);
+	overflow: hidden;
+	border-radius: 5px;
+	position: relative;
+	justify-content: center;
+
+	& > div {
+		z-index: 50;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		position: absolute;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(0, 0, 0, 0.5);
+
+		& > h3 {
+			font-size: clamp(1.5rem, 2vw, 2vw);
+			line-height: clamp(1.5rem, 2vw, 2vw);
+		}
+
+		& > span {
+			top: 2px;
+			left: 2px;
+			font-size: 1.2vw;
+			line-height: 90%;
+			border-radius: 6px;
+			position: absolute;
+			background: black;
+			padding: 7px 3px 7xp 3px;
+		}
+	}
+}
+
+.information {
+	margin: 1px;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+	height: clamp(70px, 5.5vw, 5.5vw);
+
+	& > div {
+		/* "gap-[5px] w-[260px] flex items-center flex-col" */
+		gap: 5px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+
+		& > h3 {
+			/* "text-[clamp(1rem,1.25vw,1.25vw)] w-full break-words text-center leading-[clamp(1rem,1.25vw,1.25vw)] font-kode font-bold" */
+			width: 100%;
+			font-weight: bold;
+			text-align: center;
+			word-wrap: break-word;
+			font-size: clamp(1rem, 1.25vw, 1.25vw);
+			line-height: clamp(1rem, 1.25vw, 1.25vw);
+		}
+
+		& > h6 {
+			text-align: center;
+			font-size: clamp(0.65rem, 1.2vw, 1.2vw);
+			line-height: clamp(0.65rem, 1.2vw, 1.2vw);
+		}
+
+		& > span {
+			font-size: clamp(1rem, 1.3vw, 1.3vw);
+			line-height: clamp(1rem, 1.3vw, 1.3vw);
+		}
+	}
+}

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
 import ProductMiniature from "./ProductMiniature";
+import s from "./catalog.module.scss";
 
 export default function ProductMap() {
 	const dispatch = useDispatch();
@@ -60,15 +61,15 @@ export default function ProductMap() {
 	}, [query, name, availability, min_price, max_price]);
 
 	return (
-		<div className="h-full flex w-fit flex-col mb-[50px]">
-			<div className="w-full flex justify-between">
-				<section className="w-[65vw] grid gap-y-[10px] gap-x-[10px] justify-start grid-cols-[repeat(4,auto)]">
+		<div className={s.product_map}>
+			<div>
+				<section>
 					{product_listing?.data?.map((product) => {
 						return <ProductMiniature key={product.id} data={product} />;
 					})}
 				</section>
 			</div>
-			<div ref={viewRef} className="flex justify-center items-center w-full h-[25px] m-[5px] p-[5px]"></div>
+			<div ref={viewRef} className="flex justify-center items-center w-full h-[25px] m-[5px] p-[5px]" />
 		</div>
 	);
 }
