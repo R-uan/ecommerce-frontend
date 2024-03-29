@@ -1,7 +1,7 @@
 import CheckoutProvider from "./contexts/CheckoutContext";
 import ProductMapping from "./components/ProductMapping";
 import OrderOverview from "./components/OrderOverview";
-import s from "./checkout.module.scss";
+import s from "./styles/checkout.module.scss";
 
 export default function Checkout() {
 	return (

@@ -6,7 +6,7 @@ import { FaTrashCan } from "react-icons/fa6";
 import s from "../styles/product.module.scss";
 import { IProduct } from "@/interfaces/IProduct";
 import { useCheckpointContext } from "../contexts/CheckoutContext";
-import testimage from "../../../../public/images/product-test-image.jpg";
+import testimage from "../../../../../public/images/product-test-image.jpg";
 
 export default function Product({ product, index }: { product: IProduct; index: number }) {
 	const [productAmount, setAmount] = useState(1);
