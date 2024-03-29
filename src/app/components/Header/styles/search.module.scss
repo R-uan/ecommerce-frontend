@@ -1,0 +1,20 @@
+.search_bar {
+	width: 40%;
+	height: 30px;
+	border-radius: 4px;
+	position: relative;
+	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+	& > form {
+		width: 100%;
+		height: 100%;
+		display: flex;
+
+		& > input {
+			width: 100%;
+			height: 100%;
+			padding-left: 5px;
+			font-size: clamp(1.5rem, 1.75vw, 1.75vw);
+			line-height: clamp(1.5rem, 1.75vw, 1.75vw);
+		}
+	}
+}
