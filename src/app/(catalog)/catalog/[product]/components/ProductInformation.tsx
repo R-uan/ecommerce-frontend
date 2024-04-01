@@ -1,4 +1,6 @@
 import { RequestProducts } from "@/scripts/requests/RequestProducts";
+import { FaHeart } from "react-icons/fa";
+
 import { useEffect } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa6";
@@ -43,29 +45,37 @@ export default function ProductInformation({ productId }: { productId: string })
 
 	return (
 		<section className={styles.product_information}>
-			<div className="w-[60%] flex flex-col justify-between gap-[30px]">
+			<div className={styles.main_information}>
 				<div>
 					<Rating />
-					<h1 className="text-[3.5vw] leading-[3vw] font-bebas text-[#FF003C]">{product?.name}</h1>
-					<p className="text-[2vw] leading-snug text-white">{product?.manufacturer}</p>
-					<p className="text-[3vw] leading-[3vw] text-white">${product?.unit_price}</p>
-					<p className="text-[1.5vw] leading-[1.5vw] text-white">+7% taxes</p>
+					<h1 className="font-bebas">{product?.name}</h1>
+					<p className={styles.manufacturer}>{product?.manufacturer}</p>
+					<p className={styles.price}>${product?.unit_price}</p>
+					<p className={styles.price_additional}>+7% taxes</p>
 				</div>
 
-				<div className="text-all-white">
+				<div>
 					<PlanetDestination />
-					<h3 className="text-[1.5vw] leading-[1.5vw]">
-						Estimated Time of Production: {state.product?.production_time} Pluto Years
-					</h3>
+					<h3>Estimated Time of Production: {state.product?.production_time} Pluto Years</h3>
 				</div>
 			</div>
-			<div className={styles.cb2}>
-				<button type="button" className={styles.buy_button}>
+			<div className={styles.options}>
+				<div className={styles.payment_information}>
+					<span>Payment Methods</span>
+					<p>Money</p>
+					<p>Credit Card</p>
+					<p>Crypto Currency</p>
+					<p>Ilegal Methods</p>
+				</div>
+				<button type="button" className={styles.buy}>
 					<FaShoppingCart fill="#050A0E" className="text-[1.5vw]" />
 					BUY NOW
 				</button>
 				<button onClick={AddToCart} type="button" className={styles.add_to_cart}>
 					<FaCartPlus fill="#050A0E" className="text-[1.5vw]" />
+				</button>
+				<button className={styles.favourite}>
+					<FaHeart fill="#FF003C" className="w-full h-full" />
 				</button>
 			</div>
 		</section>

@@ -9,7 +9,7 @@
 .checkout {
 	gap: 15px;
 	width: 100%;
-	height: 40vw;
+	height: 100%;
 	display: flex;
 	padding: clamp(5px, 1vw, 10px);
 	border-radius: 6px;
@@ -47,6 +47,7 @@
 .itens_map {
 	width: 70%;
 	height: 100%;
+	flex: 1;
 	padding: 2px;
 	display: flex;
 	overflow: auto;

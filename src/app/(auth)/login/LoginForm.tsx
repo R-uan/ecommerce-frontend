@@ -72,8 +72,8 @@ export default function LoginForm() {
 			</form>
 			<div className="gap-[5px] flex absolute justify-center items-center h-[30px] bg-[#f1f6f9] w-full bottom-0 text-[1.25rem]">
 				<h3 className="text-focus-black font-smooch">New user ?</h3>
-				<Link className="hover:text-[#7743db] font-smooch text-focus-black text-[1.25rem]" href={"/signup"}>
-					Sign up
+				<Link className="hover:text-[#7743db] font-smooch text-focus-black text-[1.25rem]" href={"/register"}>
+					Register
 				</Link>
 			</div>
 		</>

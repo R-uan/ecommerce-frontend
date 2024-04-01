@@ -32,7 +32,9 @@ export default function User() {
 
 	return (
 		<div className={s.user}>
-			<GiRingedPlanet className={s.icon} />
+			<Link href={"/"}>
+				<GiRingedPlanet className={s.icon} />
+			</Link>
 			<div>
 				<p>{!state.authenticated ? "Welcome to Gemini" : `Hello, ${state.user?.first_name}`}</p>
 				<div>

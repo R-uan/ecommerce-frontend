@@ -30,7 +30,9 @@ export default function RegisterForm() {
 			sessionStorage.setItem("jwt", registration);
 			redirect("/");
 		} catch (error) {
-			error instanceof RegistrationError ? setAuthErrorMessage(error.message) : setAuthErrorMessage("Unable to register. Try later.");
+			error instanceof RegistrationError
+				? setAuthErrorMessage(error.message)
+				: setAuthErrorMessage("Unable to register. Try later.");
 			setRegisteringStatus(false);
 		}
 	}
@@ -64,8 +66,8 @@ export default function RegisterForm() {
 			</form>
 			<div className="gap-[5px] flex text-all-black absolute justify-center items-center h-[30px] bg-[#f1f6f9] w-full bottom-0 text-[1.25rem]">
 				<h3>Already registered ?</h3>
-				<Link className="hover:text-[#7743db] text-[1.25rem]" href={"/signin"}>
-					Sign in
+				<Link className="hover:text-[#7743db] text-[1.25rem]" href={"/login"}>
+					Login
 				</Link>
 			</div>
 		</>
