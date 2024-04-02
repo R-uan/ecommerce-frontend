@@ -1,0 +1,76 @@
+.edit_profile {
+	position: relative;
+	padding: clamp(15px, 1vw, 20px);
+	width: 100%;
+	height: 100%;
+
+	& > div:first-child {
+		& > span {
+			font-size: clamp(1.75rem, 2vw, 2rem);
+			line-height: clamp(1.75rem, 2vw, 2rem);
+		}
+	}
+
+	& > form {
+		flex: 1;
+		display: flex;
+		height: 94%;
+		align-items: center;
+		flex-direction: column;
+		justify-content: space-evenly;
+
+		& > div:last-child {
+			gap: 30px;
+			width: 50%;
+			display: flex;
+			justify-content: center;
+
+			& > button {
+				width: 20%;
+				height: 40px;
+				color: white;
+				font-size: 1.2vw;
+				border-radius: 6px;
+				background-color: #050a0e;
+
+				&:hover {
+					background-color: white;
+					border: 1px solid black;
+					color: black;
+				}
+			}
+		}
+	}
+
+	.fields {
+		gap: 60px;
+		height: 70%;
+		display: flex;
+
+		& > div {
+			gap: 14px;
+			width: clamp(250px, 17vw, 300px);
+			display: flex;
+			flex-direction: column;
+			& > div {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+
+				& > label {
+					font-size: 1.5rem;
+					line-height: 1.5rem;
+				}
+
+				& > input {
+					height: 35px;
+					color: white;
+					padding-left: 6px;
+					border-radius: 3px;
+					background-color: #050a0e;
+					font-size: clamp(1.5rem, 1vw, 1.75rem);
+				}
+			}
+		}
+	}
+}

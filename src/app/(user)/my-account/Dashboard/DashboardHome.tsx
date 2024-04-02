@@ -3,7 +3,11 @@ import DashboardUser from "./DashboardUser";
 import DashboardOrders from "./DashboardOrders";
 import { useDispatch, useSelector } from "react-redux";
 import DashboardFocusOrder from "./DashboardFocusOrder";
+import { FaGithub } from "react-icons/fa6";
+
 import s from "../page.module.scss";
+import EditProfile from "./EditProfile";
+import NavMenu from "./NavMenu";
 export default function DashboardHome() {
 	const state = useSelector((s: RootState) => s.expand_order);
 	const dispatch = useDispatch();
@@ -17,11 +21,12 @@ export default function DashboardHome() {
 				</div>
 			)}
 			<div className={s.dashboard_landing}>
-				<div>
+				<div className="flex gap-[10px]">
 					<DashboardUser />
+					<NavMenu />
 				</div>
 				<div className="hide-scrollbar">
-					<DashboardOrders />
+					<EditProfile />
 				</div>
 			</div>
 		</>

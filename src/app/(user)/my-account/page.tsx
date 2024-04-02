@@ -13,7 +13,6 @@ export default function Profile() {
 				<div className={styles.dashboard}>
 					<DashboardHome />
 				</div>
-				<DashboardMenu />
 			</main>
 		</Provider>
 	);

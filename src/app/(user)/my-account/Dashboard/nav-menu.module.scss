@@ -1,0 +1,25 @@
+.nav_menu {
+	flex: 1;
+	gap: 30px;
+	height: 100%;
+	padding: 20px;
+	display: flex;
+	border-radius: 6px;
+	align-items: center;
+	background-color: white;
+	& > div {
+		display: flex;
+		width: fit-content;
+		height: fit-content;
+		align-items: center;
+		flex-direction: column;
+		& > .icon {
+			font-size: clamp(1.75rem, 3vw, 2.5rem);
+			line-height: clamp(1.75rem, 3vw, 2.5rem);
+		}
+		& > span {
+			font-size: clamp(1.5rem, 2vw, 2rem);
+			line-height: clamp(1.5rem, 2vw, 2rem);
+		}
+	}
+}
