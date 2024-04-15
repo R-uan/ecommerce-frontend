@@ -1,9 +1,10 @@
 import IOrder from "@/interfaces/IOrder";
-import { setCurrentOrder, toggleExpansion } from "@/redux/slices/ExpandOrderSlice";
 import { RootState } from "@/redux/store";
-import { RequestSingleOrder } from "@/scripts/requests/OrderRequests";
 import { useDispatch, useSelector } from "react-redux";
+import { RequestSingleOrder } from "@/scripts/requests/OrderRequests";
+import { setCurrentOrder, toggleExpansion } from "@/redux/slices/ExpandOrderSlice";
 
+// TODO Convert styles to modules
 export default function Order({ order }: { order: IOrder }) {
 	const state = useSelector((s: RootState) => s.expand_order);
 	const dispatch = useDispatch();
@@ -11,13 +12,11 @@ export default function Order({ order }: { order: IOrder }) {
 
 	async function ExpandOrder() {
 		try {
+			dispatch(toggleExpansion());
 			const request_order = await RequestSingleOrder(String(order.id));
 			dispatch(setCurrentOrder(request_order));
-			console.log(request_order);
-			dispatch(toggleExpansion());
-			console.log(state.expanded);
 		} catch (error) {
-			console.log(error);
+			// TODO Error handling
 		}
 	}
 
@@ -43,7 +42,7 @@ export default function Order({ order }: { order: IOrder }) {
 					</div>
 					<div>
 						<p className="text-[1.5vw] leading-[1.5vw]">Planet Destination</p>
-						<span className="text-[1.5vw] leading-[1.5vw]">{order.planet_destination.name}</span>
+						<span className="text-[1.5vw] leading-[1.5vw]">{order.planet_destination?.name}</span>
 					</div>
 				</div>
 			</div>

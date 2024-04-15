@@ -1,16 +1,17 @@
 "use client";
 import Image from "next/image";
-import { FaUserEdit } from "react-icons/fa";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+import IUser from "@/interfaces/IUser";
+import { RootState } from "@/redux/store";
+import { FaUserEdit } from "react-icons/fa";
+import s from "../styles/my-profile.module.scss";
+import { redirect, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "@/redux/slices/AuthenticationSlice";
-import { redirect, useRouter } from "next/navigation";
-import { RootState } from "@/redux/store";
-import IUser from "@/interfaces/IUser";
-import s from "../page.module.scss";
-export default function DashboardUser() {
+
+export default function MyProfile() {
 	const dispatch = useDispatch();
 	const router = useRouter();
 	const user = useSelector((s: RootState) => s.authentication).user;
@@ -29,7 +30,7 @@ export default function DashboardUser() {
 	}, [dispatch]);
 
 	return (
-		<section className={s.dashboard_user}>
+		<section className={s.my_profile}>
 			<div>
 				<Image className={s.user_profile_picture} src={""} alt="profile-picture"></Image>
 			</div>

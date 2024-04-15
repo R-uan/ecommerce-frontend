@@ -1,19 +1,18 @@
 "use client";
 import { store } from "@/redux/store";
 import { Provider } from "react-redux";
-import DashboardHome from "./Dashboard/DashboardHome";
-import DashboardMenu from "./components/NavigationMenu";
-import styles from "./page.module.scss";
+import Dashboard from "./Dashboard/Dashboard";
+import DashboardProvider from "./Dashboard/ContextProvider/DashboardProvider";
 export default function Profile() {
 	// TODO Create a loading page while the application verifies the user authentication.
 	// TODO Create edit user information form
 	return (
 		<Provider store={store}>
-			<main className="flex relative w-full h-full bg-[#050a0e]">
-				<div className={styles.dashboard}>
-					<DashboardHome />
-				</div>
-			</main>
+			<DashboardProvider>
+				<main className="flex relative w-full h-full bg-[#050a0e]">
+					<Dashboard />
+				</main>
+			</DashboardProvider>
 		</Provider>
 	);
 }

@@ -1,8 +1,9 @@
-import { OrderItem } from "@/interfaces/IOrder";
-import { RootState } from "@/redux/store";
 import Image from "next/image";
+import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
+import { OrderItem } from "@/interfaces/IOrder";
 
+// TODO Convert styles to modules
 export default function ProductMiniatureOrder({ product }: { product: OrderItem }) {
 	const state = useSelector((s: RootState) => s.expand_order);
 

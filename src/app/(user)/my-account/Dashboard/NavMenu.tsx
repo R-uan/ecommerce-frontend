@@ -1,24 +1,32 @@
 import { FaGithub } from "react-icons/fa6";
-import s from "./nav-menu.module.scss";
+import MyOrders from "./MyOrders/MyOrders";
+import s from "./styles/nav-menu.module.scss";
+import { useDashboardContext } from "./ContextProvider/DashboardProvider";
+import UpdateProfile from "./Profile/UpdateProfile";
 export default function NavMenu() {
+	const { setView } = useDashboardContext();
+
+	const options = [
+		{
+			view: { name: "My Orders", component: <MyOrders /> },
+			icon: <FaGithub className={s.icon} fill="black" />,
+		},
+		{
+			view: { name: "Update Profile", component: <UpdateProfile /> },
+			icon: <FaGithub className={s.icon} fill="black" />,
+		},
+	];
+
 	return (
 		<div className={s.nav_menu}>
-			<div>
-				<FaGithub className={s.icon} fill="black" />
-				<span className="text-[1.5rem]">Github</span>
-			</div>
-			<div className="flex h-fit flex-col w-fit items-center">
-				<FaGithub className={s.icon} fill="black" />
-				<span className="text-[1.5rem]">Favourites</span>
-			</div>
-			<div className="flex h-fit flex-col w-fit items-center">
-				<FaGithub className={s.icon} fill="black" />
-				<span className="text-[1.5rem]">My Orders</span>
-			</div>
-			<div className="flex h-fit flex-col w-fit items-center">
-				<FaGithub className={s.icon} fill="black" />
-				<span className="text-[1.5rem]">Logout</span>
-			</div>
+			{options.map((ele) => {
+				return (
+					<div onClick={() => setView(ele.view)}>
+						{ele.icon}
+						<span>{ele.view.name}</span>
+					</div>
+				);
+			})}
 		</div>
 	);
 }

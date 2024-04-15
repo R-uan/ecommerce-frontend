@@ -1,12 +1,13 @@
+import Order from "./Order";
 import IOrder from "@/interfaces/IOrder";
-import { RequestUserOrders } from "@/scripts/requests/OrderRequests";
 import { useEffect, useState } from "react";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import Order from "../components/Order";
-import AuthenticationError from "@/scripts/error-handling/AuthenticationError";
 import { useRouter } from "next/navigation";
-import s from "../page.module.scss";
-export default function DashboardOrders() {
+import s from "../styles/my-orders.module.scss";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { RequestUserOrders } from "@/scripts/requests/OrderRequests";
+import AuthenticationError from "@/scripts/error-handling/AuthenticationError";
+// TODO Convert styles to modules
+export default function MyOrders() {
 	const router = useRouter();
 	const [orders, setOrders] = useState<IOrder[] | null>(null);
 	const [fetching, setFetchStatus] = useState<boolean>(true);
@@ -15,6 +16,7 @@ export default function DashboardOrders() {
 	async function GetUserOrders() {
 		try {
 			const user_orders = await RequestUserOrders();
+			console.log(user_orders);
 			if (user_orders) user_orders.length > 0 ? setOrders(user_orders) : setErrorMessage("No orders were found.");
 			else setErrorMessage("Unable do retrieve orders.");
 			setFetchStatus(false);
@@ -43,10 +45,14 @@ export default function DashboardOrders() {
 				<div className={s.error_message}>
 					<span className="text-[2vw]">{errorMessage}</span>
 				</div>
-			) : (
+			) : orders ? (
 				orders?.map((order) => {
 					return <Order key={order.id} order={order} />;
 				})
+			) : (
+				<div className="w-full h-full items-center justify-center flex m-auto">
+					<span className="text-[2vw]">NO ORDERS TO SHOW</span>
+				</div>
 			)}
 		</section>
 	);

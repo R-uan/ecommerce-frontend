@@ -1,8 +1,11 @@
 .edit_profile {
-	position: relative;
-	padding: clamp(15px, 1vw, 20px);
 	width: 100%;
 	height: 100%;
+	display: flex;
+	position: relative;
+	gap: 30px;
+	flex-direction: column;
+	padding: clamp(15px, 1vw, 20px);
 
 	& > div:first-child {
 		& > span {
@@ -11,47 +14,22 @@
 		}
 	}
 
-	& > form {
-		flex: 1;
+	& > div:last-child {
 		display: flex;
-		height: 94%;
-		align-items: center;
-		flex-direction: column;
-		justify-content: space-evenly;
-
-		& > div:last-child {
-			gap: 30px;
-			width: 50%;
-			display: flex;
-			justify-content: center;
-
-			& > button {
-				width: 20%;
-				height: 40px;
-				color: white;
-				font-size: 1.2vw;
-				border-radius: 6px;
-				background-color: #050a0e;
-
-				&:hover {
-					background-color: white;
-					border: 1px solid black;
-					color: black;
-				}
-			}
-		}
+		height: fit-content;
+		justify-content: space-around;
 	}
 
 	.fields {
-		gap: 60px;
-		height: 70%;
+		gap: 50px;
+		width: fit-content;
 		display: flex;
-
+		flex-direction: row;
 		& > div {
 			gap: 14px;
-			width: clamp(250px, 17vw, 300px);
 			display: flex;
 			flex-direction: column;
+			width: clamp(250px, 17vw, 300px);
 			& > div {
 				display: flex;
 				flex-direction: column;
