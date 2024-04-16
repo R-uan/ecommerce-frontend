@@ -1,10 +1,10 @@
 import IOrder from "@/interfaces/IOrder";
 import { RootState } from "@/redux/store";
+import s from "../styles/order.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { RequestSingleOrder } from "@/scripts/requests/OrderRequests";
 import { setCurrentOrder, toggleExpansion } from "@/redux/slices/ExpandOrderSlice";
 
-// TODO Convert styles to modules
 export default function Order({ order }: { order: IOrder }) {
 	const state = useSelector((s: RootState) => s.expand_order);
 	const dispatch = useDispatch();
@@ -22,27 +22,27 @@ export default function Order({ order }: { order: IOrder }) {
 
 	return (
 		<button onClick={ExpandOrder}>
-			<div className="w-full gap-[20px] flex items-center h-[100px] bg-[#eeeeee]">
-				<div className="px-[50px] w-full flex flex-row justify-between gap-[50px]">
+			<div className={s.order}>
+				<div>
 					<div>
-						<p className="text-[1.5vw] leading-[1.5vw]">Order ID</p>
-						<span className="text-[1.5vw] leading-[1.5vw]">{order.id}</span>
+						<p>Order ID</p>
+						<span>{order.id}</span>
 					</div>
 					<div>
-						<p className="text-[1.5vw] leading-[1.5vw]">Date of Order</p>
-						<span className="text-[1.5vw] leading-[1.5vw]">{date.toLocaleDateString()}</span>
+						<p>Date of Order</p>
+						<span>{date.toLocaleDateString()}</span>
 					</div>
 					<div>
-						<p className="text-[1.5vw] leading-[1.5vw]">Total of Order</p>
-						<span className="text-[1.5vw] leading-[1.5vw]">${order.total}</span>
+						<p>Total of Order</p>
+						<span>${order.total}</span>
 					</div>
 					<div>
-						<p className="text-[1.5vw] leading-[1.5vw]">Order Status</p>
-						<span className="text-[1.5vw] leading-[1.5vw]">{order.status}</span>
+						<p>Order Status</p>
+						<span>{order.status}</span>
 					</div>
 					<div>
-						<p className="text-[1.5vw] leading-[1.5vw]">Planet Destination</p>
-						<span className="text-[1.5vw] leading-[1.5vw]">{order.planet_destination?.name}</span>
+						<p>Planet Destination</p>
+						<span>{order.planet_destination?.name}</span>
 					</div>
 				</div>
 			</div>

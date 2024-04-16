@@ -6,14 +6,14 @@ import s from "../styles/my-orders.module.scss";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { RequestUserOrders } from "@/scripts/requests/OrderRequests";
 import AuthenticationError from "@/scripts/error-handling/AuthenticationError";
-// TODO Convert styles to modules
+
 export default function MyOrders() {
 	const router = useRouter();
 	const [orders, setOrders] = useState<IOrder[] | null>(null);
 	const [fetching, setFetchStatus] = useState<boolean>(true);
 	const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-	async function GetUserOrders() {
+	async function GetMyOrders() {
 		try {
 			const user_orders = await RequestUserOrders();
 			console.log(user_orders);
@@ -29,28 +29,28 @@ export default function MyOrders() {
 	}
 
 	useEffect(() => {
-		GetUserOrders();
+		GetMyOrders();
 		setFetchStatus(true);
 	}, []);
 
 	return (
-		<section className="relative pt-2.5 w-full h-full flex flex-col gap-[5px]">
+		<section className={s.my_orders}>
 			{fetching ? (
-				<div className="w-full h-full items-center justify-center flex m-auto">
+				<div className={s.loading}>
 					<span className="animate-spin">
 						<AiOutlineLoading3Quarters size={50} />
 					</span>
 				</div>
 			) : errorMessage ? (
 				<div className={s.error_message}>
-					<span className="text-[2vw]">{errorMessage}</span>
+					<span>{errorMessage}</span>
 				</div>
 			) : orders ? (
 				orders?.map((order) => {
 					return <Order key={order.id} order={order} />;
 				})
 			) : (
-				<div className="w-full h-full items-center justify-center flex m-auto">
+				<div className={s.nothing_found}>
 					<span className="text-[2vw]">NO ORDERS TO SHOW</span>
 				</div>
 			)}

@@ -1,7 +1,7 @@
 import MyAddress from "./MyAddress";
 import MyInformation from "./MyInformation";
 import s from "../styles/update-profile.module.scss";
-
+// TODO form state
 export default function UpdateProfile() {
 	return (
 		<section className={s.edit_profile}>

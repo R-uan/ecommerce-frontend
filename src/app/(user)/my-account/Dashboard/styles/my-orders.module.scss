@@ -14,3 +14,37 @@
 		font-size: clamp(2rem, 5vw, 3rem);
 	}
 }
+
+.my_orders {
+	gap: 5px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	padding-top: 10px;
+	position: relative;
+	flex-direction: column;
+}
+
+.loading {
+	/* w-full h-full items-center justify-center flex m-auto */
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.nothing_found {
+	/* "w-full h-full items-center justify-center flex m-auto" */
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	& > span {
+		font-size: clamp(2rem, 5vw, 3rem);
+	}
+}

@@ -1,0 +1,55 @@
+.miniature {
+	/* "w-[370px] gap-[10px] flex h-fit bg-[#eeeeee] p-[2px] pr-[15px] rounded-md" */
+	width: 370px;
+	gap: 10px;
+	display: flex;
+	background-color: #eeeeee;
+	padding: 2px 15px 2px 2px;
+	border-radius: 6x;
+}
+
+.product_image {
+	/* "flex w-[150px] h-[200px] bg-white rounded-bl-md rounded-tl-md" */
+	display: flex;
+	width: 150x;
+	height: 200px;
+	background-color: white;
+	border-top-left-radius: 6px;
+}
+
+.product_information {
+	/* "flex flex-1 flex-col pt-[10px] gap-[7px]" */
+	gap: 7px;
+	flex: 1 1 0%;
+	display: flex;
+	padding-top: 10px;
+	flex-direction: column;
+
+	& > div:first-child {
+		& > h1 {
+			font-weight: bold;
+			overflow-wrap: break-word;
+			font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+			line-height: clamp(1.25rem, 1.5vw, 1.5rem);
+		}
+
+		& > h3 {
+			/* "text-[1.5vw] leading-[1.5vw]" */
+			font-size: clamp(1.25rem, 1.5vw, 1.5rem);
+			line-height: clamp(1.25rem, 1.5vw, 1.5rem);
+		}
+	}
+
+	& > div:last-child {
+		gap: 5px;
+		display: flex;
+		flex-direction: column;
+
+		& > div {
+			& > p {
+				font-size: clamp(1.1rem, 1.25vw, 1.3rem);
+				line-height: clamp(1.1rem, 1.25vw, 1.3rem);
+			}
+		}
+	}
+}
