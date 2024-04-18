@@ -5,7 +5,6 @@ import Dashboard from "./Dashboard/Dashboard";
 import DashboardProvider from "./Dashboard/ContextProvider/DashboardProvider";
 export default function Profile() {
 	// TODO Create a loading page while the application verifies the user authentication.
-	// TODO Create edit user information form
 	return (
 		<Provider store={store}>
 			<DashboardProvider>

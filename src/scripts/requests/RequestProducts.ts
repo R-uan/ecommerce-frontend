@@ -46,6 +46,17 @@ export class RequestProducts extends Requests {
 		}
 	}
 
+	static async RequestBySlug(slug: string) {
+		try {
+			const request = await api.get(`/products/${slug}`);
+			const response: IProduct = request.data;
+			return response;
+		} catch (error) {
+			if (!isAxiosError(error)) throw new UnexpectedError();
+			throw new ApiRequestError(error.response?.data);
+		}
+	}
+
 	static async Miniatures(product_ids: number[]) {
 		try {
 			const request = await api.post("/products/miniatures", { products: product_ids });

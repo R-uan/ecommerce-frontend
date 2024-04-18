@@ -18,10 +18,8 @@ export default function Product({ params }: { params: { product: string } }) {
 				<div className="flex flex-col gap-[20px] w-full min-h-[85vh] p-[2px]">
 					<div className="flex w-full py-[2vw] gap-[30px]">
 						<ProductImages />
-						<ProductInformation productId={params.product} />
+						<ProductInformation product_slug={params.product} />
 					</div>
-					{/* 					<div className="h-[20px] w-full" />
-					 */}
 					<div className="gap-5 flex flex-col">
 						<ProductDescription />
 						<TechnicalInformation />

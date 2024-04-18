@@ -9,7 +9,7 @@ import styles from "../singular-product.module.scss";
 import PlanetDestination from "./PlanetDestination";
 import Rating from "./Rating";
 
-export default function ProductInformation({ productId }: { productId: string }) {
+export default function ProductInformation({ product_slug }: { product_slug: string }) {
 	const state = useProductContext();
 	const product = state.product;
 
@@ -29,7 +29,7 @@ export default function ProductInformation({ productId }: { productId: string })
 		async function Default() {
 			try {
 				state.setFetchStatus(true);
-				const response = await RequestProducts.One(productId);
+				const response = await RequestProducts.One(product_slug);
 				if (response) state.setProduct(response);
 				state.setFetchStatus(false);
 			} catch (error) {

@@ -5,7 +5,7 @@ import testimage from "../../../../public/images/product-test-image.jpg";
 import s from "./product-mini.module.scss";
 export default function ProductMiniature({ data }: { data: IProduct }) {
 	return (
-		<Link className="w-fit h-fit" href={`/catalog/${data.id}`}>
+		<Link className="w-fit h-fit" href={`/catalog/${data.slug}`}>
 			<div className={s.miniature}>
 				<div className={s.image}>
 					{data.availability ? null : (

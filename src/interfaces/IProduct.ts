@@ -5,6 +5,7 @@ export interface IProduct {
 	image_url: string;
 	manufacturer: string;
 	unit_price: string;
+	slug: string;
 	production_time?: string;
 	availability?: boolean;
 	long_description?: string;
