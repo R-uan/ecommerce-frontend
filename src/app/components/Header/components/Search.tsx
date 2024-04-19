@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import s from "../styles/search.module.scss";
 
-export default function Search({ transparent }: { transparent: boolean }) {
+export default function Search({ bg }: { bg: boolean }) {
 	const router = useRouter();
 	async function HandleSearchSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
@@ -16,7 +16,7 @@ export default function Search({ transparent }: { transparent: boolean }) {
 		<div className={s.search_bar}>
 			<form method="get" onSubmit={HandleSearchSubmit}>
 				<input
-					style={{ backgroundColor: transparent ? "transparent" : "#050A0E", color: "white" }}
+					style={{ backgroundColor: bg ? "#050A0E" : "transparent", color: "white" }}
 					name="name"
 					type="text"
 					placeholder="Search"

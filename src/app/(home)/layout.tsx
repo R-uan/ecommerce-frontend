@@ -5,7 +5,7 @@ import Header from "../components/Header/Header";
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<body className={styles.body}>
-			<Header transparent={true} color="white" absolute={true} />
+			<Header bg={false} color="white" abs={true} />
 			{children}
 			<Footer />
 		</body>

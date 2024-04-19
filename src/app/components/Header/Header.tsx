@@ -1,25 +1,17 @@
 "use client";
-import User from "./components/User";
 import { store } from "@/redux/store";
-import RightIcons from "./components/RightIcons";
-import { Provider } from "react-redux";
-import Search from "./components/Search";
-import MediaQuery from "react-responsive";
-import s from "./styles/header.module.scss";
-import LateralMenu from "./components/LateralMenu";
 import { Suspense, useEffect, useState } from "react";
+import { Provider } from "react-redux";
+import MediaQuery from "react-responsive";
 import LoadingScreen from "../LoadingScreen";
+import LateralMenu from "./components/LateralMenu";
+import RightIcons from "./components/RightIcons";
+import Search from "./components/Search";
+import User from "./components/User";
+import { StyledHeader } from "./StyledHeader";
 
 // TODO Mobile Search Pop Up
-export default function Header({
-	transparent = false,
-	color = "black",
-	absolute = false,
-}: {
-	transparent?: boolean;
-	color?: string;
-	absolute?: boolean;
-}) {
+export default function Header({ bg, color = "black", abs = false }: { bg: boolean; color?: string; abs: boolean }) {
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		setTimeout(() => {
@@ -32,23 +24,18 @@ export default function Header({
 				{loading ? (
 					<LoadingScreen />
 				) : (
-					<header
-						style={{
-							backgroundColor: transparent ? "transparent" : "#eeeeee",
-							position: absolute ? "absolute" : "relative",
-						}}
-						className={s.header}>
+					<StyledHeader $bg={bg} $abs={abs}>
 						<div className={`text-all-${color}`}>
 							<MediaQuery maxWidth={749}>
 								<LateralMenu />
 							</MediaQuery>
 							<User />
 							<MediaQuery minWidth={700}>
-								<Search transparent={transparent} />
+								<Search bg />
 							</MediaQuery>
 							<RightIcons />
 						</div>
-					</header>
+					</StyledHeader>
 				)}
 			</Suspense>
 		</Provider>

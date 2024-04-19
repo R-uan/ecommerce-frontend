@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function CatalogLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<body className="flex relative overflow-x-hidden items-center flex-col bg-[#050a0e] min-h-[90vh]">
-			<Header />
+			<Header abs={false} bg={true} />
 			{children}
 			<Footer />
 		</body>
