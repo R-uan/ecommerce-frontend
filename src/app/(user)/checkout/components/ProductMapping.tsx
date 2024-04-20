@@ -5,12 +5,7 @@ import s from "../styles/checkout.module.scss";
 import { useCheckpointContext } from "../contexts/CheckoutContext";
 
 export default function ProductMapping() {
-	const { cartItens, InitialCartItensFetch } = useCheckpointContext();
-
-	useEffect(() => {
-		InitialCartItensFetch();
-	}, []);
-
+	const { cartItens } = useCheckpointContext();
 	return (
 		<div className={s.itens_map}>
 			{cartItens && cartItens?.length > 0 ? (

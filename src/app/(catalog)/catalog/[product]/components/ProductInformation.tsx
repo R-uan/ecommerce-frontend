@@ -1,13 +1,13 @@
-import { RequestProducts } from "@/scripts/requests/RequestProducts";
-import { FaHeart } from "react-icons/fa";
-
-import { useEffect } from "react";
-import { FaShoppingCart } from "react-icons/fa";
-import { FaCartPlus } from "react-icons/fa6";
-import { useProductContext } from "../context/ProductProvider";
-import styles from "../singular-product.module.scss";
-import PlanetDestination from "./PlanetDestination";
 import Rating from "./Rating";
+import { useEffect } from "react";
+import { FaHeart } from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa6";
+import { ICartItem } from "@/interfaces/ICartItem";
+import { FaShoppingCart } from "react-icons/fa";
+import PlanetDestination from "./PlanetDestination";
+import styles from "../singular-product.module.scss";
+import { useProductContext } from "../context/ProductProvider";
+import { RequestProducts } from "@/scripts/requests/RequestProducts";
 
 export default function ProductInformation({ product_slug }: { product_slug: string }) {
 	const state = useProductContext();
@@ -16,12 +16,13 @@ export default function ProductInformation({ product_slug }: { product_slug: str
 	function AddToCart() {
 		const storage = localStorage.getItem("cart");
 		if (storage && product) {
-			const cart: { products: number[] } = JSON.parse(storage);
-			cart.products.includes(product.id) ? null : cart.products.push(product.id);
+			const cart: ICartItem[] = JSON.parse(storage);
+			const cart_item: ICartItem = { id: product.id, name: product.name, slug: product.slug, amount: 1 };
+			cart.push(cart_item);
 			localStorage.setItem("cart", JSON.stringify(cart));
 		} else if (!storage && product) {
-			const cart: { products: number[] } = { products: [product.id] };
-			localStorage.setItem("cart", JSON.stringify(cart));
+			const cart_item: ICartItem = { id: product.id, name: product.name, slug: product.slug, amount: 1 };
+			localStorage.setItem("cart", JSON.stringify([cart_item]));
 		}
 	}
 

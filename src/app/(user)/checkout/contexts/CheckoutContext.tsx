@@ -1,15 +1,18 @@
 "use client";
+import { ICartItem } from "@/interfaces/ICartItem";
 import { IProduct } from "@/interfaces/IProduct";
 import { RequestProducts } from "@/scripts/requests/RequestProducts";
-import { ReactNode, SetStateAction, createContext, useContext, useState } from "react";
+import { ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 
 interface ICheckoutContext {
 	cartItens: IProduct[] | null;
 	setItens: React.Dispatch<SetStateAction<IProduct[] | null>>;
-	InitialCartItensFetch: () => void;
 	UpdateItemAmount: (product_id: number, amount: number) => void;
+	RemoveItemFromCart: (product_id: number) => void;
 }
+
 const CheckoutContext = createContext<ICheckoutContext | null>(null);
+
 export default function CheckoutProvider({ children }: { children: ReactNode }) {
 	const [cartItens, setItens] = useState<IProduct[] | null>(null);
 
@@ -23,23 +26,52 @@ export default function CheckoutProvider({ children }: { children: ReactNode }) 
 		}
 	}
 
-	async function InitialCartItensFetch() {
+	async function RemoveItemFromCart(product_id: number) {
 		const storage = localStorage.getItem("cart");
-		if (!storage) return;
-		const cart: { products: number[] } = JSON.parse(storage);
-		const product_ids = cart.products;
-		const itens: IProduct[] = await RequestProducts.Miniatures(product_ids);
-		const update_itens = itens.map((product) => ({
-			...product,
-			units: 1,
-			taxes: parseInt(product.unit_price) * 0.3,
-		}));
+		if (!storage || !cartItens) return;
 
-		setItens(update_itens);
+		const cart: ICartItem[] = JSON.parse(storage);
+		const new_cart_local = cart.filter((element) => element.id != product_id);
+		localStorage.setItem("cart", JSON.stringify(new_cart_local));
+
+		const newItemsState = cartItens.filter((element) => element.id !== product_id);
+		setItens(newItemsState);
 	}
 
+	/* 
+		cart: [
+			{
+				id: number,
+				name: string,
+				amount: number
+			}
+		]
+	*/
+
+	useEffect(() => {
+		async function InitialCartItensFetch() {
+			const storage = localStorage.getItem("cart");
+			if (!storage) return;
+			const cart: ICartItem[] = JSON.parse(storage);
+			const product_ids = cart.map((item) => {
+				return item.id;
+			});
+			console.log(product_ids);
+			const itens: IProduct[] = await RequestProducts.Miniatures(product_ids);
+			const update_itens = itens.map((product) => ({
+				...product,
+				units: 1,
+				taxes: parseInt(product.unit_price) * 0.3,
+			}));
+
+			setItens(update_itens);
+		}
+
+		InitialCartItensFetch();
+	}, []);
+
 	return (
-		<CheckoutContext.Provider value={{ cartItens, setItens, InitialCartItensFetch, UpdateItemAmount }}>
+		<CheckoutContext.Provider value={{ cartItens, setItens, UpdateItemAmount, RemoveItemFromCart }}>
 			{children}
 		</CheckoutContext.Provider>
 	);

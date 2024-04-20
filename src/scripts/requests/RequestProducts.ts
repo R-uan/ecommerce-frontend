@@ -1,4 +1,4 @@
-import { ICart } from "@/interfaces/ICart";
+import { ICart } from "@/interfaces/ICartItem";
 import { QueryParams, QueryType } from "@/interfaces/ICatalogQueries";
 import { IPlanetDestination } from "@/interfaces/IOrder";
 import IPaginateResponse from "@/interfaces/IPaginateResponse";
