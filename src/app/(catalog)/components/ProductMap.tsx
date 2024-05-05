@@ -34,8 +34,8 @@ export default function ProductMap() {
 	const availability = searchParams.get("av");
 	const min_price = searchParams.get("minp");
 	const max_price = searchParams.get("maxp");
+
 	useEffect(() => {
-		console.log(searchParams.values());
 		async function InitialFetch() {
 			setFetchingStatus(true);
 			let response: IPaginateResponse;
